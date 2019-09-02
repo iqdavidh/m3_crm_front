@@ -3,6 +3,8 @@ import React from 'react';
 import './App.css';
 
 function App() {
+  console.log(process.env.REACT_APP_ISDEBUG);
+
   return (
     <div className="container">
       <div className="row">

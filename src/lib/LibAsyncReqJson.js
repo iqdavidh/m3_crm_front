@@ -1,6 +1,4 @@
-import libConfig from './libConfig';
-
-const isDebug = libConfig.isDebug;
+const isDebug = parseInt(process.env.REACT_APP_ISDEBUG) === 1;
 
 const consoleIfDebug = data => {
   if (isDebug) {
