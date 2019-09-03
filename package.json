@@ -45,5 +45,20 @@
     "prettier": "^1.18.2",
     "puppeteer": "^1.18.0",
     "react-test-renderer": "^16.9.0"
+  },
+  "jest": {
+    "collectCoverageFrom" : [
+      "src/**/*.{js,jsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": ["text"]
+
   }
 }
