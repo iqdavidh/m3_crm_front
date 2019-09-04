@@ -58,4 +58,34 @@ describe('LibFecha ', function() {
 
     assert('2011-05-30' === fymd, 'No coincide - ' + fdmy);
   });
+
+  it('getDateFromAddDays - agregar 1 dias as 2019-05-20 ', function() {
+    const fymd = '2019-05-20';
+
+    const date = LibFecha.getDateFromFechaYMD(fymd);
+
+    const newDate = LibFecha.getDateFromAddDays(date, 1);
+
+    const fnew = LibFecha.getFYMDFromDate(newDate);
+
+    assert(
+      '2019-05-21' === fnew,
+      `No coincide agregar 1 dia a ${fymd} , se recibio ${fnew}`
+    );
+  });
+
+  it('getDateFromAddDays - quitar 10 dias as 2019-05-20 ', function() {
+    const fymd = '2019-05-20';
+
+    const date = LibFecha.getDateFromFechaYMD(fymd);
+
+    const newDate = LibFecha.getDateFromAddDays(date, -10);
+
+    const fnew = LibFecha.getFYMDFromDate(newDate);
+
+    assert(
+      '2019-05-10' === fnew,
+      `No coincide agregar -10 dia a ${fymd} , se recibio ${fnew}`
+    );
+  });
 });

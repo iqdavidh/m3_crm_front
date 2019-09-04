@@ -17,7 +17,7 @@ const listaCom = [
 ];
 
 const gestion_base = {
-  listaCom,
+  listaTextoRandom: listaCom,
   listaTipoGestion: [
     {
       id_tipo: '1',
@@ -67,7 +67,9 @@ const gestion_base = {
       is_activo: true,
       comentario: ''
     }
-  ]
+  ],
+
+  listaUsuario
 };
 
 export default gestion_base;

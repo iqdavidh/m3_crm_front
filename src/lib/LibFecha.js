@@ -1,3 +1,5 @@
+import LibNum from './LibNum';
+
 const listaDiaSemana = ['Dom', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'];
 const listaMes = [
   'Enero',
@@ -100,6 +102,10 @@ const LibFecha = {
     mes = (mes < 10 ? '0' : '') + mes.toString();
 
     return `${y}-${mes}-${dia}`;
+  },
+  getDateFromAddDays(date, dias) {
+    let ts = date.getTime() + dias * 86400000;
+    return new Date(ts);
   }
 };
 
