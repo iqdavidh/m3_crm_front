@@ -1,0 +1,42 @@
+import { assert } from 'chai';
+import AutData from './AutData';
+
+describe('AutData - Authentication Data tiene los datos de la sesion del usuario actual', () => {
+  it('constructor - data ok', () => {
+    let localStorageDummy = {
+      id_usuario: 'id',
+      nombre: 'n',
+      email: 'e',
+      urlThumb: 'url',
+      area: 'a',
+      isAdmin: false
+    };
+
+    let dummyToken = 'notoken';
+
+    let userData = new AutData(dummyToken, localStorageDummy);
+
+    assert(userData !== null, 'El data es null');
+
+    /*validar que se copian las propiedades*/
+    const listaProp = [
+      'id_usuario',
+      'nombre',
+      'email',
+      'urlThumb',
+      'area',
+      'isAdmin'
+    ];
+    assert(
+      userData.token === dummyToken,
+      `el tken no es correcto, se recibio ${userData.token}`
+    );
+
+    listaProp.forEach(p => {
+      assert(
+        userData.usuario[p] === localStorageDummy[p],
+        `LA propiedad no se encontro ${p} ==> ${userData[p]} vs ${localStorageDummy[p]}`
+      );
+    });
+  });
+});

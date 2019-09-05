@@ -16,6 +16,17 @@ const LibValidacion = {
     }
 
     return dataClean;
+  },
+  isNotEmpty: valor => {
+    if (
+      valor === null ||
+      valor === undefined ||
+      valor.toString().trim() === ''
+    ) {
+      throw new Error(`${valor} - es empty`);
+    }
+
+    return true;
   }
 };
 

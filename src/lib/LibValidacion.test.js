@@ -46,3 +46,70 @@ describe('LibValidacion - Libreria para validar un objeto', () => {
     }
   });
 });
+
+describe('LibValidacion.isNotEmpty validar que un valor no es vacio or null', () => {
+  it('isNotEmpty - el valor no puede ser vacio', () => {
+    let isValid = LibValidacion.isNotEmpty('xx');
+    assert(isValid, 'Se esperaba validacion true');
+  });
+
+  it('isNotEmpty - en caso de valor vacio lanza eception', () => {
+    {
+      let isLanzarError = null;
+      try {
+        LibValidacion.isNotEmpty(null);
+        isLanzarError = false; //porque esperamos que mande excepcion
+      } catch (e) {
+        isLanzarError = true;
+      }
+      assert(isLanzarError, 'Se esperaba una exception al validar null');
+    }
+
+    {
+      let isLanzarError = null;
+      try {
+        LibValidacion.isNotEmpty('');
+        isLanzarError = false; //porque esperamos que mande excepcion
+      } catch (e) {
+        isLanzarError = true;
+      }
+      assert(
+        isLanzarError,
+        'Se esperaba una exception al validar empty string'
+      );
+    }
+
+    {
+      let isLanzaError = null;
+      try {
+        let isValid = LibValidacion.isNotEmpty('dv');
+        isLanzaError = false;
+      } catch (e) {
+        isLanzaError = true;
+      }
+      assert(!isLanzaError, 'Se esperaba una validacion true de un string');
+    }
+
+    {
+      let isLanzaError = null;
+      try {
+        let isValid = LibValidacion.isNotEmpty(1000);
+        isLanzaError = false;
+      } catch (e) {
+        isLanzaError = true;
+      }
+      assert(!isLanzaError, 'Se esperaba una validacion true de numero');
+    }
+
+    {
+      let isLanzaError = null;
+      try {
+        let isValid = LibValidacion.isNotEmpty({});
+        isLanzaError = false;
+      } catch (e) {
+        isLanzaError = true;
+      }
+      assert(!isLanzaError, 'Se esperaba una validacion true de {}');
+    }
+  });
+});
