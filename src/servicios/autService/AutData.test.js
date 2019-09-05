@@ -16,7 +16,7 @@ describe('AutData - Authentication Data tiene los datos de la sesion del usuario
 
     let userData = new AutData(dummyToken, localStorageDummy);
 
-    assert(userData !== null, 'El data es null');
+    assert(userData !== null, 'El userData es null');
 
     /*validar que se copian las propiedades*/
     const listaProp = [
@@ -29,7 +29,7 @@ describe('AutData - Authentication Data tiene los datos de la sesion del usuario
     ];
     assert(
       userData.token === dummyToken,
-      `el tken no es correcto, se recibio ${userData.token}`
+      `el token no es correcto, se recibio ${userData.token}`
     );
 
     listaProp.forEach(p => {
@@ -38,5 +38,44 @@ describe('AutData - Authentication Data tiene los datos de la sesion del usuario
         `LA propiedad no se encontro ${p} ==> ${userData[p]} vs ${localStorageDummy[p]}`
       );
     });
+  });
+
+  it('constructor - data error -sin campos-, lanza error ', () => {
+    let localStorageDummy = {};
+
+    let dummyToken = 'notoken';
+
+    let isLanzaEception = false;
+
+    try {
+      let userData = new AutData(dummyToken, localStorageDummy);
+    } catch (e) {
+      isLanzaEception = true;
+    }
+
+    assert(isLanzaEception, 'En caso de que falten datos lanza exception');
+  });
+
+  it('constructor - token error -sin token lanza error', () => {
+    let localStorageDummy = {
+      id_usuario: 'id',
+      nombre: 'n',
+      email: 'e',
+      urlThumb: 'url',
+      area: 'a',
+      isAdmin: false
+    };
+
+    let dummyToken = null;
+
+    let isLanzaEception = false;
+
+    try {
+      let userData = new AutData(dummyToken, localStorageDummy);
+    } catch (e) {
+      isLanzaEception = true;
+    }
+
+    assert(isLanzaEception, 'En caso de que falte el token  lanza exception');
   });
 });

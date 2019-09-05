@@ -1,27 +1,43 @@
 /*
  *
  * */
+import AutData from '../AutData';
+
+const tokenDummy = 'token dummy';
 
 const AutLocal = {
-  async getCurrentData(isGetNotUser = false) {
+  /**
+   * Regresa instacioa de AutData con la informacion del usaurio
+   * **/
+  getCurrentData(isForzarNotUser = false) {
     /*En local inicializamos como usuario 1 , con perfil desde codigo*/
 
-    if (isGetNotUser) {
+    if (isForzarNotUser) {
       return null;
     }
 
-    let data = {
-      id_usuario: usuario.id_usuario,
-      nombre: usuario.nombre,
-      email: usuario.email,
-      urlThumb: usuario.urlThumb,
-      area: usuario.area,
-      isAdmin: usuario.isAdmin
+    let dummyUserData = {
+      id_usuario: '1',
+      nombre: 'dave',
+      email: 'david@productividadti.com.mx',
+      urlThumb: 'https://dummyimage.com/qvga',
+      area: 'area1',
+      isAdmin: false
     };
 
-    let token = 'token dummy';
+    return new AutData(tokenDummy, dummyUserData);
   },
-  async validarCurrentData() {}
+  /*
+   * Verificar que el token es valido, regresa un promise porque
+   * la valdiacion se hace con el backend
+   * */
+  async validarAutToken(token, isForzarNotValid = false) {
+    if (isForzarNotUser) {
+      return false;
+    }
+
+    return token === tokenDummy;
+  }
 };
 
 export default AutLocal;
