@@ -1,7 +1,8 @@
 import clientes_base from './clientes_base';
 
 import gestion_base from './gestion_base';
-import LibNum from '../../lib/LibNum';
+import LibNum from '../../../lib/LibNum';
+import * as LibFecha from '../../../lib/LibFecha';
 
 const fNow = new Date();
 
@@ -20,9 +21,9 @@ let lista = clientes_base.map(c => {
     for (let i = 0; i < numGestion; i++) {
       let idTipo = LibNum.getRandom(4);
       let indexComRandom = LibNum.getRandom(15);
-      let texto = gestion_base.listaTextoRandom(indexComRandom - 1);
+      let texto = gestion_base.listaTextoRandom[indexComRandom - 1];
 
-      let gestion = gestion_base.listaTipoGestion(idTipo - 1);
+      let gestion = gestion_base.listaTipoGestion[idTipo - 1];
       gestion.id_contacto = c.id_contacto;
       gestion.comentario = texto;
 
@@ -53,6 +54,7 @@ let lista = clientes_base.map(c => {
       nombre: c.id_usuario === '1' ? 'Dave' : 'Hail',
       area: 'area1'
     },
+
     nombre: c.nombre,
     apaterno: c.apaterno,
     amaterno: c.amaterno,
@@ -61,8 +63,10 @@ let lista = clientes_base.map(c => {
     tel: c.tel,
     origen: '',
     trabajo: '',
-    funelIndex,
-    sentimentalIndex,
+    indicadores: {
+      funelIndex,
+      sentimentalIndex
+    },
     dom: {
       personal: {
         calle: c.domper_calle,

@@ -47,7 +47,7 @@
     "react-test-renderer": "^16.9.0"
   },
   "jest": {
-    "collectCoverageFrom" : [
+    "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
     "coverageThreshold": {
@@ -58,7 +58,8 @@
         "statements": 90
       }
     },
-    "coverageReporters": ["text"]
-
+    "coverageReporters": [
+      "text"
+    ]
   }
 }

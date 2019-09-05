@@ -1,3 +1,3 @@
-const AutService = {};
+const AutApi = {};
 
-export default AutService;
+export default AutApi;

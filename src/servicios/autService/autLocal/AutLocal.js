@@ -9,7 +9,7 @@ const AutLocal = {
   /**
    * Regresa instacioa de AutData con la informacion del usaurio
    * **/
-  getCurrentData(isForzarNotUser = false) {
+  getCurrentSession(isForzarNotUser = false) {
     /*En local inicializamos como usuario 1 , con perfil desde codigo*/
 
     if (isForzarNotUser) {
@@ -31,7 +31,7 @@ const AutLocal = {
    * Verificar que el token es valido, regresa un promise porque
    * la valdiacion se hace con el backend
    * */
-  async validarAutToken(token, isForzarNotValid = false) {
+  async validarAutToken(token, isForzarNotValid = null) {
     if (isForzarNotUser) {
       return false;
     }

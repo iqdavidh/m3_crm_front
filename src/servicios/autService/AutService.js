@@ -1,3 +1,5 @@
-const AutLocal = {};
+import AutLocal from './autLocal/AutLocal';
 
-export default AutLocal;
+const AutService = AutLocal;
+
+export default AutService;

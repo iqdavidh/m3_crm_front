@@ -2,16 +2,22 @@ import React from 'react';
 
 import './App.css';
 
-function App() {
-  console.log(process.env.REACT_APP_ISDEBUG);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6">x</div>
+  render() {
+    console.log(process.env.REACT_APP_ISDEBUG);
+
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">x</div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

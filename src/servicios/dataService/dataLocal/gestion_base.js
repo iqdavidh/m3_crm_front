@@ -16,6 +16,11 @@ const listaCom = [
   'Proin ut ligula euismod, tempor purus ac, lacinia magna. Nunc consectetur lectus nec augue condimentum fringilla. Cras ac magna facilisis, cursus orci a, egestas felis. Quisque convallis velit quis enim sollicitudin lacinia. Suspendisse potenti. Donec interdum ligula vitae dui bibendum, sed feugiat elit iaculis. Cras porttitor blandit eleifend.'
 ];
 
+const listaUsuario = [
+  { id_usuario: 1, nombre: 'dave' },
+  { id_usuario: 2, nombre: 'hail' }
+];
+
 const gestion_base = {
   listaTextoRandom: listaCom,
   listaTipoGestion: [
