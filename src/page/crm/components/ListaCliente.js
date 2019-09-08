@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
+import ItemClienteLista from './ItemClienteLista';
 
 class ListaCliente extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      listaClientes: [],
+      listaFiltrada: [],
+      texto: '',
+      filtroEstatus: null
+    };
+  }
   render() {
-    const listaEstatus = ['NA', 'Baja', 'Media', 'Alta'];
-
-    const lista = this.props.listaClientes.map(c => {
+    const lista = this.props.listaClientes.map((c, index) => {
+      console.log(index);
       return (
-        <div className="itemCliente" key={c.id_contacto} title={c.apaterno}>
-          <i className="fa fa-user fa-2x" />
-
-          <div className="labNombreCompleto">
-            <span title="Nombre">{c.nombre}</span>
-            <span title="Apellido Paterno">{c.apaterno}</span>
-            <span title="Apellido Materno">{c.amaterno}</span>
-          </div>
-
-          <div className="labPrioridad">
-            <span className="badge badge-danger">
-              {listaEstatus[c.indicadores.funelIndex - 1]}
-            </span>
-          </div>
-        </div>
+        <ItemClienteLista Cliente={c} numItem={index} key={c.id_contacto} />
       );
     });
 

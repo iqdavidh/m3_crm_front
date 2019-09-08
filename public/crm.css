@@ -1,26 +1,19 @@
 
-.container-main{
+.container-main {
    display: grid;
    min-height: 100vh;
 
-   grid-template-areas:
-           'topbar topbar'
-           'browser main'
-           'browser add'
-           'browser historial'
-           ;
+   grid-template-areas: 'topbar topbar' 'browser main' 'browser add' 'browser historial';
 
    grid-template-columns: 300px auto;
    grid-template-rows: 56px 300px 60px auto;
-   transition: grid-template-rows  500ms;
+   transition: grid-template-rows 500ms;
 }
 
-.container-main.addGestion{
+.container-main.addGestion {
    grid-template-rows: 56px 300px 300px auto;
-   transition: grid-template-rows  500ms;
+   transition: grid-template-rows 500ms;
 }
-
-
 
 
 /*.cell-topbar , .cell-browser ,.cell-data-main ,.cell-data-add, .cell-data-historial {*/
@@ -33,36 +26,80 @@
 /*.cell-data-historial{ background-color: lightcoral}*/
 
 
+.cell-topbar {
+   grid-area: topbar
+}
 
+.cell-browser {
+   grid-area: browser
+}
 
+.cell-data-main {
+   grid-area: main
+}
 
-.cell-topbar{ grid-area: topbar}
-.cell-browser{ grid-area: browser}
-.cell-data-main{ grid-area: main}
-.cell-data-add{ grid-area: add}
-.cell-data-historial{ grid-area: historial}
+.cell-data-add {
+   grid-area: add
+}
+
+.cell-data-historial {
+   grid-area: historial
+}
 
 /* ****************************************** */
 /* ****************************************** */
 /* ****************************************** */
-.listaClientes{padding-top: 5px}
+.listaClientes {
+   padding-top: 5px
+}
+
 .listaClientes .itemCliente {
    display: flex;
-   border-bottom:1px solid #c3c3c3;
+   align-items: center;
+   border-bottom: 1px solid #c3c3c3;
    cursor: pointer;
 }
 
-.listaClientes .itemCliente:hover{
+.listaClientes .itemCliente:hover {
    background-color: #FFFBE5;
+   color:blue;
 }
 
-.labNombreCompleto{
+.labNombreCompleto {
    padding-left: 4px;
    padding-right: 4px;
    flex-grow: 1;
-   border:1px solid red
 }
 
-.labNombreCompleto span{ margin-left: 5px; display: inline-block}
+.labNombreCompleto span {
+   margin-left: 5px;
+   display: inline-block
+}
+.labIndex{ width: 40px; text-align: center; font-size: 11px}
+.labPrioridad {
+   width: 50px
+}
 
-.labPrioridad{width: 50px}
+.prioridad1 {
+   background-color: #fff;
+   color: #000
+}
+
+.prioridad2 {
+   background-color: #CACED9;
+   color: #000
+}
+
+.prioridad3 {
+   background-color: #4D94EA;
+   color: #fff
+}
+
+.prioridad4 {
+   background-color: #006600;
+   color: #fff
+}
+
+.badgeEstatus{
+   width: 40px;
+}
