@@ -4,6 +4,7 @@ import AutService from '../../servicios/autService/AutService';
 import TopBarCrm from './components/TopBarCrm';
 import ListaCliente from './components/ListaCliente';
 import DataService from '../../servicios/dataService/DataService';
+import LibToast from '../../lib/LibToast';
 
 const session = AutService.getCurrentSession();
 
@@ -32,7 +33,15 @@ class Crm extends Component {
   async componentDidMount() {
     /* la primera ves se cargan los datos*/
     let respuesta = await DataService.indexCliente(1);
+    if (respuesta.success) {
+    } else {
+    }
     console.log(respuesta);
+  }
+
+  botonClick() {
+    console.log('x');
+    LibToast.success('yea');
   }
 
   render() {
@@ -48,7 +57,9 @@ class Crm extends Component {
           <ListaCliente />
         </div>
 
-        <div className="cell-data-main">main</div>
+        <div className="cell-data-main" onClick={e => this.botonClick()}>
+          main
+        </div>
         <div
           className="cell-data-add"
           onClick={e => this.setModoGestion('addGestion')}

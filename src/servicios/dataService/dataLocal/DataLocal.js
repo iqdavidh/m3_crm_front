@@ -1,5 +1,6 @@
 import clientes_dataLocal from './clientes_datalocal';
 import AutService from '../../autService/AutService';
+import LibNum from '../../../lib/LibNum';
 
 const paginacion = 10;
 
@@ -21,6 +22,11 @@ const DataLocal = {
         ? indexFinal
         : listaClientesDelUsuario.length;
 
+    const numPaginas = Math.round(
+      listaClientesDelUsuario.length / paginacion,
+      0
+    );
+
     let listaPagina = [];
 
     for (let i = indexInicial; i <= indexFinal; i++) {
@@ -41,6 +47,7 @@ const DataLocal = {
       msg: '',
       data: {
         total: listaClientesDelUsuario.length,
+        numPaginas,
         clientes: listaPagina
       }
     };
