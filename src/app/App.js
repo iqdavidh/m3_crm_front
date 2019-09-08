@@ -13,11 +13,11 @@ import {
 } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import Supervisor from '../components/supervisor/Supervisor';
-import Admin from '../components/admin/Admin';
-import Cuenta from '../components/cuenta/Cuenta';
-import Login from '../components/login/Login';
-import Logout from '../components/logout/Logout';
+import Supervisor from '../page/supervisor/Supervisor';
+import Admin from '../page/admin/Admin';
+import Cuenta from '../page/cuenta/Cuenta';
+import Login from '../page/login/Login';
+import Logout from '../page/logout/Logout';
 import Crm from '../page/crm/Crm';
 
 class App extends React.Component {

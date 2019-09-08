@@ -24,15 +24,16 @@ body {
            ;
 
    grid-template-columns: 300px auto;
+   grid-template-rows: 56px auto;
    transition: grid-template-rows  500ms;
 }
 
 
 
 
-.cell-topbar , .cell-browser ,.cell-data-main ,.cell-data-add, .cell-data-historial {
-   border: 2px solid blue
-}
+/*.cell-topbar , .cell-browser ,.cell-data-main ,.cell-data-add, .cell-data-historial {*/
+/*   border: 2px solid blue*/
+/*}*/
 
 .cell-topbar{ grid-area: topbar}
 .cell-browser{ grid-area: browser}
