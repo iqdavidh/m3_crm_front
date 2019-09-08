@@ -40,7 +40,7 @@ class ListaCliente extends Component {
       <div className="listaClientes">
         <div className="seccionTopListaCliente">{seccionTop}</div>
 
-        <div>{lista}</div>
+        <div className="wrapperListaCliente">{lista}</div>
       </div>
     );
   }

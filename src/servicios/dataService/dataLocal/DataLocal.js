@@ -20,7 +20,7 @@ const DataLocal = {
     indexFinal =
       indexFinal < listaClientesDelUsuario.length
         ? indexFinal
-        : listaClientesDelUsuario.length;
+        : listaClientesDelUsuario.length - 1;
 
     const numTotalPaginas = Math.round(
       listaClientesDelUsuario.length / paginacion,

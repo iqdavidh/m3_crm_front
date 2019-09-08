@@ -34,10 +34,12 @@ class Crm extends Component {
   async componentDidMount() {
     /* la primera ves se cargan los datos*/
 
-    const pagina = 1;
-
     LibToast.info('Iniciando solicitud de Datos');
 
+    await this.loadAllClientes(1);
+  }
+
+  async loadAllClientes(pagina) {
     let respuesta = await DataService.indexCliente(pagina);
 
     if (respuesta.success) {
@@ -55,6 +57,9 @@ class Crm extends Component {
 
       if (isCompletado) {
         LibToast.success('Datos Recibidos');
+      } else {
+        let fn = () => this.loadAllClientes(pagina + 1);
+        setTimeout(fn, 300);
       }
     } else {
       LibToast.alert(respuesta.msg);

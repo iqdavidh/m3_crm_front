@@ -16,6 +16,8 @@
 }
 
 
+
+
 /*.cell-topbar , .cell-browser ,.cell-data-main ,.cell-data-add, .cell-data-historial {*/
 /*   border: 2px solid blue*/
 /*}*/
@@ -33,6 +35,7 @@
 .cell-browser {
    grid-area: browser;
    background-color: #F1F1F1;
+
 }
 
 .cell-data-main {
@@ -50,8 +53,11 @@
 /* ****************************************** */
 /* ****************************************** */
 /* ****************************************** */
-.listaClientes {
+:root { --toopBarH: 55px; }
+.wrapperListaCliente {
    padding-top: 5px;
+   max-height: 98vh;
+   overflow-y: scroll;
 }
 
 .listaClientes .itemCliente {
@@ -59,12 +65,10 @@
    align-items: center;
    border-bottom: 1px solid #c3c3c3;
    cursor: pointer;
+   padding-right: 3px;
 }
 
-.listaClientes .itemCliente:hover {
-   background-color: #FFFBE5;
-   color:blue;
-}
+
 
 .labNombreCompleto {
    padding-left: 4px;
