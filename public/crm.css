@@ -31,7 +31,8 @@
 }
 
 .cell-browser {
-   grid-area: browser
+   grid-area: browser;
+   background-color: #F1F1F1;
 }
 
 .cell-data-main {
@@ -50,7 +51,7 @@
 /* ****************************************** */
 /* ****************************************** */
 .listaClientes {
-   padding-top: 5px
+   padding-top: 5px;
 }
 
 .listaClientes .itemCliente {
@@ -102,4 +103,10 @@
 
 .badgeEstatus{
    width: 40px;
+}
+
+
+.seccionTopListaCliente {
+   padding-top: 5px;
+   padding-bottom: 5px;
 }

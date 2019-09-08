@@ -76,8 +76,8 @@ class Crm extends Component {
         <div className="cell cell-browser">
           <ListaCliente
             listaClientes={this.state.listaClientes}
-            paginaLoaded={this.state.paginaLoaded}
-            paginaTotal={this.state.paginaTotal}
+            numPagina={this.state.numPagina}
+            numTotalPaginas={this.state.numTotalPaginas}
             isCompleado={this.state.isCompletado}
           />
         </div>
