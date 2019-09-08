@@ -17,12 +17,7 @@ class TopBar extends Component {
           <span className="logoCRM">CRM</span>
         </div>
 
-        <div>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-info">Search</Button>
-          </Form>
-        </div>
+        <div>{this.props.children}</div>
         <i className="fa fa-user fa-2x mL20 colorWhite" />
         <NavDropdown title={nombreUsuario} alignRight id="basic-nav-dropdown">
           <NavDropdown.Item href="/cuenta">
