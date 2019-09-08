@@ -80,7 +80,7 @@ class Crm extends Component {
             listaClientes={this.state.listaClientes}
             numPagina={this.state.numPagina}
             numTotalPaginas={this.state.numTotalPaginas}
-            isCompleado={this.state.isCompletado}
+            isCompletado={this.state.isCompletado}
           />
         </div>
 

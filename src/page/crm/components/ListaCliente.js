@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ItemClienteLista from './ItemClienteLista';
 import { ProgressBar } from 'react-bootstrap';
 import ObserverWindowH from '../../../lib/ObserverWindowH';
+import FiltroListaCliente from './FiltroListaCliente';
 
 class ListaCliente extends Component {
   constructor(props) {
@@ -18,11 +19,15 @@ class ListaCliente extends Component {
   componentDidMount() {
     let fn = h => {
       document.getElementById('wrapperListaCliente').style.height = `${h -
-        90}px`;
+        120}px`;
     };
     ObserverWindowH.subscribe('wrapperListaCliente', fn);
 
     fn(window.innerHeight);
+  }
+
+  onFiltroChange(dataFiltro) {
+    console.log('onfiltroCahnge', dataFiltro);
   }
 
   render() {
@@ -36,20 +41,19 @@ class ListaCliente extends Component {
     let seccionTop = null;
 
     if (props.isCompletado) {
-      seccionTop = <div>Filtro</div>;
+      seccionTop = <FiltroListaCliente onFiltroChange={this.onFiltroChange} />;
     } else {
       const now =
         props.numTotalPaginas > 0
           ? Math.round((props.numPagina * 100) / props.numTotalPaginas, 0)
           : 0;
 
-      seccionTop = <ProgressBar now={now} label={`${now}%`} srOnly />;
+      seccionTop = <ProgressBar now={now} label={`Loading ${now}%`} />;
     }
 
     return (
       <div className="listaClientes">
-        <div className="seccionTopListaCliente">{seccionTop}</div>
-
+        <div className="seccionTopListaCliente p-2">{seccionTop}</div>
         <div id="wrapperListaCliente">{lista}</div>
       </div>
     );

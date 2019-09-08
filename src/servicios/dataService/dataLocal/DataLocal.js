@@ -2,7 +2,7 @@ import clientes_dataLocal from './clientes_datalocal';
 import AutService from '../../autService/AutService';
 import LibNum from '../../../lib/LibNum';
 
-const paginacion = 10;
+const paginacion = 100;
 
 const DataLocal = {
   indexCliente: async pagina => {
