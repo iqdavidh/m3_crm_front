@@ -22,7 +22,11 @@ const AutLocal = {
       email: 'david@productividadti.com.mx',
       urlThumb: 'https://dummyimage.com/qvga',
       area: 'area1',
-      isAdmin: false
+      perfil: {
+        isAdmin: false,
+        isResponsableArea: false,
+        isAgente: true
+      }
     };
 
     return new AutData(tokenDummy, dummyUserData);
@@ -32,7 +36,7 @@ const AutLocal = {
    * la valdiacion se hace con el backend
    * */
   async validarAutToken(token, isForzarNotValid = null) {
-    if (isForzarNotUser) {
+    if (isForzarNotValid) {
       return false;
     }
 

@@ -17,13 +17,15 @@ const LibValidacion = {
 
     return dataClean;
   },
-  isNotEmpty: valor => {
-    if (
-      valor === null ||
-      valor === undefined ||
-      valor.toString().trim() === ''
-    ) {
-      throw new Error(`${valor} - es empty`);
+  isNotEmpty: (valor, nombre = 'valor') => {
+    if (valor === null || valor === undefined) {
+      throw new Error(`${nombre} - es empty`);
+    }
+
+    if (typeof valor === 'string') {
+      if (valor.toString().trim() === '') {
+        throw new Error(`${valor} - es empty`);
+      }
     }
 
     return true;

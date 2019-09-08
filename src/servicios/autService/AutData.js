@@ -11,7 +11,7 @@ class AutData {
       'email',
       'urlThumb',
       'area',
-      'isAdmin'
+      'perfil'
     ];
 
     /* copiar las propieades y validar  */
@@ -27,7 +27,7 @@ class AutData {
       email: usuario.email,
       urlThumb: usuario.urlThumb,
       area: usuario.area,
-      isAdmin: usuario.isAdmin
+      perfil: usuario.perfil
     };
   }
 }

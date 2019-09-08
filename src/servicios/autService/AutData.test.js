@@ -9,7 +9,11 @@ describe('AutData - Authentication Data tiene los datos de la sesion del usuario
       email: 'e',
       urlThumb: 'url',
       area: 'a',
-      isAdmin: false
+      perfil: {
+        isAdmin: false,
+        isResponsableArea: false,
+        isAgente: true
+      }
     };
 
     let dummyToken = 'notoken';
@@ -25,7 +29,7 @@ describe('AutData - Authentication Data tiene los datos de la sesion del usuario
       'email',
       'urlThumb',
       'area',
-      'isAdmin'
+      'perfil'
     ];
     assert(
       userData.token === dummyToken,
