@@ -1,0 +1,41 @@
+body {
+   background-color: #c3c3c3;
+   margin: 0;
+}
+
+
+
+.cell-browser { background-color: aqua}
+.cell-data-main{ background-color: pink}
+.cell-data-add{ background-color: indianred}
+.cell-data-historial{ background-color: lightcoral}
+
+
+
+.container-main{
+   display: grid;
+   min-height: 100vh;
+
+   grid-template-areas:
+           'topbar topbar'
+           'browser main'
+           'browser add'
+           'browser historial'
+           ;
+
+   grid-template-columns: 300px auto;
+   transition: grid-template-rows  500ms;
+}
+
+
+
+
+.cell-topbar , .cell-browser ,.cell-data-main ,.cell-data-add, .cell-data-historial {
+   border: 2px solid blue
+}
+
+.cell-topbar{ grid-area: topbar}
+.cell-browser{ grid-area: browser}
+.cell-data-main{ grid-area: main}
+.cell-data-add{ grid-area: add}
+.cell-data-historial{ grid-area: historial}
