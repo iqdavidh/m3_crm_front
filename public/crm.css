@@ -1,9 +1,3 @@
-body {
-   background-color: #c3c3c3;
-   margin: 0;
-}
-
-
 
 .cell-browser { background-color: aqua}
 .cell-data-main{ background-color: pink}
@@ -24,7 +18,12 @@ body {
            ;
 
    grid-template-columns: 300px auto;
-   grid-template-rows: 56px auto;
+   grid-template-rows: 56px 300px 60px auto;
+   transition: grid-template-rows  500ms;
+}
+
+.container-main.addGestion{
+   grid-template-rows: 56px 300px 300px auto;
    transition: grid-template-rows  500ms;
 }
 

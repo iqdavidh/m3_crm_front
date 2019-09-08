@@ -6,11 +6,10 @@ import {
   Navbar,
   NavDropdown
 } from 'react-bootstrap';
-import AutService from '../../servicios/autService/AutService';
 
 class TopBar extends Component {
   render() {
-    const nombreUsuario = AutService.getCurrentSession().usuario.nombre;
+    const nombreUsuario = this.props.session.usuario.nombre;
 
     return (
       <Navbar bg="dark" variant="dark">

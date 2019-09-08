@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import TopBar from '../../components/topbar/TopBar';
+import AutService from '../../servicios/autService/AutService';
+
+const session = AutService.getCurrentSession();
 
 class Crm extends Component {
   constructor(props) {
@@ -22,9 +25,9 @@ class Crm extends Component {
 
   render() {
     return (
-      <div className="container-main">
+      <div className={'container-main ' + this.state.modoGrid}>
         <div className="cell cell-topbar">
-          <TopBar />
+          <TopBar session={session} />
         </div>
 
         <div className="cell cell-browser">browser</div>
