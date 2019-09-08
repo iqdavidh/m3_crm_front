@@ -23,9 +23,8 @@ const AutLocal = {
       urlThumb: 'https://dummyimage.com/qvga',
       area: 'area1',
       perfil: {
-        isAdmin: false,
-        isResponsableArea: false,
-        isAgente: true
+        isSupervisor: false,
+        isAdmin: false
       }
     };
 
