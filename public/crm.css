@@ -54,7 +54,7 @@
 /* ****************************************** */
 /* ****************************************** */
 :root { --toopBarH: 55px; }
-.wrapperListaCliente {
+#wrapperListaCliente {
    padding-top: 5px;
    max-height: 98vh;
    overflow-y: scroll;

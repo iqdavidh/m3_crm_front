@@ -18,9 +18,10 @@ class AObserverWindowH {
     });
   }
 
-  onChangeHeight() {
+  onChangeHeight(h) {
+    console.log(`evento on window height ${h}`);
     this.handlers.forEach(item => {
-      item.fn(scope, o);
+      item.fn(h);
     });
   }
 }

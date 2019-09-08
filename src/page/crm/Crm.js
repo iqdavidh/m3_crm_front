@@ -27,8 +27,6 @@ class Crm extends Component {
     } else {
       this.setState({ modoGrid: modo });
     }
-
-    console.log('modoGrid', this.state.modoGrid);
   }
 
   async componentDidMount() {
@@ -64,7 +62,6 @@ class Crm extends Component {
     } else {
       LibToast.alert(respuesta.msg);
     }
-    console.log(respuesta);
   }
 
   onLoadCliente() {}

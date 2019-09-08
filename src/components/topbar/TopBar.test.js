@@ -23,7 +23,6 @@ describe('TopBar', function() {
       .debug()
       .toString()
       .includes(nombreUsuario);
-    console.log(isNombreUsuarioPresente);
 
     assert(
       isNombreUsuarioPresente,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ItemClienteLista from './ItemClienteLista';
 import { ProgressBar } from 'react-bootstrap';
+import ObserverWindowH from '../../../lib/ObserverWindowH';
 
 class ListaCliente extends Component {
   constructor(props) {
@@ -12,6 +13,16 @@ class ListaCliente extends Component {
       texto: '',
       filtroEstatus: null
     };
+  }
+
+  componentDidMount() {
+    let fn = h => {
+      document.getElementById('wrapperListaCliente').style.height = `${h -
+        90}px`;
+    };
+    ObserverWindowH.subscribe('wrapperListaCliente', fn);
+
+    fn(window.innerHeight);
   }
 
   render() {
@@ -32,7 +43,6 @@ class ListaCliente extends Component {
           ? Math.round((props.numPagina * 100) / props.numTotalPaginas, 0)
           : 0;
 
-      console.log(now);
       seccionTop = <ProgressBar now={now} label={`${now}%`} srOnly />;
     }
 
@@ -40,7 +50,7 @@ class ListaCliente extends Component {
       <div className="listaClientes">
         <div className="seccionTopListaCliente">{seccionTop}</div>
 
-        <div className="wrapperListaCliente">{lista}</div>
+        <div id="wrapperListaCliente">{lista}</div>
       </div>
     );
   }

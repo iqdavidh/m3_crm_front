@@ -15,6 +15,7 @@ import Login from '../page/login/Login';
 import Logout from '../page/logout/Logout';
 import Crm from '../page/crm/Crm';
 import { ToastContainer } from 'react-toastify';
+import ObserverWindowH from '../lib/ObserverWindowH';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,6 +29,13 @@ class App extends React.Component {
       session /*propiamente los datos de la seession*/,
       isCRMRequireReloadData: true /*indica si debemos volver a solocitar los datos del crm - caso de asignar clientes a susuarios  */
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', () => {
+      const h = window.innerHeight;
+      ObserverWindowH.onChangeHeight(h);
+    });
   }
 
   render() {
