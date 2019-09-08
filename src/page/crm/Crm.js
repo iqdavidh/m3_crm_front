@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TopBar from '../../components/topbar/TopBar';
 import AutService from '../../servicios/autService/AutService';
 import TopBarCrm from './components/TopBarCrm';
+import ListaCliente from './components/ListaCliente';
+import DataService from '../../servicios/dataService/DataService';
 
 const session = AutService.getCurrentSession();
 
@@ -10,6 +12,9 @@ class Crm extends Component {
     super(props);
 
     this.state = {
+      listaClientes: [],
+      indexPagina: 1,
+      isCompletado: false,
       modoGrid: ''
     };
   }
@@ -24,6 +29,12 @@ class Crm extends Component {
     console.log('modoGrid', this.state.modoGrid);
   }
 
+  async componentDidMount() {
+    /* la primera ves se cargan los datos*/
+    let respuesta = await DataService.indexCliente(1);
+    console.log(respuesta);
+  }
+
   render() {
     return (
       <div className={'container-main ' + this.state.modoGrid}>
@@ -33,7 +44,9 @@ class Crm extends Component {
           </TopBar>
         </div>
 
-        <div className="cell cell-browser">browser</div>
+        <div className="cell cell-browser">
+          <ListaCliente />
+        </div>
 
         <div className="cell-data-main">main</div>
         <div

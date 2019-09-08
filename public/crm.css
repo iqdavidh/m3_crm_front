@@ -1,11 +1,4 @@
 
-.cell-browser { background-color: aqua}
-.cell-data-main{ background-color: pink}
-.cell-data-add{ background-color: indianred}
-.cell-data-historial{ background-color: lightcoral}
-
-
-
 .container-main{
    display: grid;
    min-height: 100vh;
@@ -33,6 +26,15 @@
 /*.cell-topbar , .cell-browser ,.cell-data-main ,.cell-data-add, .cell-data-historial {*/
 /*   border: 2px solid blue*/
 /*}*/
+
+/*.cell-browser { background-color: aqua}*/
+/*.cell-data-main{ background-color: pink}*/
+/*.cell-data-add{ background-color: indianred}*/
+/*.cell-data-historial{ background-color: lightcoral}*/
+
+
+
+
 
 .cell-topbar{ grid-area: topbar}
 .cell-browser{ grid-area: browser}

@@ -2,7 +2,7 @@ import clientes_base from './clientes_base';
 
 import gestion_base from './gestion_base';
 import LibNum from '../../../lib/LibNum';
-import * as LibFecha from '../../../lib/LibFecha';
+import LibFecha from '../../../lib/LibFecha';
 
 const fNow = new Date();
 
