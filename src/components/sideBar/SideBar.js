@@ -1,5 +1,6 @@
 import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
+import { Link } from 'react-router-dom';
 
 export default props => {
   return (
@@ -9,7 +10,8 @@ export default props => {
         CRM <br />
         @iqdavidh
       </p>
-      <a className="menu-item" href="/crm">
+
+      <a className="menu-item" href="/">
         Clientes
       </a>
 
@@ -17,7 +19,7 @@ export default props => {
         Supervisor
       </a>
 
-      <a className="menu-item" href="/adm">
+      <a className="menu-item" href="/admin">
         Administración
       </a>
 

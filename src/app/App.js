@@ -2,13 +2,22 @@ import React from 'react';
 
 import './App.css';
 import AutService from '../servicios/autService/AutService';
-import SideBar from '../components/SideBar/SideBar';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/es/FormControl';
-import Button from 'react-bootstrap/Button';
-import { NavDropdown } from 'react-bootstrap';
+import SideBar from '../components/sideBar/SideBar';
+
+import {
+  NavDropdown,
+  Button,
+  Form,
+  FormControl,
+  Navbar
+} from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Crm from '../components/crm/Crm';
+import Supervisor from '../components/supervisor/Supervisor';
+import Admin from '../components/admin/Admin';
+import Cuenta from '../components/cuenta/Cuenta';
+import Login from '../components/login/Login';
+import Logout from '../components/logout/Logout';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,8 +44,6 @@ class App extends React.Component {
 
     return (
       <div id="App">
-        <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
-
         <Navbar bg="dark" variant="dark">
           <div className="mr-auto mL20">
             <span className="logoCRM">CRM</span>
@@ -52,18 +59,31 @@ class App extends React.Component {
               <Button variant="outline-info">Search</Button>
             </Form>
           </div>
-          <i className="fa fa-user fa-2x mL20 colorWhite"></i>
+          <i className="fa fa-user fa-2x mL20 colorWhite" />
           <NavDropdown title={nombreUsuario} alignRight id="basic-nav-dropdown">
-            <NavDropdown.Item href="/perfil">
-              <i className="fa fa-edit"></i> Editar Perfil
+            <NavDropdown.Item href="/cuenta">
+              <i className="fa fa-edit" /> Editar Perfil
             </NavDropdown.Item>
             <hr />
             <NavDropdown.Item href="/salir">
-              <i className="fa-sign-out"></i>
+              <i className="fa-sign-out" />
               Log Out
             </NavDropdown.Item>
           </NavDropdown>
         </Navbar>
+
+        <Router>
+          <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
+
+          <div>
+            <Route path="/" exact component={Crm} />
+            <Route path="/sup" component={Supervisor} />
+            <Route path="/admin" component={Admin} />
+            <Route path="/cuenta" component={Cuenta} />
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
+          </div>
+        </Router>
       </div>
     );
   }
