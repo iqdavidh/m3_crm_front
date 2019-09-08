@@ -7,8 +7,8 @@ const LibToast = {
     });
   },
 
-  alert(msg) {
-    toast.error(msg, {
+  alert(msg, titulo = 'Error') {
+    toast.error('Error ' + msg, {
       position: toast.POSITION.TOP_RIGHT
     });
   },

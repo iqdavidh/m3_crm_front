@@ -22,7 +22,7 @@ const DataLocal = {
         ? indexFinal
         : listaClientesDelUsuario.length;
 
-    const numPaginas = Math.round(
+    const numTotalPaginas = Math.round(
       listaClientesDelUsuario.length / paginacion,
       0
     );
@@ -47,7 +47,7 @@ const DataLocal = {
       msg: '',
       data: {
         total: listaClientesDelUsuario.length,
-        numPaginas,
+        numTotalPaginas,
         clientes: listaPagina
       }
     };

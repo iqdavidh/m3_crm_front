@@ -14,7 +14,8 @@ class Crm extends Component {
 
     this.state = {
       listaClientes: [],
-      indexPagina: 1,
+      numPagina: 1,
+      numTotalPaginas: 0,
       isCompletado: false,
       modoGrid: ''
     };
@@ -32,17 +33,36 @@ class Crm extends Component {
 
   async componentDidMount() {
     /* la primera ves se cargan los datos*/
-    let respuesta = await DataService.indexCliente(1);
+
+    const pagina = 1;
+
+    LibToast.info('Iniciando solicitud de Datos');
+
+    let respuesta = await DataService.indexCliente(pagina);
+
     if (respuesta.success) {
+      const data = respuesta.data;
+
+      const lista = [...this.state.listaClientes, ...data.clientes];
+      const isCompletado = data.numTotalPaginas === pagina;
+
+      this.setState({
+        listaClientes: lista,
+        numPagina: pagina,
+        numTotalPaginas: data.numTotalPaginas,
+        isCompletado
+      });
+
+      if (isCompletado) {
+        LibToast.success('Datos Recibidos');
+      }
     } else {
+      LibToast.alert(respuesta.msg);
     }
     console.log(respuesta);
   }
 
-  botonClick() {
-    console.log('x');
-    LibToast.success('yea');
-  }
+  onLoadCliente() {}
 
   render() {
     return (
@@ -54,12 +74,15 @@ class Crm extends Component {
         </div>
 
         <div className="cell cell-browser">
-          <ListaCliente />
+          <ListaCliente
+            listaClientes={this.state.listaClientes}
+            paginaLoaded={this.state.paginaLoaded}
+            paginaTotal={this.state.paginaTotal}
+            isCompleado={this.state.isCompletado}
+          />
         </div>
 
-        <div className="cell-data-main" onClick={e => this.botonClick()}>
-          main
-        </div>
+        <div className="cell-data-main">main</div>
         <div
           className="cell-data-add"
           onClick={e => this.setModoGestion('addGestion')}
