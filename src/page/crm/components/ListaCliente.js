@@ -19,15 +19,16 @@ class ListaCliente extends Component {
   componentDidMount() {
     let fn = h => {
       document.getElementById('wrapperListaCliente').style.height = `${h -
-        120}px`;
+        105}px`;
     };
+
     ObserverWindowH.subscribe('wrapperListaCliente', fn);
 
     fn(window.innerHeight);
   }
 
   onFiltroChange(dataFiltro) {
-    console.log('onfiltroCahnge', dataFiltro);
+    console.log('onfiltroCahnge dewsde listaCliente', dataFiltro);
   }
 
   render() {
