@@ -1,0 +1,7 @@
+.pestanaTab {
+  display: flex;
+}
+.badgeTituloTab {
+  font-size: 11px;
+  margin-left: 3px;
+}

@@ -1,6 +1,8 @@
+import './ListaCliente.css';
+
 import React, { Component } from 'react';
 import ItemClienteLista from './ItemClienteLista';
-import { ProgressBar } from 'react-bootstrap';
+import { ProgressBar, Tab, Tabs } from 'react-bootstrap';
 import ObserverWindowH from '../../../lib/ObserverWindowH';
 import FiltroListaCliente from './FiltroListaCliente';
 
@@ -19,7 +21,7 @@ class ListaCliente extends Component {
   componentDidMount() {
     let fn = h => {
       document.getElementById('wrapperListaCliente').style.height = `${h -
-        105}px`;
+        150}px`;
     };
 
     ObserverWindowH.subscribe('wrapperListaCliente', fn);
@@ -52,10 +54,54 @@ class ListaCliente extends Component {
       seccionTop = <ProgressBar now={now} label={`Loading ${now}%`} />;
     }
 
+    const tituloClientes = (
+      <div title="Clientes asignados" className="pestanaTab">
+        <i className="fa fa-user" />{' '}
+        <span className="badge badge-dark badgeTituloTab">
+          {this.props.listaClientes.length}
+        </span>
+      </div>
+    );
+
     return (
       <div className="listaClientes">
-        <div className="seccionTopListaCliente p-2">{seccionTop}</div>
-        <div id="wrapperListaCliente">{lista}</div>
+        <Tabs defaultActiveKey="cliente">
+          <Tab eventKey="cliente" title={tituloClientes}>
+            <div className="seccionTopListaCliente p-2">{seccionTop}</div>
+            <div id="wrapperListaCliente">{lista}</div>
+          </Tab>
+
+          <Tab
+            eventKey="comments"
+            title={
+              <div>
+                <i className="fa fa-comments" />
+              </div>
+            }
+          >
+            <div>x</div>
+          </Tab>
+          <Tab
+            eventKey="envelope"
+            title={
+              <div>
+                <i className="fa fa-envelope" />
+              </div>
+            }
+          >
+            <div>en</div>
+          </Tab>
+          <Tab
+            eventKey="calendar"
+            title={
+              <div>
+                <i className="fa fa-calendar" />
+              </div>
+            }
+          >
+            <div>calendar</div>
+          </Tab>
+        </Tabs>
       </div>
     );
   }
