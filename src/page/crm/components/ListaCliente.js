@@ -21,7 +21,7 @@ class ListaCliente extends Component {
   componentDidMount() {
     let fn = h => {
       document.getElementById('wrapperListaCliente').style.height = `${h -
-        150}px`;
+        165}px`;
     };
 
     ObserverWindowH.subscribe('wrapperListaCliente', fn);
@@ -68,6 +68,16 @@ class ListaCliente extends Component {
         <Tabs defaultActiveKey="cliente">
           <Tab eventKey="cliente" title={tituloClientes}>
             <div className="seccionTopListaCliente p-2">{seccionTop}</div>
+            <div className="seccionOrderLista" title="Ordenar resultados">
+              <div className="wrapperOrderNombre">
+                Nombre <i className="fa fa-sort-down" />{' '}
+                <i className="fa fa-sort-up" />{' '}
+              </div>
+              <div className="WeraperOrderKI">
+                Prioridad <i className="fa fa-sort-down" />{' '}
+                <i className="fa fa-sort-up" />{' '}
+              </div>
+            </div>
             <div id="wrapperListaCliente">{lista}</div>
           </Tab>
 

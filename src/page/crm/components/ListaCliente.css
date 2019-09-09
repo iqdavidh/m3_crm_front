@@ -5,3 +5,18 @@
   font-size: 11px;
   margin-left: 3px;
 }
+
+.seccionOrderLista {
+  display: flex;
+  font-size: 12px;
+  padding-right: 10px;
+}
+
+.seccionOrderLista div {
+  cursor: pointer;
+}
+
+.wrapperOrderNombre {
+  padding-left: 75px;
+  flex-grow: 1;
+}
