@@ -3,9 +3,10 @@ import { ProgressBar, Tab } from 'react-bootstrap';
 
 import ObserverWindowH from '../../../../lib/ObserverWindowH';
 import ItemClienteLista from './ItemClienteLista';
-import FiltroListaCliente from './FiltroListaCliente';
+import BoxFiltroListaCliente from './BoxFiltroListaCliente';
 import LibToast from '../../../../lib/LibToast';
 import DataService from '../../../../servicios/dataService/dataLocal/DataLocal';
+import BoxOrderListaCliente from './BoxOrderListaCliente';
 
 class TabListaCliente extends Component {
   constructor(props) {
@@ -96,6 +97,8 @@ class TabListaCliente extends Component {
     this.setState({ listaFiltrada });
   };
 
+  onOrderChange = campoSort => {};
+
   render() {
     const state = this.state;
 
@@ -108,7 +111,12 @@ class TabListaCliente extends Component {
     let seccionTop = null;
 
     if (state.isCompletado) {
-      seccionTop = <FiltroListaCliente onFiltroChange={this.onFiltroChange} />;
+      seccionTop = (
+        <div>
+          <BoxFiltroListaCliente onFiltroChange={this.onFiltroChange} />
+          <BoxOrderListaCliente onOrderChange={this.onOrderChange} />
+        </div>
+      );
     } else {
       let now = 0;
 
@@ -122,16 +130,7 @@ class TabListaCliente extends Component {
     return (
       <div>
         <div className="seccionTopListaCliente p-2">{seccionTop}</div>
-        <div className="seccionOrderLista" title="Ordenar resultados">
-          <div className="wrapperOrderNombre">
-            Nombre <i className="fa fa-sort-down" />{' '}
-            <i className="fa fa-sort-up" />{' '}
-          </div>
-          <div className="WeraperOrderKI">
-            Prioridad <i className="fa fa-sort-down" />{' '}
-            <i className="fa fa-sort-up" />{' '}
-          </div>
-        </div>
+
         <div id="wrapperListaCliente">{listaItemCliente}</div>
       </div>
     );

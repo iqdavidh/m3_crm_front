@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './FiltroListaCliente.css';
+import './BoxFiltroListaCliente.css';
 import { Form, FormControl } from 'react-bootstrap';
 
-class FiltroListaCliente extends Component {
+class BoxFiltroListaCliente extends Component {
   constructor(props) {
     super(props);
 
@@ -69,4 +69,4 @@ class FiltroListaCliente extends Component {
   }
 }
 
-export default FiltroListaCliente;
+export default BoxFiltroListaCliente;

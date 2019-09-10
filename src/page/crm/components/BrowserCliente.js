@@ -36,27 +36,6 @@ class BrowserCliente extends Component {
           </Tab>
 
           <Tab
-            eventKey="comments"
-            title={
-              <div>
-                <i className="fa fa-comments" />
-              </div>
-            }
-          >
-            <TabListaCom />
-          </Tab>
-
-          <Tab
-            eventKey="envelope"
-            title={
-              <div>
-                <i className="fa fa-envelope" />
-              </div>
-            }
-          >
-            <div>en</div>
-          </Tab>
-          <Tab
             eventKey="calendar"
             title={
               <div>
