@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CampoOrder from './CampoOrder';
+import ObserverOnOrderChange from './ObserverOnOrderChange';
 
 class BoxOrderListaCliente extends Component {
   constructor(props) {
@@ -7,9 +8,13 @@ class BoxOrderListaCliente extends Component {
     this.state = {
       campoOrden: ''
     };
+
+    this.observerOnOrderChange = new ObserverOnOrderChange();
   }
 
-  onChangeOpcion(prop) {}
+  onChangeOpcion(orderData) {
+    this.observerOnOrderChange.onFiltroChange(orderData);
+  }
 
   render() {
     return (
@@ -17,11 +22,13 @@ class BoxOrderListaCliente extends Component {
         <CampoOrder
           cname="wrapperOrderNombre"
           label="Nombre"
+          observerOnOrderChange={this.observerOnOrderChange}
           onChangeOpcion={this.onChangeOpcion}
         />
         <CampoOrder
           cname="WeraperOrderKI"
           label="Prioridad"
+          observerOnOrderChange={this.observerOnOrderChange}
           onChangeOpcion={this.onChangeOpcion}
         />
       </div>

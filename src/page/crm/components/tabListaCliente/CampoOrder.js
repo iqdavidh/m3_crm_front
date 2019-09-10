@@ -8,14 +8,14 @@ class CampoOrder extends Component {
       asc: false,
       desc: false
     };
-  }
 
-  onUnSelect = campoactual => {
-    this.setState({
-      asc: false,
-      desc: false
+    props.observerOnOrderChange.subscribe(props.label, () => {
+      this.setState({
+        asc: false,
+        desc: false
+      });
     });
-  };
+  }
 
   onToogle = () => {
     const asc = !this.state.asc;
@@ -23,6 +23,10 @@ class CampoOrder extends Component {
     const nombre = this.props.label;
 
     this.setState({ asc, desc });
+
+    const label = this.props.label;
+
+    this.props.onChangeOpcion({ label, asc });
   };
 
   render() {
