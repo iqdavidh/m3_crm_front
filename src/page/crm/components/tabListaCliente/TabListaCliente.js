@@ -62,7 +62,6 @@ class TabListaCliente extends Component {
             cliente.amaterno
           ).toLowerCase();
           const isTextoPresente = nombreCompleto.includes(filtro.texto);
-          console.log('isTextoPResente', isTextoPresente);
           return isTextoPresente;
         });
       }
@@ -70,7 +69,9 @@ class TabListaCliente extends Component {
       if (filtro.indexEstatus !== 'SinFiltro') {
         listaFiltros.push(cliente => {
           const prioridad = cliente.indicadores.funelIndex;
-          return prioridad === filtro.indexEstatus;
+
+          //console.log( `${prioridad}  ==  ${filtro.indexEstatus}`);
+          return prioridad.toString() === filtro.indexEstatus.toString();
         });
       }
 
@@ -80,15 +81,18 @@ class TabListaCliente extends Component {
         listaFiltros.forEach(fnEvalFiltro => {
           if (isShow) {
             isShow = fnEvalFiltro(cliente);
+            console.log('evañ', isShow);
           }
         });
-        console.log(isShow);
 
         return isShow;
       });
     } else {
-      listaFiltrada = [...this.state.listaClientes];
+      listaFiltrada = this.state.listaClientes.filter(cliente => {
+        return true;
+      });
     }
+
     this.setState({ listaFiltrada });
   };
 
