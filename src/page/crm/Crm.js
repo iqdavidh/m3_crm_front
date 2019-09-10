@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import TopBar from '../../components/topbar/TopBar';
 import AutService from '../../servicios/autService/AutService';
 import TopBarCrm from './components/TopBarCrm';
-import ListaCliente from './components/ListaCliente';
-import DataService from '../../servicios/dataService/DataService';
-import LibToast from '../../lib/LibToast';
+import BrowserCliente from './components/BrowserCliente';
 
 const session = AutService.getCurrentSession();
 
@@ -13,10 +11,6 @@ class Crm extends Component {
     super(props);
 
     this.state = {
-      listaClientes: [],
-      numPagina: 1,
-      numTotalPaginas: 0,
-      isCompletado: false,
       modoGrid: ''
     };
   }
@@ -29,43 +23,6 @@ class Crm extends Component {
     }
   }
 
-  async componentDidMount() {
-    /* la primera ves se cargan los datos*/
-
-    LibToast.info('Iniciando solicitud de Datos');
-
-    await this.loadAllClientes(1);
-  }
-
-  async loadAllClientes(pagina) {
-    let respuesta = await DataService.indexCliente(pagina);
-
-    if (respuesta.success) {
-      const data = respuesta.data;
-
-      const lista = [...this.state.listaClientes, ...data.clientes];
-      const isCompletado = data.numTotalPaginas === pagina;
-
-      this.setState({
-        listaClientes: lista,
-        numPagina: pagina,
-        numTotalPaginas: data.numTotalPaginas,
-        isCompletado
-      });
-
-      if (isCompletado) {
-        LibToast.success('Datos Recibidos');
-      } else {
-        let fn = () => this.loadAllClientes(pagina + 1);
-        setTimeout(fn, 300);
-      }
-    } else {
-      LibToast.alert(respuesta.msg);
-    }
-  }
-
-  onLoadCliente() {}
-
   render() {
     return (
       <div className={'container-main ' + this.state.modoGrid}>
@@ -76,12 +33,7 @@ class Crm extends Component {
         </div>
 
         <div className="cell cell-browser">
-          <ListaCliente
-            listaClientes={this.state.listaClientes}
-            numPagina={this.state.numPagina}
-            numTotalPaginas={this.state.numTotalPaginas}
-            isCompletado={this.state.isCompletado}
-          />
+          <BrowserCliente session={session} />
         </div>
 
         <div className="cell-data-main">main</div>

@@ -20,15 +20,6 @@ class AutData {
       LibValidacion.isNotEmpty(usuario[p]);
       this.usuario[p] = usuario[p];
     });
-
-    this.usuario = {
-      id_usuario: usuario.id_usuario,
-      nombre: usuario.nombre,
-      email: usuario.email,
-      urlThumb: usuario.urlThumb,
-      area: usuario.area,
-      perfil: usuario.perfil
-    };
   }
 }
 
