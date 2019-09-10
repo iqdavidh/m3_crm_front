@@ -17,7 +17,9 @@ class TabListaCliente extends Component {
       listaFiltrada: [],
       numPagina: 0,
       numTotalPaginas: 0,
-      isCompletado: false
+      isCompletado: false,
+      fnSort: null,
+      dataFiltro: null
     };
 
     this.isObserverRegistrado = false;
@@ -43,16 +45,16 @@ class TabListaCliente extends Component {
     await this.loadAllClientes(1);
   }
 
-  onFiltroChange = filtro => {
-    console.log('onfiltroCahnge dewsde listaCliente', filtro);
-
+  onFiltroChange = dataFiltro => {
     let listaFiltrada = [];
 
-    if (filtro.isFiltro) {
+    this.setState({ dataFiltro });
+
+    if (dataFiltro.isFiltro) {
       let listaFiltros = [];
 
-      if (filtro.texto !== '') {
-        filtro.texto = filtro.texto.toString().toLowerCase();
+      if (dataFiltro.texto !== '') {
+        dataFiltro.texto = dataFiltro.texto.toString().toLowerCase();
 
         listaFiltros.push(cliente => {
           const nombreCompleto = (
@@ -62,17 +64,17 @@ class TabListaCliente extends Component {
             ' ' +
             cliente.amaterno
           ).toLowerCase();
-          const isTextoPresente = nombreCompleto.includes(filtro.texto);
+          const isTextoPresente = nombreCompleto.includes(dataFiltro.texto);
           return isTextoPresente;
         });
       }
 
-      if (filtro.indexEstatus !== 'SinFiltro') {
+      if (dataFiltro.indexEstatus !== 'SinFiltro') {
         listaFiltros.push(cliente => {
           const prioridad = cliente.indicadores.funelIndex;
 
           //console.log( `${prioridad}  ==  ${filtro.indexEstatus}`);
-          return prioridad.toString() === filtro.indexEstatus.toString();
+          return prioridad.toString() === dataFiltro.indexEstatus.toString();
         });
       }
 
@@ -97,12 +99,57 @@ class TabListaCliente extends Component {
     this.setState({ listaFiltrada });
   };
 
-  onOrderChange = campoSort => {};
+  onOrderChange = dataSort => {
+    let fnSort = null;
+
+    const tipoOrder = dataSort.asc ? 1 : -1;
+
+    if (dataSort.label === 'Nombre') {
+      fnSort = (a, b) => {
+        if (a.apaterno === b.apaterno) {
+          if (a.nombre === b.nombre) {
+            return 0;
+          }
+
+          if (a.nombre > b.nombre) {
+            return tipoOrder;
+          }
+
+          return -tipoOrder;
+        }
+
+        if (a.apaterno > b.apaterno) {
+          return tipoOrder;
+        }
+
+        return -tipoOrder;
+      };
+    } else {
+      fnSort = (a, b) => {
+        if (a.indicadores.funelIndex === b.indicadores.funelIndex) {
+          return 0;
+        }
+
+        if (a.indicadores.funelIndex > b.indicadores.funelIndex) {
+          return tipoOrder;
+        }
+
+        return -tipoOrder;
+      };
+    }
+    this.setState({ fnSort });
+  };
 
   render() {
     const state = this.state;
 
-    const listaItemCliente = state.listaFiltrada.map((c, index) => {
+    let lista = state.listaFiltrada;
+
+    if (this.state.fnSort) {
+      lista.sort(this.state.fnSort);
+    }
+
+    const listaItemCliente = lista.map((c, index) => {
       return (
         <ItemClienteLista Cliente={c} numItem={index} key={c.id_contacto} />
       );

@@ -26,7 +26,7 @@ class CampoOrder extends Component {
 
     const label = this.props.label;
 
-    this.props.onChangeOpcion({ label, asc });
+    this.props.onOrderChange({ label, asc });
   };
 
   render() {

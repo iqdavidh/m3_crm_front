@@ -12,9 +12,10 @@ class BoxOrderListaCliente extends Component {
     this.observerOnOrderChange = new ObserverOnOrderChange();
   }
 
-  onChangeOpcion(orderData) {
+  onOrderChange = orderData => {
     this.observerOnOrderChange.onFiltroChange(orderData);
-  }
+    this.props.onOrderChange(orderData);
+  };
 
   render() {
     return (
@@ -23,13 +24,13 @@ class BoxOrderListaCliente extends Component {
           cname="wrapperOrderNombre"
           label="Nombre"
           observerOnOrderChange={this.observerOnOrderChange}
-          onChangeOpcion={this.onChangeOpcion}
+          onOrderChange={this.onOrderChange}
         />
         <CampoOrder
           cname="WeraperOrderKI"
           label="Prioridad"
           observerOnOrderChange={this.observerOnOrderChange}
-          onChangeOpcion={this.onChangeOpcion}
+          onOrderChange={this.onOrderChange}
         />
       </div>
     );
