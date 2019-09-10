@@ -8,7 +8,7 @@ class FiltroListaCliente extends Component {
 
     this.state = {
       texto: '',
-      indexEstatus: null
+      indexEstatus: 'SinFiltro'
     };
   }
 

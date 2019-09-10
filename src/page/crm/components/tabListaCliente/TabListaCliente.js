@@ -20,8 +20,6 @@ class TabListaCliente extends Component {
     };
 
     this.isObserverRegistrado = false;
-
-    console.log(props);
   }
 
   async componentDidMount() {
@@ -44,14 +42,58 @@ class TabListaCliente extends Component {
     await this.loadAllClientes(1);
   }
 
-  onFiltroChange(dataFiltro) {
-    console.log('onfiltroCahnge dewsde listaCliente', dataFiltro);
-  }
+  onFiltroChange = filtro => {
+    console.log('onfiltroCahnge dewsde listaCliente', filtro);
+
+    let listaFiltrada = [];
+
+    if (filtro.isFiltro) {
+      let listaFiltros = [];
+
+      if (filtro.texto !== '') {
+        filtro.texto = filtro.texto.toString().toLowerCase();
+
+        listaFiltros.push(cliente => {
+          const nombreCompleto = (
+            cliente.nombre +
+            ' ' +
+            cliente.apaterno +
+            ' ' +
+            cliente.amaterno
+          ).toLowerCase();
+          const isTextoPresente = nombreCompleto.includes(filtro.texto);
+          console.log('isTextoPResente', isTextoPresente);
+          return isTextoPresente;
+        });
+      }
+
+      if (filtro.indexEstatus !== 'SinFiltro') {
+        listaFiltros.push(cliente => {
+          const prioridad = cliente.indicadores.funelIndex;
+          return prioridad === filtro.indexEstatus;
+        });
+      }
+
+      listaFiltrada = this.state.listaClientes.filter(cliente => {
+        let isShow = true;
+
+        listaFiltros.forEach(fnEvalFiltro => {
+          if (isShow) {
+            isShow = fnEvalFiltro(cliente);
+          }
+        });
+        console.log(isShow);
+
+        return isShow;
+      });
+    } else {
+      listaFiltrada = [...this.state.listaClientes];
+    }
+    this.setState({ listaFiltrada });
+  };
 
   render() {
     const state = this.state;
-
-    console.log('state', state);
 
     const listaItemCliente = state.listaFiltrada.map((c, index) => {
       return (
