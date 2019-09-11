@@ -1,5 +1,3 @@
-import LibNum from './LibNum';
-
 const listaDiaSemana = ['Dom', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'];
 const listaMes = [
   'Enero',
@@ -31,6 +29,9 @@ const listaMesAbb = [
 ];
 
 const LibFecha = {
+  getMesFromIndex: index => {
+    return listaMes[index];
+  },
   getDateFromFechaYMD: fymd => {
     let lista = fymd.toString().split('-');
     return new Date(

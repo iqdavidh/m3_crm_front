@@ -19,11 +19,20 @@ class TabListaCliente extends Component {
       numTotalPaginas: 0,
       isCompletado: false,
       fnSort: null,
-      dataFiltro: null
+      dataFiltro: null,
+      clienteSelected: {}
     };
 
     this.isObserverRegistrado = false;
   }
+
+  onSelectCliente = (nombreSubscriptor, idCliente) => {
+    this.subscriptores.forEach(item => {
+      if (item.nombre !== nombreSubscriptor) {
+        item.fn();
+      }
+    });
+  };
 
   async componentDidMount() {
     if (!this.isObserverRegistrado) {

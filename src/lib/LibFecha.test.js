@@ -6,6 +6,20 @@ import LibFecha from './LibFecha';
  * */
 
 describe('LibFecha ', function() {
+  it('getMesFromIndex - regresa el nombre del mes a artir de index base 0', function() {
+    const indexEnero = 0;
+    assert(
+      'Enero' === LibFecha.getMesFromIndex(indexEnero),
+      'No coincide mes enero'
+    );
+
+    const indexDic = 11;
+    assert(
+      'Diciembre' === LibFecha.getMesFromIndex(indexDic),
+      'No coincide mes enero'
+    );
+  });
+
   it('getDateFromFechaYMD - fecha simple', function() {
     const fymd = '2000-01-30';
     const d = LibFecha.getDateFromFechaYMD(fymd);

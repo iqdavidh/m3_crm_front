@@ -12,9 +12,9 @@ class BoxOrderListaCliente extends Component {
     this.observerOnOrderChange = new ObserverOnOrderChange();
   }
 
-  onOrderChange = orderData => {
-    this.observerOnOrderChange.onFiltroChange(orderData);
-    this.props.onOrderChange(orderData);
+  onOrderChange = eventoCampoOrderChange => {
+    this.observerOnOrderChange.onFiltroChange(eventoCampoOrderChange);
+    this.props.onOrderChange(eventoCampoOrderChange);
   };
 
   render() {

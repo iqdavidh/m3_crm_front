@@ -1,10 +1,12 @@
 import AObserver from '../../../../lib/AObserver';
 
 class ObserverOnOrderChange extends AObserver {
-  onFiltroChange(dataOrder) {
-    this.handlers.forEach(item => {
-      if (item.nombreCaller !== dataOrder.label) {
-        item.fn();
+  //El handler del suscriptor no tiene argunemos
+
+  onFiltroChange(eventoCambiaCampoOrder) {
+    this.subscriptores.forEach(suscriptor => {
+      if (suscriptor.nombre !== eventoCambiaCampoOrder.label) {
+        suscriptor.fn();
       }
     });
   }

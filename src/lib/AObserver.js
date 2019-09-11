@@ -1,27 +1,41 @@
 class AObserver {
   constructor() {
-    this.handlers = [];
+    this.subscriptores = [];
+    //{nombre, fn}
   }
 
-  subscribe(nombreCaller, fn) {
-    this.handlers.push({
-      nombreCaller,
+  subscribe(nombre, fn) {
+    //ver si esta repetido el nombre
+
+    const indexRepetido = this.subscriptores.find(suscriptor => {
+      return suscriptor.nombre === nombre;
+    });
+    if (indexRepetido > -1) {
+      throw Error(
+        `Suscribe -  ya se encuentra un listener con el nombre ${nombre}`
+      );
+    }
+
+    this.subscriptores.push({
+      nombre: nombre,
       fn
     });
   }
 
-  unsubscribe(nombreCaller) {
-    this.handlers = this.handlers.filter(function(item) {
-      if (item.nombreCaller !== nombreCaller) {
+  unsubscribe(nombreSuscriptor) {
+    //quitar de la lista al listener
+
+    this.subscriptores = this.subscriptores.filter(item => {
+      if (item.nombre !== nombreSuscriptor) {
         return item;
       }
     });
   }
 
-  // onChangeHeight(h) {
-  //   console.log(`evento on window height ${h}`);
-  //   this.handlers.forEach(item => {
-  //     item.fn(h);
+  // onEvento(data) {
+  //   console.log(`evento  ${data}`);
+  //   this.handlers.forEach(suscriber => {
+  //     suscriptor.fn(h);
   //   });
   // }
 }

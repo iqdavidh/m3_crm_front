@@ -13,13 +13,13 @@ class BoxFiltroListaCliente extends Component {
   }
 
   callOnFiltroChange(texto, indexEstatus) {
-    let filtro = {
+    let eventoFiltroChange = {
       texto,
       indexEstatus,
       isFiltro: !(texto === '' && indexEstatus === 'SinFiltro')
     };
 
-    this.props.onFiltroChange(filtro);
+    this.props.onFiltroChange(eventoFiltroChange);
   }
 
   onTextoChange = event => {
