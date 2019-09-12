@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import TopBar from '../../components/topbar/TopBar';
-import AutService from '../../servicios/autService/AutService';
 import TopBarCrm from './topBarCrm/TopBarCrm';
 import BrowserCliente from './browserCliente/BrowserCliente';
 import SeccionHistorial from './seccionHistorial/SeccionHistorial';
-
-const session = AutService.getCurrentSession();
 
 class Crm extends Component {
   constructor(props) {

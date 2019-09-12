@@ -11,6 +11,6 @@ class AObserverSelectCliente extends AObserver {
   }
 }
 
-const ObserverSelectCliente = new AObserver();
+const ObserverSelectCliente = new AObserverSelectCliente();
 
 export default ObserverSelectCliente;

@@ -26,9 +26,7 @@ class AObserver {
     //quitar de la lista al listener
 
     this.subscriptores = this.subscriptores.filter(item => {
-      if (item.nombre !== nombreSuscriptor) {
-        return item;
-      }
+      return item.nombre !== nombreSuscriptor;
     });
   }
 

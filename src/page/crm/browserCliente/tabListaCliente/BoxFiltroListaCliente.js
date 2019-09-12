@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './BoxFiltroListaCliente.css';
-import { Form, FormControl } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 class BoxFiltroListaCliente extends Component {
   constructor(props) {
@@ -38,8 +38,6 @@ class BoxFiltroListaCliente extends Component {
   };
 
   render() {
-    let f = { x: 'nada' };
-
     return (
       <div className="flexDiv">
         <div className="p-1">

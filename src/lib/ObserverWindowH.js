@@ -11,10 +11,8 @@ class AObserverWindowH {
   }
 
   unsubscribe(nombreCaller) {
-    this.handlers = this.handlers.filter(function(item) {
-      if (item.nombreCaller !== nombreCaller) {
-        return item;
-      }
+    this.handlers = this.handlers.filter(item => {
+      return item.nombreCaller !== nombreCaller;
     });
   }
 

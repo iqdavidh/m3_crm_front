@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ProgressBar, Tab } from 'react-bootstrap';
+import { ProgressBar } from 'react-bootstrap';
 
 import ObserverWindowH from '../../../../lib/ObserverWindowH';
 import ItemClienteLista from './ItemClienteLista';

@@ -20,7 +20,6 @@ class CampoOrder extends Component {
   onToogle = () => {
     const asc = !this.state.asc;
     const desc = !asc;
-    const nombre = this.props.label;
 
     this.setState({ asc, desc });
 

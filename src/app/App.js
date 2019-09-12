@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AutService from '../servicios/autService/AutService';
 import SideBar from '../components/sideBar/SideBar';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Supervisor from '../page/supervisor/Supervisor';
 import Admin from '../page/admin/Admin';

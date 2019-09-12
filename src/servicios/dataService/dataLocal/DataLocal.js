@@ -1,6 +1,5 @@
 import clientes_dataLocal from './clientes_datalocal';
 import AutService from '../../autService/AutService';
-import LibNum from '../../../lib/LibNum';
 
 const paginacion = 100;
 
@@ -9,7 +8,6 @@ const DataLocal = {
     const session = AutService.getCurrentSession();
 
     const idUsuario = session.usuario.id_usuario;
-    const token = session.token;
 
     let listaClientesDelUsuario = clientes_dataLocal.filter(c => {
       return (c.id_usuario = idUsuario);
@@ -67,6 +65,8 @@ const DataLocal = {
       msg: '',
       data: cliente
     };
+
+    return Promise.resolve(d);
   }
 };
 
