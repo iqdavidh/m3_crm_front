@@ -23,7 +23,7 @@ class BrowserCliente extends Component {
       <PestanaTab
         title="Clientes asignados"
         icon="fa fa-user"
-        label={this.state.numContactos}
+        contador={this.state.numContactos}
       />
     );
 
