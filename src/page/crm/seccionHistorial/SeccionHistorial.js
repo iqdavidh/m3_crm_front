@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import PestanaTab from '../../../components/pestanaTab/PestanaTab';
-import TabHistCom from './tabhistCom/TabHistCom';
-import TabHistTarea from './tabhistTarea/TabHistTarea';
+import PanHistCom from './panhistCom/PanHistCom';
+import PanHistTarea from './panhistTarea/PanHistTarea';
 
 import './SeccionHistorial.css';
 
@@ -38,14 +38,14 @@ class SeccionHistorial extends Component {
     );
 
     return (
-      <div className="cell-data-historial SeccionHistorial">
+      <div className="cell-data-historial wrapperTab">
         <Tabs defaultActiveKey="com">
           <Tab eventKey="com" title={tituloTabCom}>
-            <TabHistCom />
+            <PanHistCom />
           </Tab>
 
           <Tab eventKey="tareas" title={tituloTabTareas}>
-            <TabHistTarea />
+            <PanHistTarea />
           </Tab>
         </Tabs>
       </div>

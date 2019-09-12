@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
-import TabHistCom from '../seccionHistorial/tabhistCom/TabHistCom';
-import TabHistTarea from '../seccionHistorial/tabhistTarea/TabHistTarea';
 import PestanaTab from '../../../components/pestanaTab/PestanaTab';
 
 import './SeccionMain.css';
+import PanMainPersonal from './panmainPersonal/PanMainPersonal';
 
 class SeccionMain extends Component {
   render() {
-    const tituloTabPersonal = (
-      <PestanaTab icon="fa fa-comment" title="Datos Personales" />
+    const tituloTabPer = (
+      <PestanaTab icon="fa fa-user" title="Datos Personales" />
     );
-
-    const tituloTabDom = <PestanaTab icon="fa fa-calendar" title="s" />;
+    const tituloTabDom = <PestanaTab icon="fa fa-home" title="s" />;
 
     return (
-      <div className="cell-data-main SeccionMain">
+      <div className="cell-data-main SeccionMain wrapperTab">
         <Tabs defaultActiveKey="personal" vertical="true">
-          <Tab eventKey="personal" title={tituloTabPersonal}>
-            pers
+          <Tab eventKey="personal" title={tituloTabPer}>
+            <PanMainPersonal />
           </Tab>
 
           <Tab eventKey="tareas" title={tituloTabDom}>

@@ -5,6 +5,7 @@
    grid-template-areas: 'topbar topbar topbar' 'browser add main' 'browser historial historial ';
    grid-template-columns: 300px auto 600px ;
    grid-template-rows: 56px 400px auto;
+   background-color: #F1F1F1;
 
 }
 
@@ -25,12 +26,12 @@
 
 .cell-browser {
    grid-area: browser;
-   background-color: #F1F1F1;
+
 
 }
 
 .cell-data-main {
-   grid-area: main
+   grid-area: main;
 }
 
 .cell-data-add {
@@ -107,3 +108,19 @@
    height: 60px;
 }
 
+
+.tab-pane{ background-color: #fff}
+
+
+
+
+.panfull {
+
+   padding: 3px;
+}
+
+.wrapperTab {
+   background-color: #fff;
+}
+
+.nav.nav-tabs{background-color: #F1F1F1}

@@ -1,7 +1,7 @@
 .SeccionMain {
   display: flex;
-  border: 1px solid green;
 }
+
 .SeccionMain .nav.nav-tabs {
   display: flex;
   flex-direction: column;
