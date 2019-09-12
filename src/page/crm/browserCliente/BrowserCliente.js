@@ -27,6 +27,9 @@ class BrowserCliente extends Component {
       />
     );
 
+    const tituloCalendar = (
+      <PestanaTab icon="fa fa-calendar" title="Tareas asociadas" label="" />
+    );
     return (
       <div className="listaClientes">
         <Tabs defaultActiveKey="cliente">
@@ -34,14 +37,7 @@ class BrowserCliente extends Component {
             <TabListaCliente onUpdateNumContactos={this.onUpdateNumContactos} />
           </Tab>
 
-          <Tab
-            eventKey="calendar"
-            title={
-              <div>
-                <i className="fa fa-calendar" />
-              </div>
-            }
-          >
+          <Tab eventKey="calendar" title={tituloCalendar}>
             <div>calendar</div>
           </Tab>
         </Tabs>

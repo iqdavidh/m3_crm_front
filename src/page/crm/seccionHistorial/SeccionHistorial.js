@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
-import TabListaCliente from '../browserCliente/tabListaCliente/TabListaCliente';
+import PestanaTab from '../../../components/pestanaTab/PestanaTab';
 
 class SeccionHistorial extends Component {
+  onUpdateNumContactos = num => {};
+
+  onUpdateNumTareas = num => {};
+
   render() {
     //{this.state.numContactos}
 
     const tituloSeg = (
-      <div title="Comentarios de Seguimiento" className="pestanaTab">
-        <i className="fa fa-comment" />{' '}
-        <span className="badge badge-dark badgeTituloTab">0</span>
-      </div>
+      <PestanaTab
+        icon="fa fa-comment"
+        title="Comentarios de Seguimiento"
+        label=""
+      />
     );
 
     const tituloTareas = (
-      <div title="Clientes asignados" className="pestanaTab">
-        <i className="fa fa-user" />{' '}
-        <span className="badge badge-dark badgeTituloTab">0</span>
-      </div>
+      <PestanaTab icon="fa fa-comment" title="Tareas Programadas" label="" />
     );
 
     return (
-      <div className="SEccionHistorial">
+      <div className="SeccionHistorial">
         <Tabs defaultActiveKey="msg">
           <Tab eventKey="cliente" title={tituloSeg}>
-            <TabListaCliente onUpdateNumContactos={this.onUpdateNumContactos} />
+            <div>x</div>
+          </Tab>
+
+          <Tab eventKey="cliente" title={tituloTareas}>
+            <div>y</div>
           </Tab>
         </Tabs>
       </div>

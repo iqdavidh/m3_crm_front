@@ -3,6 +3,7 @@ import TopBar from '../../components/topbar/TopBar';
 import AutService from '../../servicios/autService/AutService';
 import TopBarCrm from './topBarCrm/TopBarCrm';
 import BrowserCliente from './browserCliente/BrowserCliente';
+import SeccionHistorial from './seccionHistorial/SeccionHistorial';
 
 const session = AutService.getCurrentSession();
 
@@ -23,18 +24,21 @@ class Crm extends Component {
     return (
       <div className={'container-main'}>
         <div className="cell cell-topbar">
-          <TopBar session={session}>
+          <TopBar>
             <TopBarCrm />
           </TopBar>
         </div>
 
         <div className="cell cell-browser">
-          <BrowserCliente session={session} />
+          <BrowserCliente />
         </div>
 
         <div className="cell-data-main">main</div>
         <div className="cell-data-add">add</div>
-        <div className="cell-data-historial">historial</div>
+
+        <div className="cell-data-historial">
+          <SeccionHistorial />
+        </div>
       </div>
     );
   }
