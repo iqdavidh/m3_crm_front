@@ -3,7 +3,7 @@
    display: grid;
    min-height: 100vh;
    grid-template-areas: 'topbar topbar topbar' 'browser add main' 'browser historial historial ';
-   grid-template-columns: 300px auto auto ;
+   grid-template-columns: 300px auto 600px ;
    grid-template-rows: 56px 400px auto;
 
 }

@@ -3,6 +3,7 @@ import TopBar from '../../components/topbar/TopBar';
 import TopBarCrm from './topBarCrm/TopBarCrm';
 import BrowserCliente from './browserCliente/BrowserCliente';
 import SeccionHistorial from './seccionHistorial/SeccionHistorial';
+import SeccionMain from './seccionMain/SeccionMain';
 
 class Crm extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Crm extends Component {
           <BrowserCliente />
         </div>
 
-        <div className="cell-data-main">main</div>
+        <SeccionMain />
         <div className="cell-data-add">add</div>
 
         <SeccionHistorial />

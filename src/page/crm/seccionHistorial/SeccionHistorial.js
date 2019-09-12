@@ -30,7 +30,7 @@ class SeccionHistorial extends Component {
 
     const tituloTabTareas = (
       <PestanaTab
-        icon="fa fa-calentdar"
+        icon="fa fa-calendar"
         title="Tareas Programadas"
         label="Tareas"
         numTareas={this.state.numTareas}
