@@ -2,20 +2,11 @@
 .container-main {
    display: grid;
    min-height: 100vh;
+   grid-template-areas: 'topbar topbar topbar' 'browser add main ' 'browser historial historial ';
+   grid-template-columns: 300px auto auto;
+   grid-template-rows: 56px auto;
 
-   grid-template-areas: 'topbar topbar' 'browser main' 'browser add' 'browser historial';
-
-   grid-template-columns: 300px auto;
-   grid-template-rows: 56px 300px 60px auto;
-   transition: grid-template-rows 500ms;
 }
-
-.container-main.addGestion {
-   grid-template-rows: 56px 300px 300px auto;
-   transition: grid-template-rows 500ms;
-}
-
-
 
 
 /*.cell-topbar , .cell-browser ,.cell-data-main ,.cell-data-add, .cell-data-historial {*/

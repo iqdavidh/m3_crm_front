@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import TopBar from '../../components/topbar/TopBar';
 import AutService from '../../servicios/autService/AutService';
-import TopBarCrm from './components/TopBarCrm';
-import BrowserCliente from './components/BrowserCliente';
-import ObserverSelectCliente from './components/tabListaCliente/ObserverSelectCliente';
-import DataService from '../../servicios/dataService/dataLocal/DataLocal';
+import TopBarCrm from './topBarCrm/TopBarCrm';
+import BrowserCliente from './browserCliente/BrowserCliente';
 
 const session = AutService.getCurrentSession();
 

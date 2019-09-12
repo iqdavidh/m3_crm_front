@@ -3,7 +3,6 @@ import './BrowserCliente.css';
 import React, { Component } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import TabListaCliente from './tabListaCliente/TabListaCliente';
-import TabListaCom from './tabListaCom/TabListaCom';
 
 class BrowserCliente extends Component {
   constructor(props) {
