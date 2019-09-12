@@ -33,9 +33,7 @@ class Crm extends Component {
         <div className="cell-data-main">main</div>
         <div className="cell-data-add">add</div>
 
-        <div className="cell-data-historial">
-          <SeccionHistorial />
-        </div>
+        <SeccionHistorial />
       </div>
     );
   }

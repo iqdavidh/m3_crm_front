@@ -4,6 +4,8 @@ import PestanaTab from '../../../components/pestanaTab/PestanaTab';
 import TabHistCom from './tabhistCom/TabHistCom';
 import TabHistTarea from './tabhistTarea/TabHistTarea';
 
+import './SeccionHistorial.css';
+
 class SeccionHistorial extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +38,7 @@ class SeccionHistorial extends Component {
     );
 
     return (
-      <div className="SeccionHistorial">
+      <div className="cell-data-historial SeccionHistorial">
         <Tabs defaultActiveKey="com">
           <Tab eventKey="com" title={tituloTabCom}>
             <TabHistCom />

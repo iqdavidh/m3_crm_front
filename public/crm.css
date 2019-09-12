@@ -2,9 +2,9 @@
 .container-main {
    display: grid;
    min-height: 100vh;
-   grid-template-areas: 'topbar topbar topbar' 'browser add main ' 'browser historial historial ';
-   grid-template-columns: 300px auto auto;
-   grid-template-rows: 56px auto;
+   grid-template-areas: 'topbar topbar topbar' 'browser add main' 'browser historial historial ';
+   grid-template-columns: 300px auto auto ;
+   grid-template-rows: 56px 400px auto;
 
 }
 
