@@ -3,6 +3,7 @@ import './BrowserCliente.css';
 import React, { Component } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import TabListaCliente from './tabListaCliente/TabListaCliente';
+import PestanaTab from '../../../components/pestanaTab/PestanaTab';
 
 class BrowserCliente extends Component {
   constructor(props) {
@@ -19,12 +20,11 @@ class BrowserCliente extends Component {
 
   render() {
     const tituloClientes = (
-      <div title="Clientes asignados" className="pestanaTab">
-        <i className="fa fa-user" />{' '}
-        <span className="badge badge-dark badgeTituloTab">
-          {this.state.numContactos}
-        </span>
-      </div>
+      <PestanaTab
+        title="Clientes asignados"
+        icon="fa fa-user"
+        label={this.state.numContactos}
+      />
     );
 
     return (
