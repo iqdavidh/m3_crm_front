@@ -12,7 +12,12 @@ class ItemClienteLista extends Component {
     const listaEstatus = ['NA', 'Baja', 'Media', 'Alta'];
 
     return (
-      <div className={claseItem} key={c.id_cliente} title={c.apaterno}>
+      <div
+        className={claseItem}
+        key={c.id_cliente}
+        title={c.apaterno}
+        onClick={e => this.props.onClickCliente(c.id_cliente)}
+      >
         <div className="labIndex">{numItem}</div>
         <i className="fa fa-user fa-2x" />
 

@@ -6,6 +6,16 @@ import './SeccionMain.css';
 import PanMainPersonal from './panmainPersonal/PanMainPersonal';
 
 class SeccionMain extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cliente: props.cliente
+    };
+  }
+
+  onSaveCliente = data => {};
+
   render() {
     const tituloTabPer = (
       <PestanaTab icon="fa fa-user" title="Datos Personales" />
@@ -16,7 +26,10 @@ class SeccionMain extends Component {
       <div className="cell-data-main SeccionMain wrapperTab">
         <Tabs defaultActiveKey="personal" vertical="true">
           <Tab eventKey="personal" title={tituloTabPer}>
-            <PanMainPersonal />
+            <PanMainPersonal
+              cliente={this.state.cliente}
+              onSaveCliente={this.onSaveCliente}
+            />
           </Tab>
 
           <Tab eventKey="tareas" title={tituloTabDom}>

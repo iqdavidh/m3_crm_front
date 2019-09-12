@@ -167,6 +167,10 @@ class TabListaCliente extends Component {
     this.setState({ fnSort });
   };
 
+  onClickCliente = idCliente => {
+    console.log('id_cliente', idCliente);
+  };
+
   render() {
     const state = this.state;
 
@@ -178,7 +182,12 @@ class TabListaCliente extends Component {
 
     const listaItemCliente = lista.map((c, index) => {
       return (
-        <ItemClienteLista Cliente={c} numItem={index} key={c.id_cliente} />
+        <ItemClienteLista
+          onClickCliente={this.onClickCliente}
+          Cliente={c}
+          numItem={index}
+          key={c.id_cliente}
+        />
       );
     });
 

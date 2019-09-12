@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 
 class PanMainPersonal extends Component {
   render() {
-    return <div className="panfull">Datos personales</div>;
+    let texto = JSON.stringify(this.props.cliente);
+
+    return (
+      <div className="panfull">
+        Datos personales
+        {texto}
+      </div>
+    );
   }
 }
 
