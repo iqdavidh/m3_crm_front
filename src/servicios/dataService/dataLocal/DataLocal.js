@@ -33,7 +33,7 @@ const DataLocal = {
       let c = listaClientesDelUsuario[i];
 
       listaPagina.push({
-        id_contacto: c.id_contacto,
+        id_cliente: c.id_cliente,
         nombre: c.nombre,
         apaterno: c.apaterno,
         amaterno: c.amaterno,
@@ -53,6 +53,20 @@ const DataLocal = {
     };
 
     return Promise.resolve(d);
+  },
+  dataClienteSelected: async id_cliente => {
+    //buscar el cliente
+    const cliente = clientes_dataLocal.find(c => {
+      return (c.id_cliente = id_cliente);
+    });
+
+    //buscar los seguimientos
+
+    const d = {
+      success: true,
+      msg: '',
+      data: cliente
+    };
   }
 };
 

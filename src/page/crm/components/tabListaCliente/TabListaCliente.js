@@ -7,6 +7,7 @@ import BoxFiltroListaCliente from './BoxFiltroListaCliente';
 import LibToast from '../../../../lib/LibToast';
 import DataService from '../../../../servicios/dataService/dataLocal/DataLocal';
 import BoxOrderListaCliente from './BoxOrderListaCliente';
+import ObserverSelectCliente from './ObserverSelectCliente';
 
 class TabListaCliente extends Component {
   constructor(props) {
@@ -20,18 +21,35 @@ class TabListaCliente extends Component {
       isCompletado: false,
       fnSort: null,
       dataFiltro: null,
-      clienteSelected: {}
+      clienteSelected: null,
+      idClienteSelected: null
     };
+
+    ObserverSelectCliente.subscribe('TabListaCliente', this.onSelectCliente);
 
     this.isObserverRegistrado = false;
   }
 
-  onSelectCliente = (nombreSubscriptor, idCliente) => {
-    this.subscriptores.forEach(item => {
-      if (item.nombre !== nombreSubscriptor) {
-        item.fn();
-      }
+  onSelectCliente = async idCliente => {
+    //buscar el cliente
+    const clienteSelected = this.state.listaClientes.find(c => {
+      return c.id_cliente === idCliente;
     });
+
+    if (this.state.clienteSelected) {
+      this.setState({
+        idClienteSelected: this.state.clienteSelected.id_cliente
+      });
+    }
+
+    //verificar si ya cargamos datosd e cliente
+
+    if (!clienteSelected.isDataLoaded) {
+      const clienteLoaded = DataService.dataClienteSelected(idCliente);
+
+      clienteLoaded.isDataLoaded = true;
+      this.setState({ clienteSelected: clienteLoaded });
+    }
   };
 
   async componentDidMount() {
@@ -160,7 +178,7 @@ class TabListaCliente extends Component {
 
     const listaItemCliente = lista.map((c, index) => {
       return (
-        <ItemClienteLista Cliente={c} numItem={index} key={c.id_contacto} />
+        <ItemClienteLista Cliente={c} numItem={index} key={c.id_cliente} />
       );
     });
 

@@ -4,7 +4,7 @@ class AObserverSelectCliente extends AObserver {
   //El handler del suscriptor acepta parametro idCliente
   onSelectCliente(eventoCambiaCliente) {
     this.subscriptores.forEach(suscriptor => {
-      if (suscriptor.nombre !== eventoCambiaCampoOrder.label) {
+      if (suscriptor.nombre !== eventoCambiaCliente.label) {
         suscriptor.fn(eventoCambiaCliente.idCliente);
       }
     });

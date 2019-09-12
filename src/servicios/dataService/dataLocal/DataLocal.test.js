@@ -21,7 +21,7 @@ describe('DataLocal - indexCliente', function() {
 
     /*verioficar las propiedades que trae los datos*/
     const listaPropieades = [
-      'id_contacto',
+      'id_cliente',
       'nombre',
       'apaterno',
       'amaterno',

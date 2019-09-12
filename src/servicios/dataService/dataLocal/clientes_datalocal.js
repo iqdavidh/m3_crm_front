@@ -24,7 +24,7 @@ let lista = clientes_base.map(c => {
       let texto = gestion_base.listaTextoRandom[indexComRandom - 1];
 
       let gestion = gestion_base.listaTipoGestion[idTipo - 1];
-      gestion.id_contacto = c.id_contacto;
+      gestion.id_cliente = c.id_cliente;
       gestion.comentario = texto;
 
       let numDiasRandom = LibNum.getRandom(300);
@@ -48,7 +48,7 @@ let lista = clientes_base.map(c => {
   let sentimentalIndex = LibNum.getRandom(3).toString();
 
   return {
-    id_contacto: c.id_contacto,
+    id_cliente: c.id_cliente,
     id_usuario: c.id_usuario,
     usuario: {
       nombre: c.id_usuario === '1' ? 'Dave' : 'Hail',

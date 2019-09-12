@@ -3,6 +3,8 @@ import TopBar from '../../components/topbar/TopBar';
 import AutService from '../../servicios/autService/AutService';
 import TopBarCrm from './components/TopBarCrm';
 import BrowserCliente from './components/BrowserCliente';
+import ObserverSelectCliente from './components/tabListaCliente/ObserverSelectCliente';
+import DataService from '../../servicios/dataService/dataLocal/DataLocal';
 
 const session = AutService.getCurrentSession();
 
@@ -11,21 +13,17 @@ class Crm extends Component {
     super(props);
 
     this.state = {
-      modoGrid: ''
+      cliente: null
     };
   }
 
-  setModoGestion(modo) {
-    if (this.state.modoGrid === modo) {
-      this.setState({ modoGrid: '' });
-    } else {
-      this.setState({ modoGrid: modo });
-    }
-  }
+  onSetCliente = cliente => {
+    this.setState({ cliente });
+  };
 
   render() {
     return (
-      <div className={'container-main ' + this.state.modoGrid}>
+      <div className={'container-main'}>
         <div className="cell cell-topbar">
           <TopBar session={session}>
             <TopBarCrm />
@@ -37,12 +35,7 @@ class Crm extends Component {
         </div>
 
         <div className="cell-data-main">main</div>
-        <div
-          className="cell-data-add"
-          onClick={e => this.setModoGestion('addGestion')}
-        >
-          add
-        </div>
+        <div className="cell-data-add">add</div>
         <div className="cell-data-historial">historial</div>
       </div>
     );
