@@ -4,13 +4,12 @@ import PestanaTab from '../../../components/pestanaTab/PestanaTab';
 
 import './SeccionMain.css';
 import PanMainPersonal from './panmainPersonal/PanMainPersonal';
-import ObserverSelectCliente from '../browserCliente/tabListaCliente/ObserverSelectCliente';
 import PanMainDom from './panMainDom/PanMainDom';
 
 class SeccionMain extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   onSaveCliente = data => {};
 
