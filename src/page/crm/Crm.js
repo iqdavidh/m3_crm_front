@@ -4,6 +4,8 @@ import TopBarCrm from './topBarCrm/TopBarCrm';
 import BrowserCliente from './browserCliente/BrowserCliente';
 import SeccionHistorial from './seccionHistorial/SeccionHistorial';
 import SeccionMain from './seccionMain/SeccionMain';
+import ObserverSelectCliente from './browserCliente/tabListaCliente/ObserverSelectCliente';
+import SeccionAdd from './seccionAdd/SeccionAdd';
 
 class Crm extends Component {
   constructor(props) {
@@ -12,29 +14,28 @@ class Crm extends Component {
     this.state = {
       cliente: null
     };
+
+    ObserverSelectCliente.subscribe('Crm', this.onSelectCliente);
   }
 
   onSetCliente = cliente => {
     this.setState({ cliente });
   };
 
+  onSelectCliente = async cliente => {
+    this.setState({ cliente });
+  };
+
   render() {
     return (
       <div className={'container-main'}>
-        <div className="cell cell-topbar">
-          <TopBar>
-            <TopBarCrm />
-          </TopBar>
-        </div>
-
-        <div className="cell cell-browser">
-          <BrowserCliente />
-        </div>
-
-        <SeccionMain />
-        <div className="cell-data-add">add</div>
-
-        <SeccionHistorial />
+        <TopBar>
+          <TopBarCrm />
+        </TopBar>
+        <BrowserCliente />
+        <SeccionMain cliente={this.state.cliente} />
+        <SeccionAdd cliente={this.state.cliente} />
+        <SeccionHistorial cliente={this.state.cliente} />
       </div>
     );
   }

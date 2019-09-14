@@ -7,7 +7,7 @@ class TopBar extends Component {
     const nombreUsuario = AutService.getCurrentSession().usuario.nombre;
 
     return (
-      <Navbar bg="dark" variant="dark">
+      <Navbar className="cell cell-topbar" bg="dark" variant="dark">
         <div className="mr-auto mL20">
           <span className="logoCRM">CRM</span>
         </div>

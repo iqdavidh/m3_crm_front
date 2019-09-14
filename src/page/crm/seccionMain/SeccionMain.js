@@ -4,14 +4,12 @@ import PestanaTab from '../../../components/pestanaTab/PestanaTab';
 
 import './SeccionMain.css';
 import PanMainPersonal from './panmainPersonal/PanMainPersonal';
+import ObserverSelectCliente from '../browserCliente/tabListaCliente/ObserverSelectCliente';
+import PanMainDom from './panMainDom/PanMainDom';
 
 class SeccionMain extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      cliente: props.cliente
-    };
   }
 
   onSaveCliente = data => {};
@@ -27,13 +25,16 @@ class SeccionMain extends Component {
         <Tabs defaultActiveKey="personal" vertical="true">
           <Tab eventKey="personal" title={tituloTabPer}>
             <PanMainPersonal
-              cliente={this.state.cliente}
+              cliente={this.props.cliente}
               onSaveCliente={this.onSaveCliente}
             />
           </Tab>
 
           <Tab eventKey="tareas" title={tituloTabDom}>
-            tareas
+            <PanMainDom
+              cliente={this.props.cliente}
+              onSaveCliente={this.onSaveCliente}
+            />
           </Tab>
         </Tabs>
       </div>

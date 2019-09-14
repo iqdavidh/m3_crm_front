@@ -31,7 +31,7 @@ class BrowserCliente extends Component {
       <PestanaTab icon="fa fa-calendar" title="Tareas asociadas" label="" />
     );
     return (
-      <div className="listaClientes">
+      <div className="cell cell-browser listaClientes">
         <Tabs defaultActiveKey="cliente">
           <Tab eventKey="cliente" title={tituloClientes}>
             <TabListaCliente onUpdateNumContactos={this.onUpdateNumContactos} />

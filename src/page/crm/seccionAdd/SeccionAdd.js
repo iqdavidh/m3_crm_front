@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class SeccionAdd extends Component {
   render() {
-    return <div>tabadd</div>;
+    return <div className="cell-data-add">tabadd</div>;
   }
 }
 
