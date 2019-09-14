@@ -169,6 +169,14 @@ class TabListaCliente extends Component {
 
   onClickCliente = idCliente => {
     console.log('id_cliente', idCliente);
+
+    const cliente = this.state.listaClientes.find(c => {
+      return c.id_cliente === idCliente;
+    });
+    this.setState({
+      idClienteSelected: idCliente,
+      clienteSelected: cliente
+    });
   };
 
   render() {
@@ -181,12 +189,15 @@ class TabListaCliente extends Component {
     }
 
     const listaItemCliente = lista.map((c, index) => {
+      const isSelected = this.state.idClienteSelected === c.id_cliente;
+
       return (
         <ItemClienteLista
           onClickCliente={this.onClickCliente}
           Cliente={c}
           numItem={index}
           key={c.id_cliente}
+          isSelected={isSelected}
         />
       );
     });
@@ -213,7 +224,6 @@ class TabListaCliente extends Component {
     return (
       <div>
         <div className="seccionTopListaCliente p-2">{seccionTop}</div>
-
         <div id="wrapperListaCliente">{listaItemCliente}</div>
       </div>
     );

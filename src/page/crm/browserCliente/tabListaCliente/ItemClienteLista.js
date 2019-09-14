@@ -1,3 +1,4 @@
+import './ItemClienteLista.css';
 import React, { Component } from 'react';
 
 class ItemClienteLista extends Component {
@@ -7,7 +8,11 @@ class ItemClienteLista extends Component {
 
     const prioridad = c.indicadores.funelIndex;
 
-    const claseItem = 'itemCliente prioridad' + prioridad;
+    const cssClasePrioridad = 'prioridad' + prioridad;
+    const claseItem =
+      'itemCliente ' +
+      cssClasePrioridad +
+      (this.props.isSelected ? ' selected' : '');
 
     const listaEstatus = ['NA', 'Baja', 'Media', 'Alta'];
 
