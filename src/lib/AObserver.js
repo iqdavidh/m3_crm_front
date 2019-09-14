@@ -10,6 +10,7 @@ class AObserver {
     const indexRepetido = this.subscriptores.find(suscriptor => {
       return suscriptor.nombre === nombre;
     });
+
     if (indexRepetido > -1) {
       throw Error(
         `Suscribe -  ya se encuentra un listener con el nombre ${nombre}`

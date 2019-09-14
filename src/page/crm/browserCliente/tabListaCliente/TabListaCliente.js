@@ -30,26 +30,28 @@ class TabListaCliente extends Component {
     this.isObserverRegistrado = false;
   }
 
-  onSelectCliente = async idCliente => {
-    //buscar el cliente
-    const clienteSelected = this.state.listaClientes.find(c => {
-      return c.id_cliente === idCliente;
-    });
+  loadAllDataCliente = async cliente => {
+    if (!cliente.isDataLoaded) {
+      cliente.isDataLoaded = true;
+      const clienteLoaded = await DataService.dataClienteSelected(
+        cliente.id_cliente
+      );
 
-    if (this.state.clienteSelected) {
-      this.setState({
-        idClienteSelected: this.state.clienteSelected.id_cliente
+      Object.keys(clienteLoaded).forEach(p => {
+        cliente[p] = clienteLoaded[p];
       });
     }
+  };
 
-    //verificar si ya cargamos datosd e cliente
+  onSelectCliente = cliente => {
+    //buscar el cliente
 
-    if (!clienteSelected.isDataLoaded) {
-      const clienteLoaded = DataService.dataClienteSelected(idCliente);
+    this.loadAllDataCliente(cliente);
 
-      clienteLoaded.isDataLoaded = true;
-      this.setState({ clienteSelected: clienteLoaded });
-    }
+    this.setState({
+      idClienteSelected: cliente.id_cliente,
+      clienteSelected: cliente
+    });
   };
 
   async componentDidMount() {
@@ -167,15 +169,21 @@ class TabListaCliente extends Component {
     this.setState({ fnSort });
   };
 
-  onClickCliente = idCliente => {
-    console.log('id_cliente', idCliente);
-
-    const cliente = this.state.listaClientes.find(c => {
+  onClickCliente = async idCliente => {
+    let cliente = this.state.listaClientes.find(c => {
       return c.id_cliente === idCliente;
     });
+
+    this.loadAllDataCliente(cliente);
+
     this.setState({
       idClienteSelected: idCliente,
       clienteSelected: cliente
+    });
+
+    ObserverSelectCliente.onSelectCliente({
+      emisor: 'TabListaCliente',
+      cliente: cliente
     });
   };
 
