@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PanCmdEdit from '../../../../components/panCmdEdit/PanCmdEdit';
+import TrDataEditTXT from '../../../../components/edicion/TrDataEditTXT';
 
 class PanMainPersonal extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class PanMainPersonal extends Component {
 
     console.log(texto);
 
-    const p = this.props.cliente;
+    const c = this.props.cliente;
 
     return (
       <div className="panfull">
@@ -42,18 +43,23 @@ class PanMainPersonal extends Component {
         />
         <table className="table table-sm table-striped teditdata">
           <tbody>
-            <tr>
-              <th>Nombre</th>
-              <td>{p.nombre}</td>
-            </tr>
-            <tr>
-              <th>A Paterno</th>
-              <td>{p.apaterno}</td>
-            </tr>
-            <tr>
-              <th>A Materno</th>
-              <td>{p.amaterno}</td>
-            </tr>
+            <TrDataEditTXT
+              isEdit={this.state.isModoEdit}
+              valor={c.nombre}
+              label="Nombre"
+            />
+
+            <TrDataEditTXT
+              isEdit={this.state.isModoEdit}
+              valor={c.apaterno}
+              label="A. Paterno"
+            />
+
+            <TrDataEditTXT
+              isEdit={this.state.isModoEdit}
+              valor={c.amaterno}
+              label="A. Materno"
+            />
           </tbody>
         </table>
       </div>

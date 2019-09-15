@@ -32,21 +32,26 @@ class TabListaCliente extends Component {
 
   loadAllDataCliente = async cliente => {
     if (!cliente.isDataLoaded) {
-      cliente.isDataLoaded = true;
-      const clienteLoaded = await DataService.dataClienteSelected(
+      const respuesta = await DataService.dataClienteSelected(
         cliente.id_cliente
       );
 
-      Object.keys(clienteLoaded).forEach(p => {
-        cliente[p] = clienteLoaded[p];
-      });
+      if (respuesta.success) {
+        cliente.isDataLoaded = true;
+        LibToast.info('Datos recibidos');
+        const clienteLoaded = respuesta.data;
+
+        Object.keys(clienteLoaded).forEach(p => {
+          cliente[p] = clienteLoaded[p];
+        });
+      }
     }
   };
 
-  onSelectCliente = cliente => {
+  onSelectCliente = async cliente => {
     //buscar el cliente
 
-    this.loadAllDataCliente(cliente);
+    await this.loadAllDataCliente(cliente);
 
     this.setState({
       idClienteSelected: cliente.id_cliente,
@@ -173,8 +178,7 @@ class TabListaCliente extends Component {
     let cliente = this.state.listaClientes.find(c => {
       return c.id_cliente === idCliente;
     });
-
-    this.loadAllDataCliente(cliente);
+    await this.loadAllDataCliente(cliente);
 
     this.setState({
       idClienteSelected: idCliente,

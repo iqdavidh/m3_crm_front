@@ -55,7 +55,7 @@ const DataLocal = {
   dataClienteSelected: async id_cliente => {
     //buscar el cliente
     const cliente = clientes_dataLocal.find(c => {
-      return (c.id_cliente = id_cliente);
+      return c.id_cliente.toString() == id_cliente.toString();
     });
 
     //buscar los seguimientos
