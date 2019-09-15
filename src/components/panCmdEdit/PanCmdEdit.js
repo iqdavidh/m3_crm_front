@@ -18,6 +18,14 @@ class PanCmdEdit extends Component {
     });
   }
 
+  setModoEdicion() {
+    this.setState({
+      isEdicion: true
+    });
+
+    this.props.onClickEdit();
+  }
+
   render() {
     const iconLoading = this.state.isEnProceso && (
       <div>
@@ -32,14 +40,18 @@ class PanCmdEdit extends Component {
       </button>
     );
 
-    const cmdCancel = !this.state.isEdicion && (
+    const cmdCancel = this.state.isEdicion && (
       <button className="btn btn-sm btn-secondary" title="Cancelar">
         <i className="fa fa-times" />
       </button>
     );
 
     const cmdEdit = !this.state.isEdicion && (
-      <button className="btn btn-sm btn-primary" title="Editar">
+      <button
+        className="btn btn-sm btn-primary"
+        title="Editar"
+        onClick={e => this.setModoEdicion()}
+      >
         <i className="fa fa-edit" />
       </button>
     );

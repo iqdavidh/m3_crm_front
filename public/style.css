@@ -107,3 +107,7 @@ body {
 
 
 .tab-content {width: 100%}
+
+
+table.teditdata tr th{ text-align: right; width: 140px; font-weight: normal}
+table.teditdata tr td{ text-align: left; font-weight: bold}

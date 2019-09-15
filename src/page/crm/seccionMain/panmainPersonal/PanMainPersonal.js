@@ -31,6 +31,8 @@ class PanMainPersonal extends Component {
 
     console.log(texto);
 
+    const p = this.props.cliente;
+
     return (
       <div className="panfull">
         <PanCmdEdit
@@ -38,7 +40,22 @@ class PanMainPersonal extends Component {
           onClickSave={this.onClickSave}
           onAfterSave={this.onAfterSave}
         />
-        Datos personales
+        <table className="table table-sm table-striped teditdata">
+          <tbody>
+            <tr>
+              <th>Nombre</th>
+              <td>{p.nombre}</td>
+            </tr>
+            <tr>
+              <th>A Paterno</th>
+              <td>{p.apaterno}</td>
+            </tr>
+            <tr>
+              <th>A Materno</th>
+              <td>{p.amaterno}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
