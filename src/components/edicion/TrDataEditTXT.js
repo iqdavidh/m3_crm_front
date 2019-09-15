@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './TrDataEditTXT.css';
+import ObserverPanMainPersonal from '../../page/crm/seccionMain/panmainPersonal/ObserverPanMainPersonal';
 
 class TrDataEditTXT extends Component {
   constructor(props) {
@@ -14,14 +16,14 @@ class TrDataEditTXT extends Component {
       componente = (
         <input
           type="text"
-          className="form-control-sm"
+          className="form-control-sm "
           value={this.props.valor}
         />
       );
     }
 
     return (
-      <tr>
+      <tr className="trDataEdit">
         <th>{this.props.label}</th>
         <td>{componente}</td>
       </tr>

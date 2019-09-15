@@ -25,14 +25,14 @@ class SeccionMain extends Component {
           <Tab eventKey="personal" title={tituloTabPer}>
             <PanMainPersonal
               cliente={this.props.cliente}
-              onSaveCliente={this.onSaveCliente}
+              onSaveCliente={() => this.onSaveCliente}
             />
           </Tab>
 
           <Tab eventKey="tareas" title={tituloTabDom}>
             <PanMainDom
               cliente={this.props.cliente}
-              onSaveCliente={this.onSaveCliente}
+              onSaveCliente={() => this.onSaveCliente}
             />
           </Tab>
         </Tabs>

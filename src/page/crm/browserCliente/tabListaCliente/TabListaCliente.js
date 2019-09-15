@@ -38,7 +38,7 @@ class TabListaCliente extends Component {
 
       if (respuesta.success) {
         cliente.isDataLoaded = true;
-        LibToast.info('Datos recibidos');
+
         const clienteLoaded = respuesta.data;
 
         Object.keys(clienteLoaded).forEach(p => {

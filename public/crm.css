@@ -124,3 +124,12 @@
 }
 
 .nav.nav-tabs{background-color: #F1F1F1}
+
+
+/*SEcion Panel edit*/
+
+tr.trDataEdit td,
+tr.trDataEdit th {
+   height: 40px;
+}
+tr.trDataEdit td input.form-control-sm {font-size: 14px}

@@ -11,8 +11,12 @@ class PanMainPersonal extends Component {
     };
   }
 
-  onClickEdit() {
+  setModoEdicion() {
     this.setState({ isModoEdit: true });
+  }
+
+  setModoRead() {
+    this.setState({ isModoEdit: false });
   }
 
   onClickSave() {
@@ -37,27 +41,31 @@ class PanMainPersonal extends Component {
     return (
       <div className="panfull">
         <PanCmdEdit
-          onClickEdit={this.onClickEdit}
-          onClickSave={this.onClickSave}
-          onAfterSave={this.onAfterSave}
+          setModoEdicion={() => this.setModoEdicion()}
+          setModoRead={() => this.setModoRead()}
+          onClickSave={() => this.onClickSave()}
+          onAfterSave={() => this.onAfterSave()}
         />
         <table className="table table-sm table-striped teditdata">
           <tbody>
             <TrDataEditTXT
               isEdit={this.state.isModoEdit}
               valor={c.nombre}
+              valorEdit={c.nombre}
               label="Nombre"
             />
 
             <TrDataEditTXT
               isEdit={this.state.isModoEdit}
               valor={c.apaterno}
+              valorEdit={c.apaterno}
               label="A. Paterno"
             />
 
             <TrDataEditTXT
               isEdit={this.state.isModoEdit}
               valor={c.amaterno}
+              valorEdit={c.amaterno}
               label="A. Materno"
             />
           </tbody>

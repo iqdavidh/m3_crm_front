@@ -23,7 +23,31 @@ class PanCmdEdit extends Component {
       isEdicion: true
     });
 
-    this.props.onClickEdit();
+    this.props.setModoEdicion();
+  }
+
+  setModoRead() {
+    this.setState({
+      isEdicion: false
+    });
+
+    this.props.setModoRead();
+  }
+
+  startSave() {
+    this.setState({
+      isEnProceso: true
+    });
+
+    this.props.startSave();
+  }
+
+  endSave() {
+    this.setState({
+      isEnProceso: false
+    });
+
+    this.props.endSave();
   }
 
   render() {
@@ -41,7 +65,11 @@ class PanCmdEdit extends Component {
     );
 
     const cmdCancel = this.state.isEdicion && (
-      <button className="btn btn-sm btn-secondary" title="Cancelar">
+      <button
+        className="btn btn-sm btn-secondary"
+        title="Cancelar"
+        onClick={() => this.setModoRead()}
+      >
         <i className="fa fa-times" />
       </button>
     );
@@ -50,7 +78,7 @@ class PanCmdEdit extends Component {
       <button
         className="btn btn-sm btn-primary"
         title="Editar"
-        onClick={e => this.setModoEdicion()}
+        onClick={() => this.setModoEdicion()}
       >
         <i className="fa fa-edit" />
       </button>
@@ -59,7 +87,6 @@ class PanCmdEdit extends Component {
     return (
       <div className="panToolEdit">
         <div className="espaciocenter">{iconLoading}</div>
-
         {cmdUpload}
         {cmdCancel}
         {cmdEdit}
