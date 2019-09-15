@@ -12,7 +12,7 @@ class PanMainPersonal extends Component {
   }
 
   onClickEdit() {
-    console.log('onclick edit');
+    this.setState({ isModoEdit: true });
   }
 
   onClickSave() {

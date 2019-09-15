@@ -263,7 +263,17 @@ class TabListaCliente extends Component {
       if (isCompletado) {
         LibToast.success('Datos Recibidos');
       } else {
-        let fn = () => this.loadAllClientes(pagina + 1);
+        let fn = () => {
+          /*cargar el primer cliente*/
+          if (pagina === 1 && lista.length > 0) {
+            console.log('llegaod a linea');
+            this.onClickCliente(lista[0].id_cliente).then(() => {
+              console.log('xxxx');
+            });
+          }
+
+          this.loadAllClientes(pagina + 1);
+        };
         setTimeout(fn, 300);
       }
     } else {
