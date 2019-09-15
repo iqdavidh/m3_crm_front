@@ -10,6 +10,18 @@ class PanMainPersonal extends Component {
     };
   }
 
+  onClickEdit() {
+    console.log('onclick edit');
+  }
+
+  onClickSave() {
+    console.log('onclick save');
+  }
+
+  onAfterSave() {
+    console.log('onclick after save');
+  }
+
   render() {
     if (!this.props.cliente) {
       return null;
@@ -21,7 +33,11 @@ class PanMainPersonal extends Component {
 
     return (
       <div className="panfull">
-        <PanCmdEdit />
+        <PanCmdEdit
+          onClickEdit={this.onClickEdit}
+          onClickSave={this.onClickSave}
+          onAfterSave={this.onAfterSave}
+        />
         Datos personales
       </div>
     );
