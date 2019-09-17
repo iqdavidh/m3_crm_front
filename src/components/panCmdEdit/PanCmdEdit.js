@@ -5,35 +5,36 @@ class PanCmdEdit extends Component {
   constructor(props) {
     super(props);
 
+    props.observerData.subscribe('PanCmdEdit', this);
+    props.observerData.registrarCbDataIsValid(isValidData => {
+      this.setState({
+        isValidData
+      });
+    });
+
     this.state = {
       isEdicion: false,
-      isEnProceso: false
+      isEnProceso: false,
+      isValidData: true
     };
 
     this.idClienteOld = props.id_cliente;
   }
 
-  setModoView() {
+  onSetCancel() {
     this.setState({
       isEdicion: false,
-      isEnProceso: false
+      isEnProceso: false,
+      isValidData: true
     });
   }
 
-  setModoEdicion() {
+  onSetEdit() {
     this.setState({
-      isEdicion: true
+      isEdicion: true,
+      isEnProceso: false,
+      isValidData: true
     });
-
-    this.props.setModoEdicion();
-  }
-
-  setModoRead() {
-    this.setState({
-      isEdicion: false
-    });
-
-    this.props.setModoRead();
   }
 
   startSave() {
@@ -67,11 +68,11 @@ class PanCmdEdit extends Component {
       </div>
     );
 
-    const cmdUpload = isEdicion && (
+    const cmdUpload = isEdicion && this.state.isValidData && (
       <button
         className="btn btn-sm btn-primary"
         title="Guardar"
-        onClick={() => this.startSave()}
+        onClick={() => this.props.observerData.onRequesSaveData()}
       >
         <i className="fa fa-upload" />
       </button>
@@ -81,7 +82,7 @@ class PanCmdEdit extends Component {
       <button
         className="btn btn-sm btn-secondary"
         title="Cancelar"
-        onClick={() => this.setModoRead()}
+        onClick={() => this.props.observerData.onSetCancel()}
       >
         <i className="fa fa-times" />
       </button>
@@ -91,7 +92,7 @@ class PanCmdEdit extends Component {
       <button
         className="btn btn-sm btn-primary"
         title="Editar"
-        onClick={() => this.setModoEdicion()}
+        onClick={() => this.props.observerData.onSetEdit()}
       >
         <i className="fa fa-edit" />
       </button>

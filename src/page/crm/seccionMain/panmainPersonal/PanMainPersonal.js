@@ -1,33 +1,26 @@
 import React, { Component } from 'react';
 import PanCmdEdit from '../../../../components/panCmdEdit/PanCmdEdit';
 import TrDataEditTXT from '../../../../components/edicion/TrDataEditTXT';
+import ObserverDataEdit from '../../../../lib/ObserverDataEdit';
 
 class PanMainPersonal extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isModoEdit: false
-    };
+    this.observerData = new ObserverDataEdit(this.cbSaveDataPersonal);
 
     this.idClienteOld = null;
+
+    this.state = {
+      isModoEdit: false,
+      valorEdit: {}
+    };
   }
 
-  setModoEdicion() {
-    this.setState({ isModoEdit: true });
-  }
-
-  setModoRead() {
-    this.setState({ isModoEdit: false });
-  }
-
-  onStartSave() {
-    console.log('onclick onStartSave');
-  }
-
-  onAfterSave() {
-    console.log('onclick after save');
-  }
+  cbSaveDataPersonal = () => {
+    const data = this.observerData.getDataEdit();
+    console.log(data);
+  };
 
   render() {
     if (!this.props.cliente) {
@@ -38,6 +31,7 @@ class PanMainPersonal extends Component {
     //console.log(texto);
 
     const c = this.props.cliente;
+    let isReset = false;
 
     let isEdit = this.state.isModoEdit;
 
@@ -50,35 +44,16 @@ class PanMainPersonal extends Component {
       <div className="panfull">
         <PanCmdEdit
           id_cliente={c.id_cliente}
-          setModoEdicion={() => this.setModoEdicion()}
-          setModoRead={() => this.setModoRead()}
-          onStartSave={() => this.onStartSave()}
-          onAfterSave={() => this.onAfterSave()}
+          observerData={this.observerData}
         />
         <table className="table table-sm table-striped teditdata">
           <tbody>
             <TrDataEditTXT
-              isEdit={isEdit}
-              valor={c.nombre}
-              valorEdit={c.nombre}
+              campo="nombre"
               label="Nombre"
+              dataSource={c}
               validacion={{ isRequired: true }}
-            />
-
-            <TrDataEditTXT
-              isEdit={isEdit}
-              valor={c.apaterno}
-              valorEdit={c.apaterno}
-              label="A. Paterno"
-              validacion={{ isRequired: true }}
-            />
-
-            <TrDataEditTXT
-              isEdit={isEdit}
-              valor={c.amaterno}
-              valorEdit={c.amaterno}
-              label="A. Materno"
-              validacion={{ isRequired: false }}
+              observerData={this.observerData}
             />
           </tbody>
         </table>
