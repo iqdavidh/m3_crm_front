@@ -21,8 +21,8 @@ class PanMainPersonal extends Component {
     this.setState({ isModoEdit: false });
   }
 
-  onClickSave() {
-    console.log('onclick save');
+  onStartSave() {
+    console.log('onclick onStartSave');
   }
 
   onAfterSave() {
@@ -52,7 +52,7 @@ class PanMainPersonal extends Component {
           id_cliente={c.id_cliente}
           setModoEdicion={() => this.setModoEdicion()}
           setModoRead={() => this.setModoRead()}
-          onClickSave={() => this.onClickSave()}
+          onStartSave={() => this.onStartSave()}
           onAfterSave={() => this.onAfterSave()}
         />
         <table className="table table-sm table-striped teditdata">

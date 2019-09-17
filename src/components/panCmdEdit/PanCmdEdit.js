@@ -41,7 +41,7 @@ class PanCmdEdit extends Component {
       isEnProceso: true
     });
 
-    this.props.startSave();
+    this.props.onStartSave();
   }
 
   endSave() {
@@ -68,7 +68,11 @@ class PanCmdEdit extends Component {
     );
 
     const cmdUpload = isEdicion && (
-      <button className="btn btn-sm btn-primary" title="Guardar">
+      <button
+        className="btn btn-sm btn-primary"
+        title="Guardar"
+        onClick={() => this.startSave()}
+      >
         <i className="fa fa-upload" />
       </button>
     );
