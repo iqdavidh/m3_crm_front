@@ -46,6 +46,9 @@ class TabListaCliente extends Component {
         });
       }
     }
+
+    /*control de edicion de las secciones*/
+    cliente.isEditPersonal = false;
   };
 
   onSelectCliente = async cliente => {

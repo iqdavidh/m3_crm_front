@@ -9,6 +9,8 @@ class PanMainPersonal extends Component {
     this.state = {
       isModoEdit: false
     };
+
+    this.idClienteOld = null;
   }
 
   setModoEdicion() {
@@ -32,15 +34,22 @@ class PanMainPersonal extends Component {
       return null;
     }
 
-    let texto = JSON.stringify(this.props.cliente);
-
-    console.log(texto);
+    //let texto = JSON.stringify(this.props.cliente);
+    //console.log(texto);
 
     const c = this.props.cliente;
+
+    let isEdit = this.state.isModoEdit;
+
+    if (this.idClienteOld !== c.id_cliente) {
+      isEdit = false;
+      this.idClienteOld = c.id_cliente;
+    }
 
     return (
       <div className="panfull">
         <PanCmdEdit
+          id_cliente={c.id_cliente}
           setModoEdicion={() => this.setModoEdicion()}
           setModoRead={() => this.setModoRead()}
           onClickSave={() => this.onClickSave()}
@@ -49,21 +58,21 @@ class PanMainPersonal extends Component {
         <table className="table table-sm table-striped teditdata">
           <tbody>
             <TrDataEditTXT
-              isEdit={this.state.isModoEdit}
+              isEdit={isEdit}
               valor={c.nombre}
               valorEdit={c.nombre}
               label="Nombre"
             />
 
             <TrDataEditTXT
-              isEdit={this.state.isModoEdit}
+              isEdit={isEdit}
               valor={c.apaterno}
               valorEdit={c.apaterno}
               label="A. Paterno"
             />
 
             <TrDataEditTXT
-              isEdit={this.state.isModoEdit}
+              isEdit={isEdit}
               valor={c.amaterno}
               valorEdit={c.amaterno}
               label="A. Materno"

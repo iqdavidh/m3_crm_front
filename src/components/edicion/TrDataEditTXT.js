@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './TrDataEditTXT.css';
-import ObserverPanMainPersonal from '../../page/crm/seccionMain/panmainPersonal/ObserverPanMainPersonal';
 
 class TrDataEditTXT extends Component {
   constructor(props) {

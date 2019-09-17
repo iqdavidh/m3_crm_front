@@ -9,6 +9,8 @@ class PanCmdEdit extends Component {
       isEdicion: false,
       isEnProceso: false
     };
+
+    this.idClienteOld = props.id_cliente;
   }
 
   setModoView() {
@@ -50,7 +52,13 @@ class PanCmdEdit extends Component {
     this.props.endSave();
   }
 
-  render() {
+  render(args) {
+    let isEdicion = this.state.isModoEdit;
+    if (this.idClienteOld !== this.props.id_cliente) {
+      isEdicion = false;
+      this.idClienteOld = this.props.id_cliente;
+    }
+
     const iconLoading = this.state.isEnProceso && (
       <div>
         <i className="fa fa-cog fa-spin" />
@@ -58,13 +66,13 @@ class PanCmdEdit extends Component {
       </div>
     );
 
-    const cmdUpload = this.state.isEdicion && (
+    const cmdUpload = isEdicion && (
       <button className="btn btn-sm btn-primary" title="Guardar">
         <i className="fa fa-upload" />
       </button>
     );
 
-    const cmdCancel = this.state.isEdicion && (
+    const cmdCancel = isEdicion && (
       <button
         className="btn btn-sm btn-secondary"
         title="Cancelar"
@@ -74,7 +82,7 @@ class PanCmdEdit extends Component {
       </button>
     );
 
-    const cmdEdit = !this.state.isEdicion && (
+    const cmdEdit = !isEdicion && (
       <button
         className="btn btn-sm btn-primary"
         title="Editar"
