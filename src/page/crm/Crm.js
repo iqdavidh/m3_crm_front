@@ -6,6 +6,7 @@ import SeccionHistorial from './seccionHistorial/SeccionHistorial';
 import SeccionMain from './seccionMain/SeccionMain';
 import ObserverSelectCliente from './browserCliente/tabListaCliente/ObserverSelectCliente';
 import SeccionAdd from './seccionAdd/SeccionAdd';
+import ObserverDataPersonal from './seccionMain/panmainPersonal/ObserverDataPersonal';
 
 class Crm extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class Crm extends Component {
 
   onSelectCliente = async cliente => {
     this.setState({ cliente });
+    ObserverDataPersonal.onDataSourceChange();
   };
 
   render() {
