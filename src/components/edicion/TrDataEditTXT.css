@@ -1,0 +1,17 @@
+.trDataEdit.error i {
+  color: red;
+  margin-right: 3px;
+}
+.trDataEdit.error th {
+  color: red;
+}
+
+.trDataEdit.error th,
+.trDataEdit.error td {
+  background-color: #fce1e5;
+}
+
+.trDataEdit td input[type='text'],
+.trDataEdit td input[type='password'] {
+  width: 100%;
+}

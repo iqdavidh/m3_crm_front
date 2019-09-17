@@ -62,6 +62,7 @@ class PanMainPersonal extends Component {
               valor={c.nombre}
               valorEdit={c.nombre}
               label="Nombre"
+              validacion={{ isRequired: true }}
             />
 
             <TrDataEditTXT
@@ -69,6 +70,7 @@ class PanMainPersonal extends Component {
               valor={c.apaterno}
               valorEdit={c.apaterno}
               label="A. Paterno"
+              validacion={{ isRequired: true }}
             />
 
             <TrDataEditTXT
@@ -76,6 +78,7 @@ class PanMainPersonal extends Component {
               valor={c.amaterno}
               valorEdit={c.amaterno}
               label="A. Materno"
+              validacion={{ isRequired: false }}
             />
           </tbody>
         </table>
