@@ -4,6 +4,15 @@ import './TrDataEditTXT.css';
 class TrDataEditTXT extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      valorEdit: props.valorEdit
+    };
+  }
+
+  onTextoChange(event) {
+    console.log(event.target.value);
+    this.setState({ valorEdit: event.target.value });
   }
 
   render() {
@@ -16,7 +25,8 @@ class TrDataEditTXT extends Component {
         <input
           type="text"
           className="form-control-sm "
-          value={this.props.valor}
+          onChange={event => this.onTextoChange(event)}
+          value={this.state.valorEdit}
         />
       );
     }
