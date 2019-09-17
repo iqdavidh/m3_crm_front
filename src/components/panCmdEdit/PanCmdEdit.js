@@ -53,7 +53,8 @@ class PanCmdEdit extends Component {
   }
 
   render(args) {
-    let isEdicion = this.state.isModoEdit;
+    let isEdicion = this.state.isEdicion;
+
     if (this.idClienteOld !== this.props.id_cliente) {
       isEdicion = false;
       this.idClienteOld = this.props.id_cliente;
