@@ -1,17 +1,23 @@
 class ObserverDataEdit {
-  constructor(fnSaveData) {
+  constructor() {
     this.subscriptores = [];
     //{nombre, fn}
     this.dataEdit = {};
     this.dataIsValid = {};
 
-    this.fnSaveData = fnSaveData;
-    this.fnDataVAlidChange = () => {
+    this.cbSaveData = () => {
+      console.log('no implemenado fnSaveData');
+    };
+    this.registrarCbSaveData = cb => {
+      this.cbSaveData = cb;
+    };
+
+    this.cbDataIsValidChange = () => {
       console.log('no implementado fnDataVAlidChange');
     };
 
     this.registrarCbDataIsValid = cb => {
-      this.fnDataIsValidChange = cb;
+      this.cbDataIsValidChange = cb;
     };
 
     this.subscribe = (nombre, IControlDataEdit) => {
@@ -56,17 +62,11 @@ class ObserverDataEdit {
       this.dataIsValid = {};
     };
 
-    this.onDataSourceChange = (nombreInvodador, dataSource) => {
-      this.subscriptores
-        .filter(suscriptor => {
-          return suscriptor.nombre !== nombreInvodador;
-        })
-        .forEach(suscriptor => {
-          suscriptor.IControlDataEdit.onDataSourceChange();
-        });
+    this.onDataSourceChange = () => {
+      this.subscriptores.forEach(suscriptor => {
+        suscriptor.IControlDataEdit.onDataSourceChange();
+      });
     };
-
-    this.fnSaveData = fnSaveData;
 
     this.onValorChange = (campo, valorNew, isValid) => {
       this.dataEdit[campo] = valorNew;
@@ -86,11 +86,11 @@ class ObserverDataEdit {
 
       //notifica qhe hay error en validaciopn
 
-      this.fnDataIsValidChange(isAllValid);
+      this.cbDataIsValidChange(isAllValid);
     };
 
     this.onRequesSaveData = () => {
-      this.fnSaveData();
+      this.cbSaveData();
     };
 
     this.getDataEdit = () => {

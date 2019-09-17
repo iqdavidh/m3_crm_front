@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import PanCmdEdit from '../../../../components/panCmdEdit/PanCmdEdit';
 import TrDataEditTXT from '../../../../components/edicion/TrDataEditTXT';
 import ObserverDataEdit from '../../../../lib/ObserverDataEdit';
+import ObserverDataPersonal from './ObserverDataPersonal';
 
 class PanMainPersonal extends Component {
   constructor(props) {
     super(props);
 
-    this.observerData = new ObserverDataEdit(this.cbSaveDataPersonal);
+    this.observerData = ObserverDataPersonal;
+
+    this.observerData.registrarCbSaveData(this.cbSaveData);
 
     this.idClienteOld = null;
 
@@ -17,7 +20,7 @@ class PanMainPersonal extends Component {
     };
   }
 
-  cbSaveDataPersonal = () => {
+  cbSaveData = () => {
     const data = this.observerData.getDataEdit();
     console.log(data);
   };

@@ -37,6 +37,14 @@ class PanCmdEdit extends Component {
     });
   }
 
+  onDataSourceChange() {
+    this.setState({
+      isEdicion: false,
+      isEnProceso: false,
+      isValidData: true
+    });
+  }
+
   startSave() {
     this.setState({
       isEnProceso: true

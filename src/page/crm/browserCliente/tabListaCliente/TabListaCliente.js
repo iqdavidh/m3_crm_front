@@ -8,6 +8,7 @@ import LibToast from '../../../../lib/LibToast';
 import DataService from '../../../../servicios/dataService/dataLocal/DataLocal';
 import BoxOrderListaCliente from './BoxOrderListaCliente';
 import ObserverSelectCliente from './ObserverSelectCliente';
+import ObserverDataPersonal from '../../seccionMain/panmainPersonal/ObserverDataPersonal';
 
 class TabListaCliente extends Component {
   constructor(props) {
@@ -60,6 +61,9 @@ class TabListaCliente extends Component {
       idClienteSelected: cliente.id_cliente,
       clienteSelected: cliente
     });
+
+    console.log('on select cliente');
+    ObserverDataPersonal.onDataSourceChange();
   };
 
   async componentDidMount() {
@@ -192,6 +196,9 @@ class TabListaCliente extends Component {
       emisor: 'TabListaCliente',
       cliente: cliente
     });
+
+    console.log('on click cliente');
+    ObserverDataPersonal.onDataSourceChange();
   };
 
   render() {
