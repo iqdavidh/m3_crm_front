@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PanCmdEdit from '../../../../components/panCmdEdit/PanCmdEdit';
 import TrDataEditTXT from '../../../../components/edicion/TrDataEditTXT';
-import ObserverDataEdit from '../../../../lib/ObserverDataEdit';
 import ObserverDataPersonal from './ObserverDataPersonal';
 
 class PanMainPersonal extends Component {
@@ -11,13 +10,6 @@ class PanMainPersonal extends Component {
     this.observerData = ObserverDataPersonal;
 
     this.observerData.registrarCbSaveData(this.cbSaveData);
-
-    this.idClienteOld = null;
-
-    this.state = {
-      isModoEdit: false,
-      valorEdit: {}
-    };
   }
 
   cbSaveData = () => {
@@ -30,18 +22,7 @@ class PanMainPersonal extends Component {
       return null;
     }
 
-    //let texto = JSON.stringify(this.props.cliente);
-    //console.log(texto);
-
     const c = this.props.cliente;
-    let isReset = false;
-
-    let isEdit = this.state.isModoEdit;
-
-    if (this.idClienteOld !== c.id_cliente) {
-      isEdit = false;
-      this.idClienteOld = c.id_cliente;
-    }
 
     return (
       <div className="panfull">
@@ -49,6 +30,7 @@ class PanMainPersonal extends Component {
           id_cliente={c.id_cliente}
           observerData={this.observerData}
         />
+
         <table className="table table-sm table-striped teditdata">
           <tbody>
             <TrDataEditTXT
