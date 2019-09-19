@@ -42,6 +42,8 @@ class PanMainPersonal extends Component {
 
   cbSaveData = () => {
     const data = this.observerData.getDataEdit();
+    const id_cliente = this.state.cliente;
+
     console.log(data);
   };
 

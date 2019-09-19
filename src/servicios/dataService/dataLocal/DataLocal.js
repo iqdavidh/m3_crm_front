@@ -67,6 +67,63 @@ const DataLocal = {
     };
 
     return Promise.resolve(d);
+  },
+
+  saveCliente: async (id_cliente, dataCliente) => {
+    //buscar el cliente
+
+    if (id_cliente === null || id_cliente === undefined) {
+      throw Error('Falta el Id cliente');
+    }
+
+    const cliente = clientes_dataLocal.find(c => {
+      return c.id_cliente.toString() === id_cliente.toString();
+    });
+
+    Object.keys(dataCliente).forEach(p => {
+      cliente[p] = dataCliente[p];
+    });
+    //buscar los seguimientos
+
+    const d = {
+      success: true,
+      msg: ''
+    };
+
+    return Promise.resolve(d);
+  },
+
+  insertCliente: async dataCliente => {
+    let cliente = {
+      id_cliente: clientes_dataLocal.length + 1
+    };
+
+    Object.keys(dataCliente).forEach(p => {
+      cliente[p] = dataCliente[p];
+    });
+
+    //buscar los seguimientos
+
+    const d = {
+      success: true,
+      msg: '',
+      data: {
+        id_cliente: cliente.id_cliente
+      }
+    };
+
+    return Promise.resolve(d);
+  },
+
+  deleteCliente: async idCliente => {
+    // metthodo dummy no se requiere implementar desde local
+
+    const d = {
+      success: true,
+      msg: ''
+    };
+
+    return Promise.resolve(d);
   }
 };
 
