@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import PanCmdEdit from '../../../../components/panCmdEdit/PanCmdEdit';
 
 import ObserverDataPersonal from './ObserverDataPersonal';
-import BuilderConfigControlItem from '../../../../components/edicion/BuilderConfigControlItem';
+
 import TrDataEditTXT from '../../../../components/edicion/TrDataEditTXT';
+import DataService from '../../../../servicios/dataService/DataService';
+import LibToast from '../../../../lib/LibToast';
+
+import BuilderControlDataPersonal from './BuilderControlDataPersonal';
 
 class PanMainPersonal extends Component {
   constructor(props) {
@@ -19,32 +23,20 @@ class PanMainPersonal extends Component {
   }
 
   crearListaConfigControl() {
-    /*configurar control nombre *************************************************** */
-    const builderNombre = new BuilderConfigControlItem('nombre', 'Nombre');
-    builderNombre.setIsRequired();
-    this.listaConfigControl.push(builderNombre.getConfigControlItem());
-
-    const builderAPaterno = new BuilderConfigControlItem(
-      'apaterno',
-      'A. Paterno'
-    );
-    builderAPaterno.setIsRequired();
-    this.listaConfigControl.push(builderAPaterno.getConfigControlItem());
-
-    const builderAMaterno = new BuilderConfigControlItem(
-      'amaterno',
-      'A. Materno'
-    );
-    builderAMaterno.setIsRequired();
-    this.listaConfigControl.push(builderAMaterno.getConfigControlItem());
-    /* **************************************************************************** */
+    this.listaConfigControl = BuilderControlDataPersonal();
   }
 
-  cbSaveData = () => {
-    const data = this.observerData.getDataEdit();
-    const id_cliente = this.state.cliente;
+  cbSaveData = async () => {
+    const dataUpdate = this.observerData.getDataEdit();
+    const id_cliente = this.props.cliente.id_cliente;
 
-    console.log(data);
+    this.observerData.onMostrarWait(true);
+
+    //const respuestaSave = await DataService.saveCliente(id_cliente, dataUpdate);
+
+    // if (respuestaSave.success) {
+    //   LibToast.success("Cliente Actualizado")
+    // }
   };
 
   render() {

@@ -20,6 +20,13 @@ class ObserverDataEdit {
       this.cbDataIsValidChange = cb;
     };
 
+    this.cbMostrarWait = isWait => {
+      console.log('no implementado cbMostrarWait');
+    };
+    this.registrarcbMostrarWait = cb => {
+      this.cbMostrarWait = cb;
+    };
+
     this.subscribe = (nombre, IControlDataEdit) => {
       //ver si esta repetido el nombre
 
@@ -95,6 +102,10 @@ class ObserverDataEdit {
 
     this.getDataEdit = () => {
       return this.dataEdit;
+    };
+
+    this.onMostrarWait = isWait => {
+      return this.cbMostrarWait(isWait);
     };
   }
 }

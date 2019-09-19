@@ -5,11 +5,17 @@ class PanCmdEdit extends Component {
   constructor(props) {
     super(props);
 
+    /* suscribir los eventos de datai inalida*/
     props.observerData.subscribe('PanCmdEdit', this);
     props.observerData.registrarCbDataIsValid(isValidData => {
       this.setState({
         isValidData
       });
+    });
+
+    /*regsitrar el callback de mostrar wait*/
+    props.observerData.registrarcbMostrarWait(isWait => {
+      return this.setState({ isEnProceso: isWait });
     });
 
     this.state = {
@@ -22,6 +28,10 @@ class PanCmdEdit extends Component {
   }
 
   onSetCancel() {
+    if (this.state.isEnProceso) {
+      return;
+    }
+
     this.setState({
       isEdicion: false,
       isEnProceso: false,
@@ -46,6 +56,10 @@ class PanCmdEdit extends Component {
   }
 
   startSave() {
+    if (this.state.isEnProceso) {
+      return;
+    }
+
     this.setState({
       isEnProceso: true
     });
@@ -63,6 +77,7 @@ class PanCmdEdit extends Component {
 
   render(args) {
     let isEdicion = this.state.isEdicion;
+    let isEnProceso = this.state.isEnProceso;
 
     if (this.idClienteOld !== this.props.id_cliente) {
       isEdicion = false;
@@ -71,12 +86,12 @@ class PanCmdEdit extends Component {
 
     const iconLoading = this.state.isEnProceso && (
       <div>
-        <i className="fa fa-cog fa-spin" />
-        Guardando
+        <i className="fa fa-cog fa-spin " />
+        <span className="pl-1">Guardando</span>
       </div>
     );
 
-    const cmdUpload = isEdicion && this.state.isValidData && (
+    const cmdUpload = isEdicion && this.state.isValidData && !isEnProceso && (
       <button
         className="btn btn-sm btn-primary"
         title="Guardar"
@@ -86,7 +101,7 @@ class PanCmdEdit extends Component {
       </button>
     );
 
-    const cmdCancel = isEdicion && (
+    const cmdCancel = isEdicion && !isEnProceso && (
       <button
         className="btn btn-sm btn-secondary"
         title="Cancelar"
