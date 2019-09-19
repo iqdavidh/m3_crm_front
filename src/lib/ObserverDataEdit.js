@@ -5,28 +5,62 @@ class ObserverDataEdit {
     this.dataEdit = {};
     this.dataIsValid = {};
 
+    /* ------------------------------------------------- */
     this.cbSaveData = () => {
       console.log('no implemenado fnSaveData');
+      return false;
     };
     this.registrarCbSaveData = cb => {
       this.cbSaveData = cb;
     };
 
+    /* ------------------------------------------------- */
     this.cbDataIsValidChange = () => {
       console.log('no implementado fnDataVAlidChange');
+      return false;
     };
 
     this.registrarCbDataIsValid = cb => {
       this.cbDataIsValidChange = cb;
     };
 
+    /* ------------------------------------------------- */
     this.cbMostrarWait = isWait => {
       console.log('no implementado cbMostrarWait');
+      return false;
     };
-    this.registrarcbMostrarWait = cb => {
+    this.registrarCbMostrarWait = cb => {
       this.cbMostrarWait = cb;
     };
 
+    /* ------------------------------------------------- */
+    this.cbUpdateModel = isWait => {
+      console.log('no implementado cbUpdateModel');
+      return false;
+    };
+    this.registraCbUpdateModel = cb => {
+      this.onUpdateModel = cb;
+    };
+
+    /* ------------------------------------------------- */
+    this.cbDeleteModel = isWait => {
+      console.log('no implementado cbDeleteModel');
+      return false;
+    };
+    this.registraCbDeleteModel = cb => {
+      this.cbDeleteModel = cb;
+    };
+
+    /* ------------------------------------------------- */
+    this.cbInsertModel = isWait => {
+      console.log('no implementado cbInsertModel');
+      return false;
+    };
+    this.registraCbInsertModel = cb => {
+      this.cbInsertModel = cb;
+    };
+
+    /* ------------------------------------------------- */
     this.subscribe = (nombre, IControlDataEdit) => {
       //ver si esta repetido el nombre
 
@@ -106,6 +140,18 @@ class ObserverDataEdit {
 
     this.onMostrarWait = isWait => {
       return this.cbMostrarWait(isWait);
+    };
+
+    this.onUpdateModel = (idModel, dataUpdate) => {
+      return this.cbUpdateModel(idModel, dataUpdate);
+    };
+
+    this.onDeleteModel = idModel => {
+      return this.cbDeleteModel(idModel);
+    };
+
+    this.onInsertModel = (idModel, dataInsert) => {
+      return this.cbInsertModel(idModel, dataInsert);
     };
   }
 }

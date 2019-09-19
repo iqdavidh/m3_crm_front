@@ -14,7 +14,7 @@ class PanCmdEdit extends Component {
     });
 
     /*regsitrar el callback de mostrar wait*/
-    props.observerData.registrarcbMostrarWait(isWait => {
+    props.observerData.registrarCbMostrarWait(isWait => {
       return this.setState({ isEnProceso: isWait });
     });
 

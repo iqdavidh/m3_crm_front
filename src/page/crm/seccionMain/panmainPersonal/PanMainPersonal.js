@@ -32,11 +32,20 @@ class PanMainPersonal extends Component {
 
     this.observerData.onMostrarWait(true);
 
-    //const respuestaSave = await DataService.saveCliente(id_cliente, dataUpdate);
+    const respuestaSave = await DataService.saveCliente(id_cliente, dataUpdate);
+    this.observerData.onMostrarWait(false);
 
-    // if (respuestaSave.success) {
-    //   LibToast.success("Cliente Actualizado")
-    // }
+    if (!respuestaSave.success) {
+      LibToast.alert(respuestaSave.msg);
+      return;
+    }
+
+    LibToast.success('Cliente Actualizado');
+
+    //actualizar elcliente actual
+    this.setState({
+      someProperty: { ...this.state.someProperty, flag: false }
+    });
   };
 
   render() {
