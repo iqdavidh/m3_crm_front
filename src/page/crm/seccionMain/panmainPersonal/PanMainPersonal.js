@@ -37,6 +37,7 @@ class PanMainPersonal extends Component {
     );
     builderAMaterno.setIsRequired();
     this.listaConfigControl.push(builderAMaterno.getConfigControlItem());
+    /* **************************************************************************** */
   }
 
   cbSaveData = () => {
@@ -61,6 +62,7 @@ class PanMainPersonal extends Component {
           dataSource={c}
           validacion={control.validacion}
           observerData={this.observerData}
+          key={control.campo}
         />
       );
     };
@@ -68,9 +70,9 @@ class PanMainPersonal extends Component {
     let lista = this.listaConfigControl.map(control => {
       if (control.tipo === 'TXT') {
         return fnGetTXT(control);
-      } else {
-        console.log('Tipo no detectado');
       }
+      console.log('Tipo no detectado');
+      return null;
     });
     return (
       <div className="panfull">

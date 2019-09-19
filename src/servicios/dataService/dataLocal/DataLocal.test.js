@@ -37,3 +37,36 @@ describe('DataLocal - indexCliente', function() {
     });
   });
 });
+
+/* ******************************************************* */
+/* buscar cliente a partir de id_*/
+describe('dataClienteSelected', function() {
+  it('esta presente la funcion ', function() {
+    assert(
+      typeof DataLocal.dataClienteSelected === 'function',
+      `No esta el método  dataClienteSelected`
+    );
+  });
+
+  it('pagina 1 - ver datos ', async function() {
+    let respuesta = await DataService.dataClienteSelected(2);
+
+    assert(respuesta.success, 'La respuesta no es success');
+    assert(respuesta.msg === '', 'La no trae msg');
+
+    assert(
+      Object.keys(respuesta.data).length > 0,
+      'No trae propiedades el object data'
+    );
+
+    /*verioficar las propiedades que trae los datos*/
+    const listaPropieades = ['id_cliente', 'nombre', 'apaterno'];
+    let row = respuesta.data;
+    listaPropieades.forEach(p => {
+      assert(
+        LibValidacion.isNotEmpty(row[p]),
+        `Propiedad en cliente vacia : ${p}`
+      );
+    });
+  });
+});
