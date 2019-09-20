@@ -28,14 +28,35 @@ class Crm extends Component {
     ObserverDataPersonal.onDataSourceChange();
   };
 
+  onUpdateModel = clienteNew => {
+    //actualizar elcliente actual
+    this.setState({
+      cliente: clienteNew
+    });
+  };
+
+  onInserCliente = dataInsert => {
+    console.log('se requiere definir onInserCliente');
+  };
+
+  onDeleteCliente = id_cliente => {
+    console.log('se requiere definir onDeleteCliente');
+  };
+
   render() {
+    const eventosCrud = {
+      onInserCliente: this.onInserCliente,
+      onUpdateModel: this.onUpdateModel,
+      onDeleteCliente: this.onDeleteCliente
+    };
+
     return (
       <div className={'container-main'}>
         <TopBar>
           <TopBarCrm />
         </TopBar>
         <BrowserCliente />
-        <SeccionMain cliente={this.state.cliente} />
+        <SeccionMain cliente={this.state.cliente} {...eventosCrud} />
         <SeccionAdd cliente={this.state.cliente} />
         <SeccionHistorial cliente={this.state.cliente} />
       </div>

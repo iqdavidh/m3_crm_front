@@ -40,12 +40,16 @@ class PanMainPersonal extends Component {
       return;
     }
 
-    LibToast.success('Cliente Actualizado');
-
-    //actualizar elcliente actual
-    this.setState({
-      someProperty: { ...this.state.someProperty, flag: false }
+    //crear nuevo modelo
+    let cliente = { ...this.props.cliente };
+    Object.keys(dataUpdate).forEach(key => {
+      cliente[key] = dataUpdate[key];
     });
+
+    this.props.onUpdateModel(cliente);
+
+    LibToast.success('Cliente Actualizado');
+    this.observerData.onDataSourceChange();
   };
 
   render() {

@@ -17,13 +17,18 @@ class SeccionMain extends Component {
       <div className="cell-data-main SeccionMain wrapperTab">
         <Tabs defaultActiveKey="personal" vertical="true">
           <Tab eventKey="personal" title={tituloTabPer}>
-            <PanMainPersonal cliente={this.props.cliente} />
+            <PanMainPersonal
+              cliente={this.props.cliente}
+              onSaveCliente={this.onSaveCliente}
+              onUpdateModel={this.props.onUpdateModel}
+            />
           </Tab>
 
           <Tab eventKey="tareas" title={tituloTabDom}>
             <PanMainDom
               cliente={this.props.cliente}
-              onSaveCliente={() => this.onSaveCliente}
+              onSaveCliente={this.onSaveCliente}
+              onUpdateModel={this.props.onUpdateModel}
             />
           </Tab>
         </Tabs>
