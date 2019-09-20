@@ -17,6 +17,19 @@ class PanMainPersonal extends Component {
 
     this.observerData.registrarCbSaveData(this.cbSaveData);
 
+    this.state = {
+      cliente: null
+    };
+
+    const fnSetCliente = cliente => {
+      this.setState({ cliente });
+    };
+
+    this.observerData.registrarHandlerOnSetClienteSelected(
+      'PanMainPersonal',
+      fnSetCliente
+    );
+
     this.listaConfigControl = [];
 
     this.crearListaConfigControl();
@@ -28,7 +41,7 @@ class PanMainPersonal extends Component {
 
   cbSaveData = async () => {
     const dataUpdate = this.observerData.getDataEdit();
-    const id_cliente = this.props.cliente.id_cliente;
+    const id_cliente = this.state.cliente.id_cliente;
 
     this.observerData.onMostrarWait(true);
 
@@ -41,26 +54,26 @@ class PanMainPersonal extends Component {
     }
 
     //crear nuevo modelo
-    let cliente = { ...this.props.cliente };
+    let cliente = { ...this.state.cliente };
     Object.keys(dataUpdate).forEach(key => {
       cliente[key] = dataUpdate[key];
     });
 
     cliente.updated_at = new Date();
-    this.props.onUpdateModel(cliente);
+    this.observerData.onUpdateModel(cliente);
 
     LibToast.success('Cliente Actualizado');
     this.observerData.onDataSourceChange();
   };
 
   render() {
-    if (!this.props.cliente) {
+    const c = this.state.cliente;
+
+    if (!c) {
       return null;
     }
 
     /* Crear lista de Componentes */
-
-    const c = this.props.cliente;
 
     const fnGetTXT = control => {
       return (

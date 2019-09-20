@@ -26,9 +26,12 @@ class TabListaCliente extends Component {
       idClienteSelected: null
     };
 
-    ObserverSelectCliente.subscribe('TabListaCliente', this.onSelectCliente);
-
     this.isObserverRegistrado = false;
+
+    ObserverDataPersonal.registrarHandlerOnSetClienteSelected(
+      'TabListaCliente',
+      this.onSelectCliente
+    );
   }
 
   loadAllDataCliente = async cliente => {
@@ -189,10 +192,7 @@ class TabListaCliente extends Component {
       clienteSelected: cliente
     });
 
-    ObserverSelectCliente.onSelectCliente({
-      emisor: 'TabListaCliente',
-      cliente: cliente
-    });
+    ObserverDataPersonal.setClienteSelected('TabListaCliente', cliente);
   };
 
   render() {

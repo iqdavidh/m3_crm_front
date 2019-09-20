@@ -11,56 +11,18 @@ import ObserverDataPersonal from './seccionMain/panmainPersonal/ObserverDataPers
 class Crm extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      cliente: null
-    };
-
-    ObserverSelectCliente.subscribe('Crm', this.onSelectCliente);
   }
 
-  onSetCliente = cliente => {
-    this.setState({ cliente });
-  };
-
-  onSelectCliente = async clienteSelected => {
-    this.setState({ cliente: clienteSelected });
-    ObserverDataPersonal.onDataSourceChange();
-  };
-
-  onUpdateModel = clienteUpdated => {
-    //actualizar elcliente actual
-    console.log('crm.onUpdateModel');
-    this.setState({
-      cliente: clienteUpdated
-    });
-    console.log(clienteUpdated);
-  };
-
-  onInserCliente = dataInsert => {
-    //no se usa en crm
-  };
-
-  onDeleteCliente = id_cliente => {
-    //no se usa en crm
-  };
-
   render() {
-    const eventosCrud = {
-      onInserCliente: this.onInserCliente,
-      onUpdateModel: this.onUpdateModel,
-      onDeleteCliente: this.onDeleteCliente
-    };
-
     return (
       <div className={'container-main'}>
         <TopBar>
           <TopBarCrm />
         </TopBar>
         <BrowserCliente />
-        <SeccionMain cliente={this.state.cliente} {...eventosCrud} />
-        <SeccionAdd cliente={this.state.cliente} />
-        <SeccionHistorial cliente={this.state.cliente} />
+        <SeccionMain />
+        <SeccionAdd />
+        <SeccionHistorial />
       </div>
     );
   }

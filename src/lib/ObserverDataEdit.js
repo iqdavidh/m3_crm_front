@@ -80,7 +80,27 @@ class ObserverDataEdit {
       return this.cbInsertModel(idModel, dataInsert);
     };
 
+    /* cliente selected --------------------------------- */
+
+    let listaHandlerOnSetClienteSelected = [];
+
+    this.setClienteSelected = (nombreInvocador, clienteSelected) => {
+      listaHandlerOnSetClienteSelected
+        .filter(suscriptor => {
+          return nombreInvocador !== suscriptor.nombre;
+        })
+        .forEach(suscriptor => {
+          suscriptor.h(clienteSelected);
+        });
+    };
+
+    this.registrarHandlerOnSetClienteSelected = (nombreHandler, h) => {
+      listaHandlerOnSetClienteSelected.push({ nombre: nombreHandler, h });
+    };
+
     /* ------------------------------------------------- */
+    /* ------------------------------------------------- */
+    /* controles edit ---------------------------------- */
 
     this.subscribe = (nombre, IControlDataEdit) => {
       //ver si esta repetido el nombre

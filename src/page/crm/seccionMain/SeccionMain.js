@@ -18,7 +18,6 @@ class SeccionMain extends Component {
         <Tabs defaultActiveKey="personal" vertical="true">
           <Tab eventKey="personal" title={tituloTabPer}>
             <PanMainPersonal
-              cliente={this.props.cliente}
               onSaveCliente={this.onSaveCliente}
               onUpdateModel={this.props.onUpdateModel}
             />
@@ -26,7 +25,6 @@ class SeccionMain extends Component {
 
           <Tab eventKey="tareas" title={tituloTabDom}>
             <PanMainDom
-              cliente={this.props.cliente}
               onSaveCliente={this.onSaveCliente}
               onUpdateModel={this.props.onUpdateModel}
             />
