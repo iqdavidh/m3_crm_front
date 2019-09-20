@@ -32,7 +32,27 @@ class TabListaCliente extends Component {
       'TabListaCliente',
       this.onSelectCliente
     );
+
+    ObserverDataPersonal.registraCbUpdateModel(this.onDataPersonalUdateModel);
   }
+
+  onDataPersonalUdateModel = clienteUpdated => {
+    const listaClientes = [...this.state.listaClientes];
+    const cliente = listaClientes.find(c => {
+      return c.id_cliente === clienteUpdated.id_cliente;
+    });
+
+    //copiar propiedades
+
+    Object.keys(clienteUpdated).forEach(key => {
+      cliente[key] = clienteUpdated[key];
+    });
+
+    this.setState({
+      listaClientes,
+      clienteSelected: cliente
+    });
+  };
 
   loadAllDataCliente = async cliente => {
     if (!cliente.isDataLoaded) {

@@ -76,6 +76,7 @@ class PanCmdEdit extends Component {
   render(args) {
     let isEdicion = this.state.isEdicion;
     let isEnProceso = this.state.isEnProceso;
+    console.log(isEnProceso);
 
     if (this.idClienteOld !== this.props.id_cliente) {
       isEdicion = false;
