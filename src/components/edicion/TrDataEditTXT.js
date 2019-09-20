@@ -22,7 +22,6 @@ class TrDataEditTXT extends Component {
   }
 
   onDataSourceChange() {
-    console.log('tr data si chang');
     this.setState({
       isEdit: false,
       valorEdit: this.getValorFromDataSource()

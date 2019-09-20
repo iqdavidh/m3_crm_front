@@ -5,13 +5,17 @@ class ObserverDataEdit {
     this.dataEdit = {};
     this.dataIsValid = {};
 
-    /* ------------------------------------------------- */
+    /* saveData ------------------------------------------------- */
     this.cbSaveData = () => {
       console.log('no implemenado fnSaveData');
       return false;
     };
     this.registrarCbSaveData = cb => {
       this.cbSaveData = cb;
+    };
+
+    this.onRequesSaveData = () => {
+      this.cbSaveData();
     };
 
     /* ------------------------------------------------- */
@@ -24,7 +28,7 @@ class ObserverDataEdit {
       this.cbDataIsValidChange = cb;
     };
 
-    /* ------------------------------------------------- */
+    /* mostrarWait -------------------------------------- */
     this.cbMostrarWait = isWait => {
       console.log('no implementado cbMostrarWait');
       return false;
@@ -33,13 +37,21 @@ class ObserverDataEdit {
       this.cbMostrarWait = cb;
     };
 
-    /* ------------------------------------------------- */
+    this.onMostrarWait = isWait => {
+      return this.cbMostrarWait(isWait);
+    };
+
+    /* updateModel ------------------------------------- */
     this.cbUpdateModel = isWait => {
       console.log('no implementado cbUpdateModel');
       return false;
     };
     this.registraCbUpdateModel = cb => {
       this.onUpdateModel = cb;
+    };
+
+    this.onUpdateModel = (idModel, dataUpdate) => {
+      return this.cbUpdateModel(idModel, dataUpdate);
     };
 
     /* ------------------------------------------------- */
@@ -51,6 +63,10 @@ class ObserverDataEdit {
       this.cbDeleteModel = cb;
     };
 
+    this.onDeleteModel = idModel => {
+      return this.cbDeleteModel(idModel);
+    };
+
     /* ------------------------------------------------- */
     this.cbInsertModel = isWait => {
       console.log('no implementado cbInsertModel');
@@ -60,7 +76,12 @@ class ObserverDataEdit {
       this.cbInsertModel = cb;
     };
 
+    this.onInsertModel = (idModel, dataInsert) => {
+      return this.cbInsertModel(idModel, dataInsert);
+    };
+
     /* ------------------------------------------------- */
+
     this.subscribe = (nombre, IControlDataEdit) => {
       //ver si esta repetido el nombre
 
@@ -130,28 +151,8 @@ class ObserverDataEdit {
       this.cbDataIsValidChange(isAllValid);
     };
 
-    this.onRequesSaveData = () => {
-      this.cbSaveData();
-    };
-
     this.getDataEdit = () => {
       return this.dataEdit;
-    };
-
-    this.onMostrarWait = isWait => {
-      return this.cbMostrarWait(isWait);
-    };
-
-    this.onUpdateModel = (idModel, dataUpdate) => {
-      return this.cbUpdateModel(idModel, dataUpdate);
-    };
-
-    this.onDeleteModel = idModel => {
-      return this.cbDeleteModel(idModel);
-    };
-
-    this.onInsertModel = (idModel, dataInsert) => {
-      return this.cbInsertModel(idModel, dataInsert);
     };
   }
 }

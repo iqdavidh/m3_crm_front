@@ -16,6 +16,10 @@ class ItemClienteLista extends Component {
 
     const listaEstatus = ['NA', 'Baja', 'Media', 'Alta'];
 
+    const tituloUpdated = c.updated_at
+      ? 'Updated ' + c.updated_at.toDateString()
+      : '';
+
     return (
       <div
         className={claseItem}
@@ -23,7 +27,9 @@ class ItemClienteLista extends Component {
         title={c.apaterno}
         onClick={e => this.props.onClickCliente(c.id_cliente)}
       >
-        <div className="labIndex">{numItem}</div>
+        <div className="labIndex" title={tituloUpdated}>
+          {numItem}
+        </div>
         <i className="fa fa-user fa-2x" />
 
         <div className="labNombreCompleto">

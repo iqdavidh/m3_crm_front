@@ -4,8 +4,8 @@ import TopBarCrm from './topBarCrm/TopBarCrm';
 import BrowserCliente from './browserCliente/BrowserCliente';
 import SeccionHistorial from './seccionHistorial/SeccionHistorial';
 import SeccionMain from './seccionMain/SeccionMain';
-import ObserverSelectCliente from './browserCliente/tabListaCliente/ObserverSelectCliente';
 import SeccionAdd from './seccionAdd/SeccionAdd';
+import ObserverSelectCliente from './browserCliente/tabListaCliente/ObserverSelectCliente';
 import ObserverDataPersonal from './seccionMain/panmainPersonal/ObserverDataPersonal';
 
 class Crm extends Component {
@@ -23,24 +23,26 @@ class Crm extends Component {
     this.setState({ cliente });
   };
 
-  onSelectCliente = async cliente => {
-    this.setState({ cliente });
+  onSelectCliente = async clienteSelected => {
+    this.setState({ cliente: clienteSelected });
     ObserverDataPersonal.onDataSourceChange();
   };
 
-  onUpdateModel = clienteNew => {
+  onUpdateModel = clienteUpdated => {
     //actualizar elcliente actual
+    console.log('crm.onUpdateModel');
     this.setState({
-      cliente: clienteNew
+      cliente: clienteUpdated
     });
+    console.log(clienteUpdated);
   };
 
   onInserCliente = dataInsert => {
-    console.log('se requiere definir onInserCliente');
+    //no se usa en crm
   };
 
   onDeleteCliente = id_cliente => {
-    console.log('se requiere definir onDeleteCliente');
+    //no se usa en crm
   };
 
   render() {

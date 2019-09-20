@@ -8,6 +8,7 @@ import LibToast from '../../../../lib/LibToast';
 import DataService from '../../../../servicios/dataService/dataLocal/DataLocal';
 import BoxOrderListaCliente from './BoxOrderListaCliente';
 import ObserverSelectCliente from './ObserverSelectCliente';
+import ObserverDataPersonal from '../../seccionMain/panmainPersonal/ObserverDataPersonal';
 
 class TabListaCliente extends Component {
   constructor(props) {
@@ -269,9 +270,8 @@ class TabListaCliente extends Component {
         let fn = () => {
           /*cargar el primer cliente*/
           if (pagina === 1 && lista.length > 0) {
-            console.log('llegaod a linea');
             this.onClickCliente(lista[0].id_cliente).then(() => {
-              console.log('xxxx');
+              console.log('Seleccion cliente 1');
             });
           }
 

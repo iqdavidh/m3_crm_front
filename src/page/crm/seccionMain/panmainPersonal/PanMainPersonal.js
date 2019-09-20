@@ -46,6 +46,7 @@ class PanMainPersonal extends Component {
       cliente[key] = dataUpdate[key];
     });
 
+    cliente.updated_at = new Date();
     this.props.onUpdateModel(cliente);
 
     LibToast.success('Cliente Actualizado');
