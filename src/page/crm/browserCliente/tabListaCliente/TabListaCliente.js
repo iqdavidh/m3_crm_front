@@ -7,7 +7,7 @@ import BoxFiltroListaCliente from './BoxFiltroListaCliente';
 import LibToast from '../../../../lib/LibToast';
 import DataService from '../../../../servicios/dataService/dataLocal/DataLocal';
 import BoxOrderListaCliente from './BoxOrderListaCliente';
-import ObserverSelectCliente from './ObserverSelectCliente';
+
 import ObserverDataPersonal from '../../seccionMain/panmainPersonal/ObserverDataPersonal';
 
 class TabListaCliente extends Component {
@@ -192,6 +192,7 @@ class TabListaCliente extends Component {
       clienteSelected: cliente
     });
 
+    ObserverDataPersonal.onSetCancel();
     ObserverDataPersonal.setClienteSelected('TabListaCliente', cliente);
   };
 

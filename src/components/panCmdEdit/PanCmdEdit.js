@@ -64,15 +64,13 @@ class PanCmdEdit extends Component {
       isEnProceso: true
     });
 
-    this.props.onStartSave();
+    this.props.observerData.onRequesSaveData();
   }
 
   endSave() {
     this.setState({
       isEnProceso: false
     });
-
-    this.props.endSave();
   }
 
   render(args) {

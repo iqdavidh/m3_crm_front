@@ -84,7 +84,10 @@ class ObserverDataEdit {
 
     let listaHandlerOnSetClienteSelected = [];
 
+    this.clienteSelected = null;
     this.setClienteSelected = (nombreInvocador, clienteSelected) => {
+      this.clienteSelected = clienteSelected;
+
       listaHandlerOnSetClienteSelected
         .filter(suscriptor => {
           return nombreInvocador !== suscriptor.nombre;

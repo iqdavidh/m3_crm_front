@@ -4,8 +4,6 @@ import PanCmdEdit from '../../../../components/panCmdEdit/PanCmdEdit';
 import ObserverDataPersonal from './ObserverDataPersonal';
 
 import TrDataEditTXT from '../../../../components/edicion/TrDataEditTXT';
-import DataService from '../../../../servicios/dataService/DataService';
-import LibToast from '../../../../lib/LibToast';
 
 import BuilderControlDataPersonal from './BuilderControlDataPersonal';
 
@@ -14,8 +12,6 @@ class PanMainPersonal extends Component {
     super(props);
 
     this.observerData = ObserverDataPersonal;
-
-    this.observerData.registrarCbSaveData(this.cbSaveData);
 
     this.state = {
       cliente: null
@@ -38,33 +34,6 @@ class PanMainPersonal extends Component {
   crearListaConfigControl() {
     this.listaConfigControl = BuilderControlDataPersonal();
   }
-
-  cbSaveData = async () => {
-    const dataUpdate = this.observerData.getDataEdit();
-    const id_cliente = this.state.cliente.id_cliente;
-
-    this.observerData.onMostrarWait(true);
-
-    const respuestaSave = await DataService.saveCliente(id_cliente, dataUpdate);
-    this.observerData.onMostrarWait(false);
-
-    if (!respuestaSave.success) {
-      LibToast.alert(respuestaSave.msg);
-      return;
-    }
-
-    //crear nuevo modelo
-    let cliente = { ...this.state.cliente };
-    Object.keys(dataUpdate).forEach(key => {
-      cliente[key] = dataUpdate[key];
-    });
-
-    cliente.updated_at = new Date();
-    this.observerData.onUpdateModel(cliente);
-
-    LibToast.success('Cliente Actualizado');
-    this.observerData.onDataSourceChange();
-  };
 
   render() {
     const c = this.state.cliente;
