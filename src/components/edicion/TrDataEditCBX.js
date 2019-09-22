@@ -26,8 +26,6 @@ class TrDataEditCBX extends ATrDataEdit {
   }
 
   getComponentEdit() {
-    console.log(this.state);
-
     let valor = this.state.valorEdit;
 
     if (this.props.listaOptions.length === 0) {
@@ -67,9 +65,9 @@ class TrDataEditCBX extends ATrDataEdit {
 
     const tag = listaValoresOption[valor - 1].label;
 
-    return (
-      <span className={'labp ' + 'prioridad' + valor.toString()}>{tag}</span>
-    );
+    let cssName = `laabp prioridad${valor}`;
+
+    return <span className={cssName}>{tag}</span>;
   }
 }
 
