@@ -25,7 +25,7 @@ class ATrDataEdit extends Component {
 
     let data = this.props.dataSource;
 
-    let lista = nombrePropiedad.split('.').forEach(p => {
+    nombrePropiedad.split('.').forEach(p => {
       data = data[p];
     });
     return data;

@@ -55,7 +55,19 @@ class TrDataEditCBX extends ATrDataEdit {
   }
 
   getComponentRead() {
-    return this.getValorFromDataSource();
+    let valor = this.getValorFromDataSource();
+
+    valor = parseInt(valor);
+    const listaValoresOption = [
+      { valor: 1, label: 'ND' },
+      { valor: 2, label: 'Baja' },
+      { valor: 3, label: 'Media' },
+      { valor: 4, label: 'Alta' }
+    ];
+
+    const tag = listaValoresOption[valor - 1].label;
+
+    return tag;
   }
 }
 
