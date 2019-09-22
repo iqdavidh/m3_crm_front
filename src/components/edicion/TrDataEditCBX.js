@@ -67,7 +67,9 @@ class TrDataEditCBX extends ATrDataEdit {
 
     const tag = listaValoresOption[valor - 1].label;
 
-    return tag;
+    return (
+      <span className={'labp ' + 'prioridad' + valor.toString()}>{tag}</span>
+    );
   }
 }
 

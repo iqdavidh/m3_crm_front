@@ -133,3 +133,5 @@ tr.trDataEdit th {
    height: 40px;
 }
 tr.trDataEdit td input.form-control-sm {font-size: 14px}
+
+.labp{padding: 3px 6px; border-radius: 10px}
