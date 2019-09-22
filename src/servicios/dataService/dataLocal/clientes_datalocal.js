@@ -60,7 +60,7 @@ let lista = clientes_base.map(c => {
     email1: c.email,
     tel: c.tel,
     origen: '',
-    trabajo: '',
+    lugar_de_trabajo: '',
     indicadores: {
       funelIndex
     },

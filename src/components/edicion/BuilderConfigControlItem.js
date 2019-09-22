@@ -1,8 +1,8 @@
 import ConfigControlItem from './ConfigControlItem';
 
 class BuilderConfigControlItem {
-  constructor(campo, label) {
-    this.configControlItem = new ConfigControlItem(campo, label, 'TXT');
+  constructor(campo, label, tipo = 'TXT') {
+    this.configControlItem = new ConfigControlItem(campo, label, tipo);
   }
 
   setIsRequired() {
