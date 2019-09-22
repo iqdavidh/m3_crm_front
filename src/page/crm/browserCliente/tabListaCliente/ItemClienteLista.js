@@ -14,7 +14,7 @@ class ItemClienteLista extends Component {
       cssClasePrioridad +
       (this.props.isSelected ? ' selected' : '');
 
-    const listaEstatus = ['NA', 'Baja', 'Media', 'Alta'];
+    const listaEstatus = ['ND', 'Baja', 'Media', 'Alta'];
 
     const tituloUpdated = c.updated_at
       ? 'Updated ' + c.updated_at.toDateString()

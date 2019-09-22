@@ -1,42 +1,62 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './TrDataEditTXT.css';
 import ATrDataEdit from './ATrDataEdit';
 
-class TrDataEditTXT extends ATrDataEdit {
-  onTextoChange(event) {
+class TrDataEditCBX extends ATrDataEdit {
+  listaItemOption = [];
+
+  setListaOption = lista => {
+    this.listaItemOption = lista;
+  };
+
+  onValorChange(event) {
     const valor = event.target.value;
-    const isValid = this.getIsValid(valor);
 
     this.setState({ valorEdit: valor });
 
     this.props.observerData.onValorChange(
       this.getCampoFromDataSource(),
       valor,
-      isValid
+      true
     );
   }
 
   getIsValid(valor) {
-    const validacion = this.props.validacion;
-
-    if (!validacion.isRequired) {
-      return true;
-    }
-    return valor !== '';
+    return true;
   }
 
   getComponentEdit() {
+    console.log(this.state);
+
     let valor = this.state.valorEdit;
 
+    if (this.props.listaOptions.length === 0) {
+      throw Error(
+        'Falta indicar la lista de opciones del CBX, this.setListaOption'
+      );
+    }
+
+    const lista = this.props.listaOptions.map(item => {
+      return (
+        <option value={item.valor} key={item.valor}>
+          {item.label}
+        </option>
+      );
+    });
     return (
-      <input
-        type="text"
+      <select
         className="form-control-sm"
-        onChange={event => this.onTextoChange(event)}
+        onChange={event => this.onValorChange(event)}
         value={valor}
-      />
+      >
+        {lista}
+      </select>
     );
+  }
+
+  getComponentRead() {
+    return this.getValorFromDataSource();
   }
 }
 
-export default TrDataEditTXT;
+export default TrDataEditCBX;

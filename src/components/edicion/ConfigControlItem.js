@@ -6,6 +6,12 @@ class ConfigControlItem {
     this.validacion = {
       isRequired: false
     };
+
+    this.propsAdcionales = {};
+  }
+
+  addPropiedadAdicional(nombreValor, valor) {
+    this.propsAdcionales[nombreValor] = valor;
   }
 }
 

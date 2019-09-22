@@ -56,16 +56,24 @@ const BuilderControlDataPersonal = () => {
   }
   /*------------------------------------------------------------*/
   {
+    const listaValoresOption = [
+      { valor: 1, label: 'ND' },
+      { valor: 2, label: 'Baja' },
+      { valor: 3, label: 'Media' },
+      { valor: 4, label: 'Alta' }
+    ];
+
     const b = new BuilderConfigControlItem(
       'indicadores.funelIndex',
       'Estatus',
-      'CBXStatus'
+      'CBX',
+      listaValoresOption
     );
-    b.setIsRequired();
+
+    b.setIsRequired().setTipoCBX(listaValoresOption);
+
     lista.push(b.getConfigControlItem());
   }
-
-  /*------------------------------------------------------------*/
 
   return lista;
 };

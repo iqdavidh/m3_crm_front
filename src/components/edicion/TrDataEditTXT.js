@@ -37,6 +37,10 @@ class TrDataEditTXT extends ATrDataEdit {
       />
     );
   }
+
+  getComponentRead() {
+    return this.getValorFromDataSource();
+  }
 }
 
 export default TrDataEditTXT;

@@ -17,7 +17,18 @@ class ATrDataEdit extends Component {
   }
 
   getValorFromDataSource() {
-    return this.props.dataSource[this.getCampoFromDataSource()];
+    let nombrePropiedad = this.getCampoFromDataSource().toString();
+
+    if (!nombrePropiedad.includes('.')) {
+      return this.props.dataSource[nombrePropiedad];
+    }
+
+    let data = this.props.dataSource;
+
+    let lista = nombrePropiedad.split('.').forEach(p => {
+      data = data[p];
+    });
+    return data;
   }
 
   onDataSourceChange() {
@@ -41,8 +52,7 @@ class ATrDataEdit extends Component {
   }
 
   render() {
-    const campo = this.props.campo;
-    let componente = this.props.dataSource[campo];
+    let componente = null;
 
     const isEdit = this.state.isEdit;
 
@@ -54,6 +64,8 @@ class ATrDataEdit extends Component {
       }
 
       componente = this.getComponentEdit();
+    } else {
+      componente = this.getComponentRead();
     }
 
     const className = `trDataEdit ${cssError}`;
