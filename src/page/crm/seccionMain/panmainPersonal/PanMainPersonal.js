@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PanCmdEdit from '../../../../components/panCmdEdit/PanCmdEdit';
-
 import ObserverDataPersonal from './ObserverDataPersonal';
-
 import BuilderControlDataPersonal from './BuilderControlDataPersonal';
 import FactoryListaDataEdit from '../../../../components/edicion/FactoryListaDataEdit';
 
