@@ -42,7 +42,7 @@ class ObserverDataEdit {
     };
 
     /* updateModel ------------------------------------- */
-    this.cbUpdateModel = isWait => {
+    this.cbUpdateModel = (iModel, dataUpdate) => {
       console.log('no implementado cbUpdateModel');
       return false;
     };
@@ -151,6 +151,10 @@ class ObserverDataEdit {
       this.subscriptores.forEach(suscriptor => {
         suscriptor.IControlDataEdit.onDataSourceChange();
       });
+    };
+
+    this.customValidation = (dataEdit, isValid) => {
+      return isValid;
     };
 
     this.onValorChange = (campo, valorNew, isValid) => {

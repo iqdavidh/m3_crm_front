@@ -70,18 +70,16 @@ class FormAddCliente extends Component {
         isValidData
       });
     });
+
+    this.observerData.registrarCbSaveData(props.onSaveData);
   }
 
   startSave() {
-    if (this.state.isEnProceso) {
-      return;
-    }
-
     this.setState({
       isEnProceso: true
     });
 
-    this.props.observerData.onRequesSaveData();
+    this.observerData.onRequesSaveData();
   }
 
   endSave() {
@@ -97,23 +95,29 @@ class FormAddCliente extends Component {
       this.observerData
     );
 
-    const iconLoading = this.state.isEnProceso && (
-      <div>
+    let isEnProceso = this.state.isEnProceso;
+
+    const iconLoading = isEnProceso && (
+      <div className="text-center">
         <i className="fa fa-cog fa-spin " />
         <span className="pl-1">Guardando</span>
       </div>
     );
 
-    let isEnProceso = this.state.isEnProceso;
-
     const cmdUpload = this.state.isValidData && !isEnProceso && (
       <button
-        className="btn  btn-primary"
+        className="btn btn-primary"
         title="Guardar"
-        onClick={() => this.observerData.onRequesSaveData()}
+        onClick={() => this.startSave()}
       >
         <i className="fa fa-upload" /> Guardar
       </button>
+    );
+
+    const cmdCancel = !isEnProceso && (
+      <Button variant="secondary" onClick={event => this.props.onClose()}>
+        Cancelar
+      </Button>
     );
 
     return (
@@ -133,10 +137,7 @@ class FormAddCliente extends Component {
         <Modal.Footer>
           {iconLoading}
           {cmdUpload}
-
-          <Button variant="secondary" onClick={event => this.props.onClose()}>
-            Cancelar
-          </Button>
+          {cmdCancel}
         </Modal.Footer>
       </Modal>
     );

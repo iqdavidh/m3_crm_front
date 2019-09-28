@@ -29,6 +29,10 @@ class Crm extends Component {
         isShowFormAddCliente: false
       });
     };
+
+    this.onSaveData = () => {
+      console.log('xxxxxxxx');
+    };
   }
 
   render() {
@@ -45,6 +49,7 @@ class Crm extends Component {
         <FormAddCliente
           isShow={this.state.isShowFormAddCliente}
           onClose={this.closeFormCliente}
+          onSaveData={this.onSaveData}
         />
       </div>
     );
