@@ -83,34 +83,72 @@ body {
 /* ****************************************** */
 /* ****************************************** */
 
-.flexDiv{
+.flexDiv {
    display: flex;
+}
+.flexG1{
+   flex-grow: 1;
 }
 
 .mL20{
-   margin-left: 60px;
+
 }
 
-.logoCRM{color: #fff; font-size: 20px}
-.colorWhite{
+.wrapperLogoCRM{
+   margin-left: 60px;
+   margin-right: 190px;
+}
+
+.logoCRM {
+   color: #fff;
+   font-size: 20px
+}
+
+.colorWhite {
    color: #fff;
 }
 
-#basic-nav-dropdown {color:#fff}
+#basic-nav-dropdown {
+   color: #fff
+}
 
 
-.dropdown.nav-item > div > hr { margin: 0}
+.dropdown.nav-item > div > hr {
+   margin: 0
+}
 
 
-.nodisplay {display: none}
+.nodisplay {
+   display: none
+}
 
-.labelPestanaTab{font-size: 12px; margin-left: 3px}
+.labelPestanaTab {
+   font-size: 12px;
+   margin-left: 3px
+}
 
 
-.tab-content {width: 100%}
+.tab-content {
+   width: 100%
+}
 
 
-table.teditdata tr th{ text-align: right; width: 140px; font-weight: normal}
-table.teditdata tr td{ text-align: left; font-weight: bold}
+table.teditdata tr th {
+   text-align: right;
+   width: 140px;
+   font-weight: normal
+}
 
-.laabp {padding: 3px 6px; border-radius: 4px}
+table.teditdata tr td {
+   text-align: left;
+   font-weight: bold
+}
+
+.laabp {
+   padding: 3px 6px;
+   border-radius: 4px
+}
+
+.borderRed {
+   border: 2px solid red; width: 100%;
+}

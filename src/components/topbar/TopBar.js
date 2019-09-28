@@ -7,12 +7,13 @@ class TopBar extends Component {
     const nombreUsuario = AutService.getCurrentSession().usuario.nombre;
 
     return (
-      <Navbar className="cell cell-topbar" bg="dark" variant="dark">
-        <div className="mr-auto mL20">
+      <Navbar className="cell cell-topbar flexDiv" bg="dark" variant="dark">
+        <div className="wrapperLogoCRM">
           <span className="logoCRM">CRM</span>
         </div>
 
-        <div>{this.props.children}</div>
+        <div className="flexG1 ">{this.props.children}</div>
+
         <i className="fa fa-user fa-2x mL20 colorWhite" />
         <NavDropdown title={nombreUsuario} alignRight id="basic-nav-dropdown">
           <NavDropdown.Item href="/cuenta">
