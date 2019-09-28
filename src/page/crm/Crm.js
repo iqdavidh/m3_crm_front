@@ -5,18 +5,47 @@ import BrowserCliente from './browserCliente/BrowserCliente';
 import SeccionHistorial from './seccionHistorial/SeccionHistorial';
 import SeccionMain from './seccionMain/SeccionMain';
 import SeccionAdd from './seccionAdd/SeccionAdd';
+import FormAddCliente from './modal/formAddCliente/FormAddCliente';
+import ObserverTopBarCrm from './topBarCrm/ObserverTopBarCrm';
 
 class Crm extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      isShowFormAddCliente: false
+    };
+
+    this.observerTopBar = new ObserverTopBarCrm();
+
+    this.observerTopBar.registrarfnShowFormAddCliente(() => {
+      this.setState({
+        isShowFormAddCliente: true
+      });
+    });
+
+    this.closeFormCliente = () => {
+      this.setState({
+        isShowFormAddCliente: false
+      });
+    };
+  }
+
   render() {
     return (
       <div className={'container-main'}>
         <TopBar>
-          <TopBarCrm />
+          <TopBarCrm observerTopBar={this.observerTopBar} />
         </TopBar>
         <BrowserCliente />
         <SeccionMain />
         <SeccionAdd />
         <SeccionHistorial />
+
+        <FormAddCliente
+          isShow={this.state.isShowFormAddCliente}
+          onClose={this.closeFormCliente}
+        />
       </div>
     );
   }
