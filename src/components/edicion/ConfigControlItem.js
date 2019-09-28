@@ -7,6 +7,8 @@ class ConfigControlItem {
       isRequired: false
     };
 
+    this.isModoInicialEdit = false;
+
     this.propsAdcionales = {};
   }
 

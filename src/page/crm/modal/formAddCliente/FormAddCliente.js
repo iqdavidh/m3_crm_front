@@ -42,6 +42,11 @@ class FormAddCliente extends Component {
       lista.push(b.getConfigControlItem());
     }
 
+    //iniciliazar todos los controles con estado edit
+    lista.forEach(configControl => {
+      configControl.isModoInicialEdit = true;
+    });
+
     this.listaConfigControl = lista;
 
     this.state = {
@@ -56,10 +61,8 @@ class FormAddCliente extends Component {
   }
 
   render() {
-    const c = this.state.clienteNew;
-
     let lista = FactoryListaDataEdit(
-      c,
+      this.state.clienteNew,
       this.listaConfigControl,
       this.observerData
     );

@@ -7,7 +7,7 @@ class ATrDataEdit extends Component {
     props.observerData.subscribe(props.campo, this);
 
     this.state = {
-      isEdit: false,
+      isEdit: props.isModoInicialEdit,
       valorEdit: this.getValorFromDataSource()
     };
   }
@@ -28,6 +28,7 @@ class ATrDataEdit extends Component {
     nombrePropiedad.split('.').forEach(p => {
       data = data[p];
     });
+
     return data;
   }
 
