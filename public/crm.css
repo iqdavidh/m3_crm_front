@@ -135,3 +135,14 @@ tr.trDataEdit th {
 tr.trDataEdit td input.form-control-sm {font-size: 14px}
 
 .labp{padding: 3px 6px; border-radius: 10px}
+
+
+/* ********************************************************** */
+/* ********************************************************** */
+
+
+.cell-data-add{
+   padding: 5px;
+   background-color: #6C757D;
+   color:#fff
+}
