@@ -235,6 +235,7 @@ class TabListaCliente extends Component {
 
     ObserverDataPersonal.onSetCancel();
     ObserverDataPersonal.setClienteSelected('TabListaCliente', cliente);
+    ObserverDataPersonal.updateTituloCRM(cliente);
   };
 
   render() {

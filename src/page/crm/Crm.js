@@ -8,13 +8,16 @@ import SeccionAdd from './seccionAdd/SeccionAdd';
 import FormAddCliente from './modal/formAddCliente/FormAddCliente';
 import ObserverTopBarCrm from './topBarCrm/ObserverTopBarCrm';
 import ObserverNewCliente from './modal/formAddCliente/ObserverNewCliente';
+import ObserverDataPersonal from './seccionMain/panmainPersonal/ObserverDataPersonal';
 
 class Crm extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      isShowFormAddCliente: false
+      isShowFormAddCliente: false,
+      nombreCliente: '',
+      estatusCliente: ''
     };
 
     this.observerTopBar = new ObserverTopBarCrm();
@@ -36,15 +39,34 @@ class Crm extends Component {
         isShowFormAddCliente: false
       });
     });
+
+    ObserverDataPersonal.registrarUpdateTituloCRM(cliente => {
+      let texto = `${cliente.nombre} ${cliente.apaterno} ${cliente.amaterno}`;
+
+      let estatus = 'titulo_p' + cliente.indicadores.funelIndex.toString();
+
+      this.setState({
+        nombreCliente: texto,
+        estatusCliente: estatus
+      });
+    });
   }
 
   render() {
+    let cssTituloCliente = 'cell-data-titulo ' + this.state.estatusCliente;
+
     return (
       <div className={'container-main'}>
         <TopBar>
           <TopBarCrm observerTopBar={this.observerTopBar} />
         </TopBar>
         <BrowserCliente />
+
+        <div className={cssTituloCliente}>
+          <i className="fa fa-user" />
+          {this.state.nombreCliente}
+        </div>
+
         <SeccionMain />
         <SeccionAdd />
         <SeccionHistorial />

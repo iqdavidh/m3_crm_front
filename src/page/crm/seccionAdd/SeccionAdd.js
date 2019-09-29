@@ -26,6 +26,8 @@ class SeccionAdd extends Component {
     });
   };
 
+  onClickAdd() {}
+
   render() {
     const isContactado = this.state.contactado;
 
@@ -64,9 +66,9 @@ class SeccionAdd extends Component {
 
     return (
       <div className="cell-data-add">
-        <h4>
+        <div className="tituloSeccionAdd">
           <i className="fa fa-bullhorn" /> Registrar Seguimiento
-        </h4>
+        </div>
         <div className="barBtnSeg">
           <button
             className="btn btn-black btn-sm"
@@ -89,7 +91,10 @@ class SeccionAdd extends Component {
           <textarea className="form-control txtSeguimeinto"></textarea>
         </div>
         <div className="text-right">
-          <button className="btn btn-primary">
+          <button
+            className="btn btn-primary"
+            onClick={event => this.onClickAdd()}
+          >
             <i className="fa fa-upload"></i> Registrar
           </button>
         </div>
