@@ -181,4 +181,26 @@ tr.trDataEdit td input.form-control-sm {
    padding: 8px 5px;
    border-bottom:1px solid #fff;
    border-collapse: collapse;
+   display: flex;
+}
+
+.itemOpcionSelTipo.contactado {
+   background-color: #28A745;
+}
+
+.itemOpcionSelTipo.contactado.opselected {
+   background-color: #34ce57;
+}
+
+
+.itemOpcionSelTipo.nocontactado {
+   background-color: #000;
+}
+
+.itemOpcionSelTipo.nocontactado.opselected {
+   background-color: #444;
+}
+
+.itemOpcionSelTipo span{
+   flex-grow: 1;
 }
