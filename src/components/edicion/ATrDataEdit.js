@@ -16,6 +16,10 @@ class ATrDataEdit extends Component {
     return this.props.campo;
   }
 
+  getIsValidCurrentValorEdit() {
+    return this.getIsValid(this.state.valorEdit);
+  }
+
   getValorFromDataSource() {
     let nombrePropiedad = this.getCampoFromDataSource().toString();
 

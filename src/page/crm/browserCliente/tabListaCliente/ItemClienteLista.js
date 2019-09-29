@@ -24,7 +24,7 @@ class ItemClienteLista extends Component {
       <div
         className={claseItem}
         key={c.id_cliente}
-        title={c.apaterno}
+        title={c.id_cliente}
         onClick={e => this.props.onClickCliente(c.id_cliente)}
       >
         <div className="labIndex" title={tituloUpdated}>

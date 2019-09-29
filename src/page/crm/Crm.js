@@ -7,6 +7,7 @@ import SeccionMain from './seccionMain/SeccionMain';
 import SeccionAdd from './seccionAdd/SeccionAdd';
 import FormAddCliente from './modal/formAddCliente/FormAddCliente';
 import ObserverTopBarCrm from './topBarCrm/ObserverTopBarCrm';
+import ObserverNewCliente from './modal/formAddCliente/ObserverNewCliente';
 
 class Crm extends Component {
   constructor(props, context) {
@@ -29,6 +30,12 @@ class Crm extends Component {
         isShowFormAddCliente: false
       });
     };
+
+    ObserverNewCliente.registrarFnInsertModelEnd(() => {
+      this.setState({
+        isShowFormAddCliente: false
+      });
+    });
   }
 
   render() {

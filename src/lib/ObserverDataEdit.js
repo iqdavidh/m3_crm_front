@@ -5,6 +5,12 @@ class ObserverDataEdit {
     this.dataEdit = {};
     this.dataIsValid = {};
 
+    this.modoObserver = 'edit';
+
+    this.setModoObserverInsert = () => {
+      this.modoObserver = 'insert';
+    };
+
     /* saveData ------------------------------------------------- */
     this.cbSaveData = clienteNew => {
       console.log('no implemenado fnSaveData');
@@ -77,7 +83,46 @@ class ObserverDataEdit {
     };
 
     this.onInsertModel = (idModel, dataInsert) => {
+      /*solicitar lodos los valores actuales*/
+      let listaCamposModelo = [];
+      this.subscriptores.forEach(suscriptor => {
+        let campo = suscriptor.IControlDataEdit.getCampoFromDataSource();
+        listaCamposModelo.push(campo);
+      });
+
+      let listaCamposConValor = Object.keys(dataInsert);
+
+      //completamos qeu campos no vienen con un valor null
+      listaCamposModelo.forEach(campo => {
+        const isExiste = listaCamposConValor.find(item => {
+          return item === campo;
+        });
+
+        if (!isExiste) {
+          dataInsert[campo] = null;
+        }
+      });
+
+      //corremos la validacion
+
+      //vamos a actualizar los campos que no vienen
+
       return this.cbInsertModel(idModel, dataInsert);
+    };
+
+    /* ------------------------------------------------- */
+    /* al terminar insart model */
+
+    this.fnInserModelEnd = () => {
+      console.log('no implementado fnInserModelEnd');
+    };
+
+    this.registrarFnInsertModelEnd = fn => {
+      return (this.fnInserModelEnd = fn);
+    };
+
+    this.onInsertModelEnd = () => {
+      this.fnInserModelEnd();
     };
 
     /* cliente selected --------------------------------- */
@@ -161,20 +206,41 @@ class ObserverDataEdit {
       this.dataEdit[campo] = valorNew;
       this.dataIsValid[campo] = isValid;
 
-      //verificar si todos los datos son validos
       let isAllValid = true;
-      Object.keys(this.dataIsValid)
-        .filter(k => {
-          return k;
-        })
-        .forEach(k => {
-          if (!this.dataIsValid[k]) {
-            isAllValid = false;
-          }
-        });
+
+      if (this.modoObserver === 'insert') {
+        //verificar si todos los campos presentes nos dan valor de
+
+        this.subscriptores
+          .filter(s => {
+            return s.nombre !== campo;
+          })
+          .forEach(suscriptor => {
+            if (isAllValid) {
+              //Si tenemos qeu todas las propiedades son correctas continuamos evaluando - para no evaluar de mas
+
+              let isValid = suscriptor.IControlDataEdit.getIsValidCurrentValorEdit();
+
+              if (!isValid) {
+                isAllValid = false;
+              }
+            }
+          });
+      } else {
+        //en caso edit solo validamos los que tenemos
+
+        Object.keys(this.dataIsValid)
+          .filter(k => {
+            return k;
+          })
+          .forEach(k => {
+            if (!this.dataIsValid[k]) {
+              isAllValid = false;
+            }
+          });
+      }
 
       //notifica qhe hay error en validaciopn
-
       this.cbDataIsValidChange(isAllValid);
     };
 

@@ -91,9 +91,11 @@ class FormAddCliente extends Component {
 
     //crear nuevo modelo
     const cliente = { ...dataInsert };
-    cliente.id_cliente = idCliente;
 
-    cliente.prioridad = 1;
+    cliente.id_cliente = idCliente;
+    cliente.indicadores = {
+      funelIndex: 1
+    };
     cliente.updated_at = new Date();
 
     LibToast.success('Cliente Actualizado');

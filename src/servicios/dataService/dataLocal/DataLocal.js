@@ -96,7 +96,7 @@ const DataLocal = {
   insertCliente: async dataCliente => {
     let cliente = { ...dataCliente };
 
-    cliente.id_cliente = clientes_dataLocal.length + 1;
+    cliente.id_cliente = clientes_dataLocal.length + 2;
 
     //buscar los seguimientos
 
