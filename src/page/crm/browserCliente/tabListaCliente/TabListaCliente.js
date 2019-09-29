@@ -9,6 +9,7 @@ import DataService from '../../../../servicios/dataService/dataLocal/DataLocal';
 import BoxOrderListaCliente from './BoxOrderListaCliente';
 
 import ObserverDataPersonal from '../../seccionMain/panmainPersonal/ObserverDataPersonal';
+import ObserverNewCliente from '../../modal/formAddCliente/ObserverNewCliente';
 
 class TabListaCliente extends Component {
   constructor(props) {
@@ -34,7 +35,27 @@ class TabListaCliente extends Component {
     );
 
     ObserverDataPersonal.registraCbUpdateModel(this.onDataPersonalUdateModel);
+
+    ObserverNewCliente.registraCbInsertModel(this.onInsertCliente);
   }
+
+  onInsertCliente = (idNew, clienteNew) => {
+    let lista = [...this.state.listaClientes];
+    lista.unshift({ ...clienteNew });
+
+    let listaFiltrada = [...this.state.listaClientes];
+    listaFiltrada.unshift({ ...clienteNew });
+
+    this.setState({
+      listaClientes: lista,
+      listaFiltrada: listaFiltrada
+    });
+
+    //cargar el primer cliente
+    this.onClickCliente(lista[0].id_cliente);
+
+    ObserverNewCliente.onInsertModelEnd();
+  };
 
   onDataPersonalUdateModel = clienteUpdated => {
     const listaClientes = [...this.state.listaClientes];

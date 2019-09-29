@@ -45,8 +45,6 @@ let lista = clientes_base.map(c => {
 
   let funelIndex = LibNum.getRandom(4).toString();
 
-  let sentimentalIndex = LibNum.getRandom(3).toString();
-
   return {
     id_cliente: c.id_cliente,
     id_usuario: c.id_usuario,
@@ -62,10 +60,9 @@ let lista = clientes_base.map(c => {
     email1: c.email,
     tel: c.tel,
     origen: '',
-    trabajo: '',
+    lugar_de_trabajo: '',
     indicadores: {
-      funelIndex,
-      sentimentalIndex
+      funelIndex
     },
     dom: {
       personal: {

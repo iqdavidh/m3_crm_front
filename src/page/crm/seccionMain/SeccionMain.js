@@ -18,6 +18,32 @@ class SeccionMain extends Component {
     this.observerData.registrarCbSaveData(this.cbSaveDataPersonal);
   }
 
+  updateMode(model, dataUpdate, pathPropiedad) {
+    const valorUpdate = dataUpdate[pathPropiedad];
+
+    if (!pathPropiedad.toString().includes('.')) {
+      model[pathPropiedad] = valorUpdate;
+      return;
+    }
+
+    //creamos la lista de propieades
+    let listaPropiedad = pathPropiedad.split('.');
+
+    const numItemPaths = listaPropiedad.length;
+
+    if (numItemPaths === 2) {
+      model[listaPropiedad[0]][listaPropiedad[1]] = valorUpdate;
+    } else if (numItemPaths === 3) {
+      model[listaPropiedad[0]][listaPropiedad[1]][
+        listaPropiedad[2]
+      ] = valorUpdate;
+    } else {
+      throw Error(
+        'La profuncidad de la propiedad no esta implementada, solo hata nivel 2'
+      );
+    }
+  }
+
   cbSaveDataPersonal = async () => {
     let id_cliente = this.observerData.clienteSelected.id_cliente;
 
@@ -36,7 +62,7 @@ class SeccionMain extends Component {
     //crear nuevo modelo
     let cliente = { ...this.observerData.clienteSelected };
     Object.keys(dataUpdate).forEach(key => {
-      cliente[key] = dataUpdate[key];
+      this.updateMode(cliente, dataUpdate, key);
     });
 
     cliente.updated_at = new Date();

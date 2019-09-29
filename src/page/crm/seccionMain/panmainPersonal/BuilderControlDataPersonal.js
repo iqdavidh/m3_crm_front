@@ -26,6 +26,54 @@ const BuilderControlDataPersonal = () => {
   lista.push(builderAMaterno.getConfigControlItem());
 
   /*------------------------------------------------------------*/
+  {
+    const b = new BuilderConfigControlItem('sexo', 'Sexo');
+    b.setIsRequired();
+    lista.push(b.getConfigControlItem());
+  }
+  /*------------------------------------------------------------*/
+  {
+    const b = new BuilderConfigControlItem('email1', 'Email');
+    lista.push(b.getConfigControlItem());
+  }
+  /*------------------------------------------------------------*/
+  {
+    const b = new BuilderConfigControlItem('tel', 'Teléfono');
+    lista.push(b.getConfigControlItem());
+  }
+  /*------------------------------------------------------------*/
+  {
+    const b = new BuilderConfigControlItem('origen', 'Origen');
+    lista.push(b.getConfigControlItem());
+  }
+  /*------------------------------------------------------------*/
+  {
+    const b = new BuilderConfigControlItem(
+      'lugar_de_trabajo',
+      'Lugar de Trabajo'
+    );
+    lista.push(b.getConfigControlItem());
+  }
+  /*------------------------------------------------------------*/
+  {
+    const listaValoresOption = [
+      { valor: 1, label: 'ND' },
+      { valor: 2, label: 'Baja' },
+      { valor: 3, label: 'Media' },
+      { valor: 4, label: 'Alta' }
+    ];
+
+    const b = new BuilderConfigControlItem(
+      'indicadores.funelIndex',
+      'Estatus',
+      'CBX',
+      listaValoresOption
+    );
+
+    b.setIsRequired().setTipoCBX(listaValoresOption);
+
+    lista.push(b.getConfigControlItem());
+  }
 
   return lista;
 };

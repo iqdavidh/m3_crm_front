@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import PanCmdEdit from '../../../../components/panCmdEdit/PanCmdEdit';
-
 import ObserverDataPersonal from './ObserverDataPersonal';
-
-import TrDataEditTXT from '../../../../components/edicion/TrDataEditTXT';
-
 import BuilderControlDataPersonal from './BuilderControlDataPersonal';
+import FactoryListaDataEdit from '../../../../components/edicion/FactoryListaDataEdit';
 
 class PanMainPersonal extends Component {
   constructor(props) {
@@ -26,12 +23,6 @@ class PanMainPersonal extends Component {
       fnSetCliente
     );
 
-    this.listaConfigControl = [];
-
-    this.crearListaConfigControl();
-  }
-
-  crearListaConfigControl() {
     this.listaConfigControl = BuilderControlDataPersonal();
   }
 
@@ -44,26 +35,12 @@ class PanMainPersonal extends Component {
 
     /* Crear lista de Componentes */
 
-    const fnGetTXT = control => {
-      return (
-        <TrDataEditTXT
-          campo={control.campo}
-          label={control.label}
-          dataSource={c}
-          validacion={control.validacion}
-          observerData={this.observerData}
-          key={control.campo}
-        />
-      );
-    };
+    let lista = FactoryListaDataEdit(
+      c,
+      this.listaConfigControl,
+      this.observerData
+    );
 
-    let lista = this.listaConfigControl.map(control => {
-      if (control.tipo === 'TXT') {
-        return fnGetTXT(control);
-      }
-      console.log('Tipo no detectado');
-      return null;
-    });
     return (
       <div className="panfull">
         <PanCmdEdit

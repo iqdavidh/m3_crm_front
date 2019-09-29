@@ -10,6 +10,17 @@ class BuilderConfigControlItem {
     return this;
   }
 
+  /*Se usa esto para cuando tenemops un form abierto originalmente como edit*/
+
+  setTipoCBX(listaOptions) {
+    this.configControlItem.tipo = 'CBX';
+    this.configControlItem.addPropiedadAdicional(
+      'cbx_listaOptions',
+      listaOptions
+    );
+    return this;
+  }
+
   getConfigControlItem() {
     return this.configControlItem;
   }
