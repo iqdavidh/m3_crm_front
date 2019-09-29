@@ -6,7 +6,7 @@ class ObserverDataEdit {
     this.dataIsValid = {};
 
     /* saveData ------------------------------------------------- */
-    this.cbSaveData = () => {
+    this.cbSaveData = clienteNew => {
       console.log('no implemenado fnSaveData');
       return false;
     };
@@ -68,7 +68,7 @@ class ObserverDataEdit {
     };
 
     /* ------------------------------------------------- */
-    this.cbInsertModel = isWait => {
+    this.cbInsertModel = clienteNew => {
       console.log('no implementado cbInsertModel');
       return false;
     };

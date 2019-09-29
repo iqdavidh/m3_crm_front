@@ -3,10 +3,13 @@ import { Button, Modal } from 'react-bootstrap';
 import ObserverNewCliente from './ObserverNewCliente';
 import BuilderConfigControlItem from '../../../../components/edicion/BuilderConfigControlItem';
 import FactoryListaDataEdit from '../../../../components/edicion/FactoryListaDataEdit';
+import DataService from '../../../../servicios/dataService/DataService';
+import LibToast from '../../../../lib/LibToast';
 
 class FormAddCliente extends Component {
   constructor(props, context) {
     super(props, context);
+
     this.observerData = ObserverNewCliente;
 
     let lista = [];
@@ -71,10 +74,34 @@ class FormAddCliente extends Component {
       });
     });
 
-    this.observerData.registrarCbSaveData(props.onSaveData);
+    this.observerData.registrarCbSaveData(this.cbSaveNewCliente);
   }
 
-  startSave() {
+  cbSaveNewCliente = async () => {
+    const dataInsert = this.observerData.getDataEdit();
+    const respuestaSave = await DataService.insertCliente(dataInsert);
+    this.observerData.onMostrarWait(false);
+
+    if (!respuestaSave.success) {
+      LibToast.alert(respuestaSave.msg);
+      return;
+    }
+
+    const idCliente = respuestaSave.data.id_cliente;
+
+    //crear nuevo modelo
+    const cliente = { ...dataInsert };
+    cliente.id_cliente = idCliente;
+
+    cliente.prioridad = 1;
+    cliente.updated_at = new Date();
+
+    LibToast.success('Cliente Actualizado');
+
+    this.observerData.onInsertModel(idCliente, cliente);
+  };
+
+  onClickSave() {
     this.setState({
       isEnProceso: true
     });
@@ -108,7 +135,7 @@ class FormAddCliente extends Component {
       <button
         className="btn btn-primary"
         title="Guardar"
-        onClick={() => this.startSave()}
+        onClick={() => this.onClickSave()}
       >
         <i className="fa fa-upload" /> Guardar
       </button>

@@ -94,13 +94,9 @@ const DataLocal = {
   },
 
   insertCliente: async dataCliente => {
-    let cliente = {
-      id_cliente: clientes_dataLocal.length + 1
-    };
+    let cliente = { ...dataCliente };
 
-    Object.keys(dataCliente).forEach(p => {
-      cliente[p] = dataCliente[p];
-    });
+    cliente.id_cliente = clientes_dataLocal.length + 1;
 
     //buscar los seguimientos
 

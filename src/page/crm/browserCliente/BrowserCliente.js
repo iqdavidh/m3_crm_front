@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import TabListaCliente from './tabListaCliente/TabListaCliente';
 import PestanaTab from '../../../components/pestanaTab/PestanaTab';
+import ObserverNewCliente from '../modal/formAddCliente/ObserverNewCliente';
 
 class BrowserCliente extends Component {
   constructor(props) {
@@ -12,7 +13,14 @@ class BrowserCliente extends Component {
     this.state = {
       numContactos: 0
     };
+
+    ObserverNewCliente.registraCbInsertModel(this.onInsertCliente);
   }
+
+  onInsertCliente = (idNew, clienteNew) => {
+    console.log(clienteNew);
+    console.log('aquie cliente new');
+  };
 
   onUpdateNumContactos = num => {
     this.setState({ numContactos: num });
