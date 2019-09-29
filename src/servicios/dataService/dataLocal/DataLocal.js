@@ -98,6 +98,8 @@ const DataLocal = {
 
     cliente.id_cliente = clientes_dataLocal.length + 2;
 
+    clientes_dataLocal.push(cliente);
+
     //buscar los seguimientos
 
     const d = {
