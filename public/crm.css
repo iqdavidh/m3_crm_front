@@ -3,7 +3,7 @@
    display: grid;
    min-height: 100vh;
    grid-template-areas: 'topbar topbar topbar' 'browser add main' 'browser historial historial ';
-   grid-template-columns: 300px auto 600px ;
+   grid-template-columns: 300px auto 600px;
    grid-template-rows: 56px 400px auto;
    background-color: #F1F1F1;
 
@@ -45,7 +45,10 @@
 /* ****************************************** */
 /* ****************************************** */
 /* ****************************************** */
-:root { --toopBarH: 55px; }
+:root {
+   --toopBarH: 55px;
+}
+
 #wrapperListaCliente {
    padding-top: 5px;
    max-height: 98vh;
@@ -62,7 +65,6 @@
 }
 
 
-
 .labNombreCompleto {
    padding-left: 4px;
    padding-right: 4px;
@@ -73,7 +75,13 @@
    margin-left: 5px;
    display: inline-block
 }
-.labIndex{ width: 40px; text-align: center; font-size: 11px}
+
+.labIndex {
+   width: 40px;
+   text-align: center;
+   font-size: 11px
+}
+
 .labPrioridad {
    width: 50px
 }
@@ -98,7 +106,7 @@
    color: #fff
 }
 
-.badgeEstatus{
+.badgeEstatus {
    width: 40px;
 }
 
@@ -109,9 +117,9 @@
 }
 
 
-.tab-pane{ background-color: #fff}
-
-
+.tab-pane {
+   background-color: #fff
+}
 
 
 .panfull {
@@ -123,7 +131,9 @@
    background-color: #fff;
 }
 
-.nav.nav-tabs{background-color: #F1F1F1}
+.nav.nav-tabs {
+   background-color: #F1F1F1
+}
 
 
 /*SEcion Panel edit*/
@@ -132,17 +142,36 @@ tr.trDataEdit td,
 tr.trDataEdit th {
    height: 40px;
 }
-tr.trDataEdit td input.form-control-sm {font-size: 14px}
 
-.labp{padding: 3px 6px; border-radius: 10px}
+tr.trDataEdit td input.form-control-sm {
+   font-size: 14px
+}
+
+.labp {
+   padding: 3px 6px;
+   border-radius: 10px
+}
 
 
 /* ********************************************************** */
 /* ********************************************************** */
+/* seguimiento */
 
-
-.cell-data-add{
+.cell-data-add {
    padding: 5px;
    background-color: #6C757D;
-   color:#fff
+   color: #fff
+}
+
+.btn.btn-black {
+   background-color: #000;
+   color: #fff
+}
+
+.barBtnSeg {
+   display: flex;
+}
+
+.barBtnSeg .btn {
+   flex-grow: 1;
 }
