@@ -8,7 +8,8 @@ class SeccionAdd extends Component {
     this.listaTipos = TipoSeguimiento;
 
     this.state = {
-      contactado: true
+      contactado: true,
+      opcionSeguimiento: null
     };
   }
 
@@ -18,7 +19,37 @@ class SeccionAdd extends Component {
     });
   };
 
+  onSetOpcionSeguimiento = opcion => {
+    this.setState({
+      opcionSeguimiento: opcion
+    });
+  };
+
   render() {
+    const isContactado = this.state.contactado;
+
+    let index = 0;
+    let listaTR = this.listaTipos
+      .filter(s => {
+        return s.contactado === isContactado;
+      })
+      .map(s => {
+        index++;
+
+        return (
+          <div
+            className="itemOpcionSelTipo"
+            key={s.id}
+            onClick={event => this.onSetOpcionSeguimiento(s)}
+          >
+            {index}.- {s.subtipo}
+          </div>
+        );
+      });
+    let tableCSS = isContactado
+      ? 'tabla_selseguimiento table-success table-striped'
+      : 'tabla_selseguimiento table-dark table-striped';
+
     return (
       <div className="cell-data-add">
         <h4>
@@ -38,9 +69,8 @@ class SeccionAdd extends Component {
             Sí Contactado
           </button>
         </div>
-        <table className="table-dark table-striped">
-          <thead></thead>
-        </table>
+
+        {listaTR}
       </div>
     );
   }
