@@ -14,6 +14,8 @@ class TrDataEditCBX extends ATrDataEdit {
 
     this.setState({ valorEdit: valor });
 
+    this.updateIsValid(true);
+
     this.props.observerData.onValorChange(
       this.getCampoFromDataSource(),
       valor,
@@ -41,6 +43,7 @@ class TrDataEditCBX extends ATrDataEdit {
         </option>
       );
     });
+
     return (
       <select
         className="form-control-sm"

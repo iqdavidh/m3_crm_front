@@ -9,6 +9,8 @@ class TrDataEditTXT extends ATrDataEdit {
 
     this.setState({ valorEdit: valor });
 
+    this.updateIsValid(isValid);
+
     this.props.observerData.onValorChange(
       this.getCampoFromDataSource(),
       valor,

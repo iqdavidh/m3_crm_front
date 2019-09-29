@@ -10,6 +10,20 @@ class ATrDataEdit extends Component {
       isEdit: props.isModoInicialEdit,
       valorEdit: this.getValorFromDataSource()
     };
+
+    this.isValid = null;
+  }
+
+  getIsValidCurrentValue() {
+    if (this.isValid === null) {
+      this.isValid = this.getIsValidCurrentValorEdit();
+    }
+
+    return this.isValid;
+  }
+
+  updateIsValid(b) {
+    this.isValid = b;
   }
 
   getCampoFromDataSource() {

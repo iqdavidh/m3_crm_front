@@ -206,7 +206,7 @@ class ObserverDataEdit {
       this.dataEdit[campo] = valorNew;
       this.dataIsValid[campo] = isValid;
 
-      let isAllValid = true;
+      let isAllValid = isValid;
 
       if (this.modoObserver === 'insert') {
         //verificar si todos los campos presentes nos dan valor de
@@ -219,9 +219,9 @@ class ObserverDataEdit {
             if (isAllValid) {
               //Si tenemos qeu todas las propiedades son correctas continuamos evaluando - para no evaluar de mas
 
-              let isValid = suscriptor.IControlDataEdit.getIsValidCurrentValorEdit();
+              let v = suscriptor.IControlDataEdit.getIsValidCurrentValue();
 
-              if (!isValid) {
+              if (!v) {
                 isAllValid = false;
               }
             }
