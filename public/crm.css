@@ -204,3 +204,12 @@ tr.trDataEdit td input.form-control-sm {
 .itemOpcionSelTipo span{
    flex-grow: 1;
 }
+
+
+textarea.form-control.txtSeguimeinto{
+height: 80px;
+}
+
+.wrapperComSeg{
+   margin-top: 3px; margin-bottom: 5px;
+}

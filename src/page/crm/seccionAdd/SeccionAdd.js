@@ -83,6 +83,16 @@ class SeccionAdd extends Component {
         </div>
 
         {listaTR}
+
+        <div className="wrapperComSeg">
+          <span>Comentario de Seguimiento</span>
+          <textarea className="form-control txtSeguimeinto"></textarea>
+        </div>
+        <div className="text-right">
+          <button className="btn btn-primary">
+            <i className="fa fa-upload"></i> Registrar
+          </button>
+        </div>
       </div>
     );
   }
