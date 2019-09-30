@@ -38,14 +38,25 @@ class PanHistCom extends Component {
       return (
         <tr>
           <td>{index + 1}</td>
-          <td>{code}</td>
+          <td>{item.f}</td>
+          <td>{item.tipo}</td>
+          <td>{item.comentario}</td>
+          <td>{item.usuario}</td>
         </tr>
       );
     });
     return (
-      <div className="panfull">
+      <div className="panfull overFlowDiv">
         <table className="table table-striped table-info">
-          <thead></thead>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Fecha</th>
+              <th>Tipo</th>
+              <th>Comentario</th>
+              <th>Usuario</th>
+            </tr>
+          </thead>
           <tbody>{listaTR}</tbody>
         </table>
       </div>
