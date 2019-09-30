@@ -16,6 +16,7 @@ class ObserverDataEdit {
       console.log('no implemenado fnSaveData');
       return false;
     };
+
     this.registrarCbSaveData = cb => {
       this.cbSaveData = cb;
     };
