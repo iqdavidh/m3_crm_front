@@ -30,7 +30,11 @@ class BoxFiltroListaUsuario extends Component {
   onIsAdminChange = event => {
     let valor = event.target.value;
 
-    valor = valor === 'SinFiltro' ? 'SinFiltro' : parseInt(valor);
+    if (valor === 'true') {
+      valor = true;
+    } else if (valor === 'false') {
+      valor = false;
+    }
 
     this.setState({ isAdmin: valor });
     this.callOnFiltroChange(this.state.texto, valor);

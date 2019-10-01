@@ -146,21 +146,26 @@ class BrowserUsuarios extends Component {
       );
     });
 
+    const num = this.state.listaUsuarios.length;
+
     return (
       <div className="cell-data-usuarios wrapperTab">
-        <div>
+        <div className="flexDiv">
+          <div className="labContadorUsuarios">{num} Usuarios</div>
           <BoxFiltroListaUsuario onFiltroChange={this.onFiltroChange} />
         </div>
 
         <table className="table table-striped table-primary">
           <thead>
-            <th className="thCmd">#</th>
-            <th className="thCmd" />
-            <th>Nombre</th>
-            <th>Nick</th>
-            <th>Email</th>
-            <th>Admin</th>
-            <th className="thCmd" />
+            <tr>
+              <th className="thCmd">#</th>
+              <th className="thCmd" />
+              <th>Nombre</th>
+              <th>Nick</th>
+              <th>Email</th>
+              <th>Admin</th>
+              <th className="thCmd" />
+            </tr>
           </thead>
           <tbody>{listaTR}</tbody>
         </table>
