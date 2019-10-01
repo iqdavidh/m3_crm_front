@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TopBar from '../../components/topbar/TopBar';
 import TopBarAdm from './topBarAdm/TopBarAdm';
-import SeccionUsuarios from './seccionUsuarios/SeccionUsuarios';
+import BrowserCliente from '../crm/browserCliente/BrowserCliente';
 
 class Admin extends Component {
   constructor(props, context) {
@@ -14,7 +14,7 @@ class Admin extends Component {
         <TopBar>
           <TopBarAdm />
         </TopBar>
-        <SeccionUsuarios />
+        <BrowserCliente />
       </div>
     );
   }

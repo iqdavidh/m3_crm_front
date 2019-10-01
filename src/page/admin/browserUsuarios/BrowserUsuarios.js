@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 
-class SeccionUsuarios extends Component {
+class BrowserUsuarios extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      listaUsuarios: [],
+      listaFiltrada: [],
+      fnSort: null,
+      dataFiltro: null,
+      usuarioSelected: null,
+      idUsuarioSelected: null
+    };
+
+    this.isObserverRegistrado = false;
+  }
+
   render() {
     return (
       <div className="cell-data-usuarios wrapperTab">
@@ -20,4 +35,4 @@ class SeccionUsuarios extends Component {
   }
 }
 
-export default SeccionUsuarios;
+export default BrowserUsuarios;
