@@ -55,9 +55,25 @@ class BrowserUsuarios extends Component {
   }
 
   render() {
+    const listaTR = this.state.listaUsuarios.map((item, index) => {
+      const iconIsAdmin = item.is_admin && <i className="fa fa-check" />;
+
+      return (
+        <tr>
+          <td>{index + 1}</td>
+          <td>edit</td>
+          <td>{item.nombre}</td>
+          <td>{item.nick}</td>
+          <td>{item.email}</td>
+          <td>{iconIsAdmin}</td>
+          <td>delete</td>
+        </tr>
+      );
+    });
+
     return (
       <div className="cell-data-usuarios wrapperTab">
-        <table className="table table-striped table-info">
+        <table className="table table-striped table-primary">
           <thead>
             <th>#</th>
             <th></th>
@@ -67,6 +83,7 @@ class BrowserUsuarios extends Component {
             <th>Admin</th>
             <th></th>
           </thead>
+          <tbody>{listaTR}</tbody>
         </table>
       </div>
     );
