@@ -3,6 +3,7 @@ import ObserverUsuarios from '../ObserverUsuarios';
 import DataService from '../../../servicios/dataService/dataLocal/DataLocal';
 import LibToast from '../../../lib/LibToast';
 import BoxFiltroListaUsuario from './BoxFiltroListaUsuario';
+import FormUsuario from '../modal/formUsuario/FormUsuario';
 
 class BrowserUsuarios extends Component {
   constructor(props, context) {
@@ -14,7 +15,8 @@ class BrowserUsuarios extends Component {
       fnSort: null,
       dataFiltro: null,
       usuarioSelected: null,
-      idUsuarioSelected: null
+      idUsuarioSelected: null,
+      isShowFormUsuario: false
     };
 
     this.isObserverRegistrado = false;
@@ -32,7 +34,8 @@ class BrowserUsuarios extends Component {
     //al seleccionar mostar el form
     this.setState({
       idUsuarioSelected: usuario.id,
-      usuarioSelected: usuario
+      usuarioSelected: usuario,
+      isShowFormUsuario: true
     });
 
     //Cargar Formulario de edición
@@ -113,6 +116,12 @@ class BrowserUsuarios extends Component {
     this.setState({ listaFiltrada });
   };
 
+  closeFormUsuario = () => {
+    this.setState({
+      isShowFormUsuario: false
+    });
+  };
+
   render() {
     const listaTR = this.state.listaFiltrada.map((usuario, index) => {
       const iconIsAdmin = usuario.is_admin && <i className="fa  fa-check" />;
@@ -180,6 +189,11 @@ class BrowserUsuarios extends Component {
           </thead>
           <tbody>{listaTR}</tbody>
         </table>
+        <FormUsuario
+          isShow={this.state.isShowFormUsuario}
+          usuario={this.state.usuarioSelected}
+          onClose={this.closeFormUsuario}
+        />
       </div>
     );
   }

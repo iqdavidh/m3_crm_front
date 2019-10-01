@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import BuilderConfigControlItem from '../../../../components/edicion/BuilderConfigControlItem';
 import DataService from '../../../../servicios/dataService/DataService';
 import LibToast from '../../../../lib/LibToast';
+import ObserverUpdateUsuario from './ObserverUpdateUsuario';
+import { Button, Modal } from 'react-bootstrap';
+import FactoryListaDataEdit from '../../../../components/edicion/FactoryListaDataEdit';
 
 class FormUsuario extends Component {
   constructor(props, context) {
     super(props, context);
+
+    this.observerData = ObserverUpdateUsuario;
 
     let lista = [];
 
@@ -30,7 +35,18 @@ class FormUsuario extends Component {
     }
     /*------------------------------------------------------------*/
     {
-      const b = new BuilderConfigControlItem('tel', 'Teléfono');
+      const b = new BuilderConfigControlItem('is_admin', 'Es Administrador');
+      b.setTipoCHK();
+      lista.push(b.getConfigControlItem());
+    }
+
+    /*------------------------------------------------------------*/
+    {
+      const b = new BuilderConfigControlItem(
+        'is_activo',
+        'Esta activo el usuario'
+      );
+      b.setTipoCHK();
       lista.push(b.getConfigControlItem());
     }
 
@@ -42,13 +58,6 @@ class FormUsuario extends Component {
     this.listaConfigControl = lista;
 
     this.state = {
-      clienteNew: {
-        nombre: '',
-        apaterno: '',
-        amaterno: '',
-        email1: '',
-        tel: ''
-      },
       isEnProceso: false,
       isValidData: false
     };
@@ -63,12 +72,12 @@ class FormUsuario extends Component {
       });
     });
 
-    this.observerData.registrarCbSaveData(this.cbSaveNewCliente);
+    this.observerData.registrarCbSaveData(this.cbSaveNewUsuario);
   }
 
-  cbSaveNewCliente = async () => {
+  cbSaveNewUsuario = async () => {
     const dataInsert = this.observerData.getDataEdit();
-    const respuestaSave = await DataService.insertCliente(dataInsert);
+    const respuestaSave = await DataService.insertUsuario(dataInsert);
     this.observerData.onMostrarWait(false);
 
     if (!respuestaSave.success) {
@@ -76,20 +85,17 @@ class FormUsuario extends Component {
       return;
     }
 
-    const idCliente = respuestaSave.data.id_cliente;
+    const idUsuario = respuestaSave.data.id;
 
     //crear nuevo modelo
-    const cliente = { ...dataInsert };
+    const usuario = { ...dataInsert };
 
-    cliente.id_cliente = idCliente;
-    cliente.indicadores = {
-      funelIndex: 1
-    };
-    cliente.updated_at = new Date();
+    usuario.id = idUsuario;
+    usuario.updated_at = new Date();
 
-    LibToast.success('Cliente Actualizado');
+    LibToast.success('Usuario Registrado');
 
-    this.observerData.onInsertModel(idCliente, cliente);
+    this.observerData.onInsertModel(idUsuario, usuario);
   };
 
   onClickSave() {
@@ -107,7 +113,60 @@ class FormUsuario extends Component {
   }
 
   render() {
-    return <div></div>;
+    let lista = FactoryListaDataEdit(
+      this.props.usuario,
+      this.listaConfigControl,
+      this.observerData
+    );
+
+    let isEnProceso = this.state.isEnProceso;
+
+    const iconLoading = isEnProceso && (
+      <div className="text-center">
+        <i className="fa fa-cog fa-spin " />
+        <span className="pl-1">Guardando</span>
+      </div>
+    );
+
+    const cmdUpload = this.state.isValidData && !isEnProceso && (
+      <button
+        className="btn btn-primary"
+        title="Guardar"
+        onClick={() => this.onClickSave()}
+      >
+        <i className="fa fa-upload" /> Guardar
+      </button>
+    );
+
+    const cmdCancel = !isEnProceso && (
+      <Button variant="secondary" onClick={event => this.props.onClose()}>
+        Cancelar
+      </Button>
+    );
+
+    const operacion = 'Crear';
+
+    return (
+      <Modal show={this.props.isShow} onHide={event => this.props.onClose()}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <i className="fa fa-user" /> {operacion} Usuario
+          </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <table className="table table-sm table-striped teditdata">
+            <tbody>{lista}</tbody>
+          </table>
+        </Modal.Body>
+
+        <Modal.Footer>
+          {iconLoading}
+          {cmdUpload}
+          {cmdCancel}
+        </Modal.Footer>
+      </Modal>
+    );
   }
 }
 

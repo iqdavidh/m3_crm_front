@@ -161,6 +161,27 @@ const DataLocal = {
         lista
       }
     };
+  },
+
+  insertUsuario: async dataInsert => {
+    const id = Math.random() * 100000;
+    //listaUsuarios.unshift(dataInsert);
+
+    return {
+      success: true,
+      msg: '',
+      data: {
+        id
+      }
+    };
+  },
+
+  updateUsuario: async dataUpate => {
+    return {
+      success: true,
+      msg: '',
+      data: {}
+    };
   }
 };
 
