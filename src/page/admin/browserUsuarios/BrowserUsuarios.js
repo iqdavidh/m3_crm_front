@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ObserverUsuarios from '../ObserverUsuarios';
 
 class BrowserUsuarios extends Component {
   constructor(props, context) {
@@ -14,6 +15,8 @@ class BrowserUsuarios extends Component {
     };
 
     this.isObserverRegistrado = false;
+
+    ObserverUsuarios.registrarHandlerOnSetClienteSelected();
   }
 
   render() {
