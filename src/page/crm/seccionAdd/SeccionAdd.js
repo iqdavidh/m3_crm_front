@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import TipoSeguimiento from '../../../servicios/dataService/TipoSeguimiento';
+import LibToast from '../../../lib/LibToast';
+import ObserverDataPersonal from '../seccionMain/panmainPersonal/ObserverDataPersonal';
+import DataService from '../../../servicios/dataService/DataService';
+import AutService from '../../../servicios/autService/AutService';
 
 class SeccionAdd extends Component {
   constructor(props, context) {
@@ -8,9 +12,25 @@ class SeccionAdd extends Component {
     this.listaTipos = TipoSeguimiento;
 
     this.state = {
+      id_cliente: null,
       contactado: false,
-      opcionSeguimiento: this.listaTipos[0]
+      opcionSeguimiento: this.listaTipos[0],
+      texto: ''
     };
+
+    const fnSetCliente = cliente => {
+      this.setState({
+        id_cliente: cliente.id_cliente,
+        texto: ''
+      });
+
+      console.log(cliente.id_cliente);
+    };
+
+    ObserverDataPersonal.registrarHandlerOnSetClienteSelected(
+      'SeccionAdd',
+      fnSetCliente
+    );
   }
 
   setSeguimiento = b => {
@@ -26,7 +46,45 @@ class SeccionAdd extends Component {
     });
   };
 
-  onClickAdd() {}
+  async onClickAdd() {
+    let texto = this.state.texto;
+
+    if (texto === '') {
+      LibToast.alert('Se requiere ingresar un comentario de seguimiento');
+      return;
+    }
+
+    //crear el modelo de seguimiento
+    let model = {
+      id_tipo: this.state.opcionSeguimiento.id,
+      tipo: this.state.opcionSeguimiento.tipo,
+      subtipo: this.state.opcionSeguimiento.subtipo,
+      contactado: this.state.opcionSeguimiento.contactado,
+      comentario: texto,
+      id_cliente: this.state.id_cliente
+    };
+
+    let respuesta = await DataService.insertSeguimiento(model);
+
+    if (respuesta.success) {
+      LibToast.success('Seguimiento registrado');
+    } else {
+      LibToast.alert(respuesta.msg);
+    }
+
+    model.id = respuesta.data.id;
+    model.usuario = AutService.getCurrentSession().usuario.nombre;
+
+    ObserverDataPersonal.addSeguimiento(model);
+  }
+
+  onTextoChange(newTexto) {
+    console.log(newTexto);
+
+    this.setState({
+      texto: newTexto
+    });
+  }
 
   render() {
     const isContactado = this.state.contactado;
@@ -88,14 +146,18 @@ class SeccionAdd extends Component {
 
         <div className="wrapperComSeg">
           <span>Comentario de Seguimiento</span>
-          <textarea className="form-control txtSeguimeinto"></textarea>
+          <textarea
+            className="form-control txtSeguimeinto"
+            value={this.state.texto}
+            onChange={event => this.onTextoChange(event.target.value)}
+          />
         </div>
         <div className="text-right">
           <button
             className="btn btn-primary"
             onClick={event => this.onClickAdd()}
           >
-            <i className="fa fa-upload"></i> Registrar
+            <i className="fa fa-upload" /> Registrar
           </button>
         </div>
       </div>

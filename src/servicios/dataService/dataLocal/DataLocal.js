@@ -122,6 +122,34 @@ const DataLocal = {
     };
 
     return Promise.resolve(d);
+  },
+
+  insertSeguimiento: async model => {
+    const id_cliente = model.id_cliente;
+
+    //agregar el regsitros
+    const cliente = clientes_dataLocal.find(c => {
+      return c.id_cliente.toString() === id_cliente.toString();
+    });
+
+    const idSeguimiento = Math.random() * 100000;
+
+    const data = {
+      id: idSeguimiento
+    };
+
+    model.id = idSeguimiento;
+
+    //evitar el dobre insert porque es el mismo array que el front
+    // cliente.gestion.listaSeguimiento.unshift(model);
+
+    const respuesta = {
+      success: true,
+      msg: '',
+      data
+    };
+
+    return respuesta;
   }
 };
 

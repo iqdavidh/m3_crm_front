@@ -10,4 +10,16 @@ ObserverDataPersonal.registrarUpdateTituloCRM = fn => {
   ObserverDataPersonal.updateTituloCRM = fn;
 };
 
+let listaSuscriptoresOnAddSeg = [];
+
+ObserverDataPersonal.addSeguimiento = dataSeguimiento => {
+  listaSuscriptoresOnAddSeg.forEach(s => {
+    return s(dataSeguimiento);
+  });
+};
+
+ObserverDataPersonal.registrarHandlernAddSeg = fn => {
+  listaSuscriptoresOnAddSeg.push(fn);
+};
+
 export default ObserverDataPersonal;

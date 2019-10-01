@@ -6,17 +6,30 @@ class PanHistCom extends Component {
     super(props, context);
 
     this.state = {
-      cliente: null
+      cliente: null,
+      listaSeg: []
     };
 
     const fnSetCliente = cliente => {
-      this.setState({ cliente: cliente });
+      this.setState({
+        cliente: cliente,
+        listaSeg: cliente.gestion.listaSeguimiento
+      });
     };
 
     ObserverDataPersonal.registrarHandlerOnSetClienteSelected(
       'PanHistCom',
       fnSetCliente
     );
+
+    ObserverDataPersonal.registrarHandlernAddSeg(seg => {
+      //al agregarse un seguimiento se actualiza la lista
+      let listaSeg = [seg, ...this.state.listaSeg];
+
+      this.setState({
+        listaSeg
+      });
+    });
   }
 
   render() {
@@ -26,19 +39,11 @@ class PanHistCom extends Component {
       return null;
     }
 
-    let listaTR = cliente.gestion.listaSeguimiento.map((item, index) => {
-      let code = JSON.stringify(item);
-
-      let tipo = item.tipo;
-      let isContactado = item.contactado;
-      let com = item.comentario;
-      let f = item.fecha;
-      let usuario = item.usuario;
-
+    let listaTR = this.state.listaSeg.map((item, index) => {
       return (
-        <tr>
+        <tr key={item.id}>
           <td>{index + 1}</td>
-          <td>{item.f}</td>
+          <td>{item.fecha}</td>
           <td>{item.tipo}</td>
           <td>{item.comentario}</td>
           <td>{item.usuario}</td>
