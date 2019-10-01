@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ObserverUsuarios from '../ObserverUsuarios';
+import DataService from '../../../servicios/dataService/dataLocal/DataLocal';
+import LibToast from '../../../lib/LibToast';
 
 class BrowserUsuarios extends Component {
   constructor(props, context) {
@@ -16,7 +18,40 @@ class BrowserUsuarios extends Component {
 
     this.isObserverRegistrado = false;
 
-    ObserverUsuarios.registrarHandlerOnSetRegistroSelected();
+    ObserverUsuarios.registrarHandlerOnSetRegistroSelected(
+      'BrowserUsuarios',
+      this.onSelectUsuario
+    );
+
+    //no importa el async
+    this.loadAllUsuarios();
+  }
+
+  onSelectUsuario = async usuario => {
+    //al seleccionar mostar el form
+    this.setState({
+      idUsuarioSelected: usuario.id,
+      usuarioSelected: usuario
+    });
+  };
+
+  async loadAllUsuarios() {
+    let respuesta = await DataService.indexUsuario();
+
+    if (respuesta.success) {
+      const data = respuesta.data;
+
+      const listaFiltrada = [...data.lista];
+
+      this.setState({
+        listaUsuarios: data.lista,
+        listaFiltrada: listaFiltrada
+      });
+
+      LibToast.success('Datos Recibidos');
+    } else {
+      LibToast.alert(respuesta.msg);
+    }
   }
 
   render() {
