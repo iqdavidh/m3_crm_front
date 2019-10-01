@@ -4,6 +4,7 @@ import LibToast from '../../../lib/LibToast';
 import ObserverDataPersonal from '../seccionMain/panmainPersonal/ObserverDataPersonal';
 import DataService from '../../../servicios/dataService/DataService';
 import AutService from '../../../servicios/autService/AutService';
+import LibFecha from '../../../lib/LibFecha';
 
 class SeccionAdd extends Component {
   constructor(props, context) {
@@ -31,6 +32,8 @@ class SeccionAdd extends Component {
       'SeccionAdd',
       fnSetCliente
     );
+
+    this.fechaNow = LibFecha.getDMYFromDate(new Date());
   }
 
   setSeguimiento = b => {
@@ -74,8 +77,14 @@ class SeccionAdd extends Component {
 
     model.id = respuesta.data.id;
     model.usuario = AutService.getCurrentSession().usuario.nombre;
+    model.fecha = this.fechaNow;
 
     ObserverDataPersonal.addSeguimiento(model);
+
+    /*clean el texto*/
+    this.setState({
+      texto: ''
+    });
   }
 
   onTextoChange(newTexto) {
