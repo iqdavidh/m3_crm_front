@@ -13,6 +13,10 @@ body {
    overflow: auto;
 }
 
+th.thCmd{
+   width: 50px;
+}
+
 /* Individual item */
 .bm-item {
    display: inline-block;

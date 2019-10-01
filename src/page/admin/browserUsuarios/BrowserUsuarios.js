@@ -20,19 +20,23 @@ class BrowserUsuarios extends Component {
 
     ObserverUsuarios.registrarHandlerOnSetRegistroSelected(
       'BrowserUsuarios',
-      this.onSelectUsuario
+      this.onEditUsuario
     );
 
     //no importa el async
     this.loadAllUsuarios();
   }
 
-  onSelectUsuario = async usuario => {
+  onEditUsuario = usuario => {
     //al seleccionar mostar el form
     this.setState({
       idUsuarioSelected: usuario.id,
       usuarioSelected: usuario
     });
+  };
+
+  onDeleteUsuario = usuario => {
+    console.log('no implementado onDeleteUsuario');
   };
 
   async loadAllUsuarios() {
@@ -55,18 +59,36 @@ class BrowserUsuarios extends Component {
   }
 
   render() {
-    const listaTR = this.state.listaUsuarios.map((item, index) => {
-      const iconIsAdmin = item.is_admin && <i className="fa fa-check" />;
+    const listaTR = this.state.listaUsuarios.map((usuario, index) => {
+      const iconIsAdmin = usuario.is_admin && <i className="fa fa-check" />;
+      const cmdEdit = (
+        <button
+          className="btn btn-primary"
+          title="Editar"
+          onClick={event => this.onEditUsuario(usuario)}
+        >
+          <i className="fa fa-edit" />
+        </button>
+      );
+      const cmdDelete = (
+        <button
+          className="btn btn-danger"
+          title="Eliminar"
+          onClick={event => this.onDeleteUsuario(usuario)}
+        >
+          <i className="fa fa-trash" />
+        </button>
+      );
 
       return (
         <tr>
-          <td>{index + 1}</td>
-          <td>edit</td>
-          <td>{item.nombre}</td>
-          <td>{item.nick}</td>
-          <td>{item.email}</td>
+          <td className="text-center">{index + 1}</td>
+          <td>{cmdEdit}</td>
+          <td>{usuario.nombre}</td>
+          <td>{usuario.nick}</td>
+          <td>{usuario.email}</td>
           <td>{iconIsAdmin}</td>
-          <td>delete</td>
+          <td>{cmdDelete}</td>
         </tr>
       );
     });
@@ -75,13 +97,13 @@ class BrowserUsuarios extends Component {
       <div className="cell-data-usuarios wrapperTab">
         <table className="table table-striped table-primary">
           <thead>
-            <th>#</th>
-            <th></th>
+            <th className="thCmd">#</th>
+            <th className="thCmd" />
             <th>Nombre</th>
             <th>Nick</th>
             <th>Email</th>
             <th>Admin</th>
-            <th></th>
+            <th className="thCmd" />
           </thead>
           <tbody>{listaTR}</tbody>
         </table>
