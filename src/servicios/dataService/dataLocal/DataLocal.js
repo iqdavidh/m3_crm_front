@@ -1,5 +1,6 @@
 import clientes_dataLocal from './clientes_datalocal';
 import AutService from '../../autService/AutService';
+import listaUsuarios from './usuarios_index';
 
 const paginacion = 100;
 
@@ -143,13 +144,23 @@ const DataLocal = {
     //evitar el dobre insert porque es el mismo array que el front
     // cliente.gestion.listaSeguimiento.unshift(model);
 
-    const respuesta = {
+    return {
       success: true,
       msg: '',
       data
     };
+  },
 
-    return respuesta;
+  indexUsuario: async () => {
+    let lista = listaUsuarios;
+
+    return {
+      success: true,
+      msg: '',
+      data: {
+        lista
+      }
+    };
   }
 };
 

@@ -14,10 +14,6 @@ export default props => {
         Clientes
       </a>
 
-      <a className="menu-item" href="/sup">
-        Supervisor
-      </a>
-
       <a className="menu-item" href="/admin">
         Administración
       </a>

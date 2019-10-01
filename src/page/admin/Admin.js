@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
+import TopBar from '../../components/topbar/TopBar';
+import TopBarAdm from './topBarAdm/TopBarAdm';
+import SeccionUsuarios from './seccionUsuarios/SeccionUsuarios';
 
 class Admin extends Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
   render() {
-    return <div>Admin</div>;
+    return (
+      <div className={'container-main'}>
+        <TopBar>
+          <TopBarAdm />
+        </TopBar>
+        <SeccionUsuarios />
+      </div>
+    );
   }
 }
 
