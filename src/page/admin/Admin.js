@@ -10,7 +10,7 @@ class Admin extends Component {
 
   render() {
     return (
-      <div className={'container-main'}>
+      <div className={'container-main-admin'}>
         <TopBar>
           <TopBarAdm />
         </TopBar>

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class SeccionUsuarios extends Component {
   render() {
     return (
-      <div>
+      <div className="cell-data-usuarios wrapperTab">
         <table className="table table-striped table-info">
           <thead>
             <th>#</th>

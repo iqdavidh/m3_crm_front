@@ -56,7 +56,7 @@ class Crm extends Component {
     let cssTituloCliente = 'cell-data-titulo ' + this.state.estatusCliente;
 
     return (
-      <div className={'container-main'}>
+      <div className={'container-main-crm'}>
         <TopBar>
           <TopBarCrm observerTopBar={this.observerTopBar} />
         </TopBar>
