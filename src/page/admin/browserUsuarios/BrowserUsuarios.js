@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ObserverUsuarios from '../ObserverUsuarios';
 import DataService from '../../../servicios/dataService/dataLocal/DataLocal';
 import LibToast from '../../../lib/LibToast';
+import BoxFiltroListaUsuario from './BoxFiltroListaUsuario';
 
 class BrowserUsuarios extends Component {
   constructor(props, context) {
@@ -58,8 +59,60 @@ class BrowserUsuarios extends Component {
     }
   }
 
+  onFiltroChange = dataFiltro => {
+    let listaFiltrada = [];
+
+    this.setState({ dataFiltro });
+
+    if (dataFiltro.isFiltro) {
+      let listaFiltros = [];
+
+      if (dataFiltro.texto !== '') {
+        dataFiltro.texto = dataFiltro.texto.toString().toLowerCase();
+
+        listaFiltros.push(cliente => {
+          const texto = (
+            cliente.nombre +
+            ' ' +
+            cliente.email +
+            ' ' +
+            cliente.nick
+          ).toLowerCase();
+
+          return texto.includes(dataFiltro.texto);
+        });
+      }
+
+      if (dataFiltro.isAdmin !== 'SinFiltro') {
+        listaFiltros.push(usuario => {
+          const isAdmin = usuario.is_admin;
+          return isAdmin === dataFiltro.isAdmin;
+        });
+      }
+
+      listaFiltrada = this.state.listaUsuarios.filter(usuario => {
+        let isShow = true;
+
+        listaFiltros.forEach(fnEvalFiltro => {
+          if (isShow) {
+            isShow = fnEvalFiltro(usuario);
+            console.log('eval', isShow);
+          }
+        });
+
+        return isShow;
+      });
+    } else {
+      listaFiltrada = this.state.listaUsuarios.filter(cliente => {
+        return true;
+      });
+    }
+
+    this.setState({ listaFiltrada });
+  };
+
   render() {
-    const listaTR = this.state.listaUsuarios.map((usuario, index) => {
+    const listaTR = this.state.listaFiltrada.map((usuario, index) => {
       const iconIsAdmin = usuario.is_admin && <i className="fa fa-check" />;
       const cmdEdit = (
         <button
@@ -81,7 +134,7 @@ class BrowserUsuarios extends Component {
       );
 
       return (
-        <tr>
+        <tr key={usuario.id}>
           <td className="text-center">{index + 1}</td>
           <td>{cmdEdit}</td>
           <td>{usuario.nombre}</td>
@@ -95,6 +148,10 @@ class BrowserUsuarios extends Component {
 
     return (
       <div className="cell-data-usuarios wrapperTab">
+        <div>
+          <BoxFiltroListaUsuario onFiltroChange={this.onFiltroChange} />
+        </div>
+
         <table className="table table-striped table-primary">
           <thead>
             <th className="thCmd">#</th>
