@@ -6,4 +6,15 @@
    padding: 0px 5px 2px 10px;
    font-weight: bold;
    font-size: 20px;
+   width: 150px;
+}
+
+.wrapperFiltroTexto{
+   width: 200px;
+   margin-right: 10px;
+
+}
+
+.wrapperFiltroTipo{
+   width: 200px;
 }

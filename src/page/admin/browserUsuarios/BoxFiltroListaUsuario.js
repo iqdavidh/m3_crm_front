@@ -42,27 +42,34 @@ class BoxFiltroListaUsuario extends Component {
 
   render() {
     return (
-      <div className="flexDiv">
+      <div className="flexDiv div100PC">
         <div className="p-1">
           <i className="fa fa-filter" />
         </div>
-        <input
-          className="form-control form-control-sm FiltroListaUsuario"
-          title="Buscar Texto"
-          value={this.state.texto}
-          onChange={this.onTextoChange}
-        />
+        <div className="wrapperFiltroTexto">
+          <input
+            className="form-control form-control-sm FiltroListaUsuario"
+            title="Buscar Texto"
+            value={this.state.texto}
+            onChange={this.onTextoChange}
+          />
+        </div>
 
-        <Form.Control
-          title="Filtrar por tipo de Rol"
-          size="sm"
-          onChange={this.onIsAdminChange}
-          as="select"
-        >
-          <option value={'SinFiltro'}>* Sin Filtro *</option>
-          <option value={true}>Administrador</option>
-          <option value={false}>Vendedor</option>
-        </Form.Control>
+        <div>Tipo de Usuario: </div>
+        <div className="wrapperFiltroTipo">
+          <Form.Control
+            title="Filtrar por tipo de Rol"
+            size="sm"
+            onChange={this.onIsAdminChange}
+            as="select"
+          >
+            <option value={'SinFiltro'}>* Sin Filtro *</option>
+            <option value={true}>Administrador</option>
+            <option value={false}>Vendedor</option>
+          </Form.Control>
+
+          <div className="flexG1" />
+        </div>
       </div>
     );
   }

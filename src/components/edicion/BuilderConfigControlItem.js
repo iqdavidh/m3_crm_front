@@ -21,6 +21,10 @@ class BuilderConfigControlItem {
     return this;
   }
 
+  setIsCampoEmail() {
+    this.configControlItem.subtipo = 'email';
+  }
+
   getConfigControlItem() {
     return this.configControlItem;
   }

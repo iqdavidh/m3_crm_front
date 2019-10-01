@@ -34,6 +34,8 @@ class BrowserUsuarios extends Component {
       idUsuarioSelected: usuario.id,
       usuarioSelected: usuario
     });
+
+    //Cargar Formulario de edición
   };
 
   onDeleteUsuario = usuario => {
@@ -113,7 +115,13 @@ class BrowserUsuarios extends Component {
 
   render() {
     const listaTR = this.state.listaFiltrada.map((usuario, index) => {
-      const iconIsAdmin = usuario.is_admin && <i className="fa fa-check" />;
+      const iconIsAdmin = usuario.is_admin && <i className="fa  fa-check" />;
+      const iconIsActivo = usuario.is_activo ? (
+        <i className="fa  fa-thumbs-up colorNoResalta" />
+      ) : (
+        <i className="fa fa-thumbs-down " title="Usuario no activo" />
+      );
+
       const cmdEdit = (
         <button
           className="btn btn-primary"
@@ -141,6 +149,8 @@ class BrowserUsuarios extends Component {
           <td>{usuario.nick}</td>
           <td>{usuario.email}</td>
           <td>{iconIsAdmin}</td>
+          <td>{iconIsActivo}</td>
+
           <td>{cmdDelete}</td>
         </tr>
       );
@@ -164,6 +174,7 @@ class BrowserUsuarios extends Component {
               <th>Nick</th>
               <th>Email</th>
               <th>Admin</th>
+              <th>Activo</th>
               <th className="thCmd" />
             </tr>
           </thead>

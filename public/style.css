@@ -93,6 +93,9 @@ th.thCmd{
 .flexG1{
    flex-grow: 1;
 }
+.div100PC{
+   width: 100%;
+}
 
 .overFlowDiv{
    overflow-y: scroll;
@@ -164,3 +167,7 @@ table.teditdata tr td {
 .tituloSeccionAdd{
    padding-bottom: 4px;
 }
+
+
+.colorNoResalta{color:#b3b3b3}
+.colorAlert{color:red}
