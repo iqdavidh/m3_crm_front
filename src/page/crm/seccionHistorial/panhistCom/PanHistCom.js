@@ -17,7 +17,7 @@ class PanHistCom extends Component {
       });
     };
 
-    ObserverDataPersonal.registrarHandlerOnSetClienteSelected(
+    ObserverDataPersonal.registrarHandlerOnSetRegistroSelected(
       'PanHistCom',
       fnSetCliente
     );

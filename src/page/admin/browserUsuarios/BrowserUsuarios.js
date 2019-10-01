@@ -16,7 +16,7 @@ class BrowserUsuarios extends Component {
 
     this.isObserverRegistrado = false;
 
-    ObserverUsuarios.registrarHandlerOnSetClienteSelected();
+    ObserverUsuarios.registrarHandlerOnSetRegistroSelected();
   }
 
   render() {

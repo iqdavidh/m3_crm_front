@@ -126,15 +126,15 @@ class ObserverDataEdit {
       this.fnInserModelEnd();
     };
 
-    /* cliente selected --------------------------------- */
+    /* registro selected --------------------------------- */
 
-    let listaHandlerOnSetClienteSelected = [];
+    let listaHandlerOnSetRegistroSelected = [];
 
-    this.clienteSelected = null;
-    this.setClienteSelected = (nombreInvocador, clienteSelected) => {
-      this.clienteSelected = clienteSelected;
+    this.registroSelected = null;
+    this.setRegistroSelected = (nombreInvocador, clienteSelected) => {
+      this.registroSelected = clienteSelected;
 
-      listaHandlerOnSetClienteSelected
+      listaHandlerOnSetRegistroSelected
         .filter(suscriptor => {
           return nombreInvocador !== suscriptor.nombre;
         })
@@ -143,8 +143,8 @@ class ObserverDataEdit {
         });
     };
 
-    this.registrarHandlerOnSetClienteSelected = (nombreHandler, h) => {
-      listaHandlerOnSetClienteSelected.push({ nombre: nombreHandler, h });
+    this.registrarHandlerOnSetRegistroSelected = (nombreHandler, h) => {
+      listaHandlerOnSetRegistroSelected.push({ nombre: nombreHandler, h });
     };
 
     /* ------------------------------------------------- */

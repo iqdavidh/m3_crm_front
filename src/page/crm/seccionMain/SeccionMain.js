@@ -45,7 +45,7 @@ class SeccionMain extends Component {
   }
 
   cbSaveDataPersonal = async () => {
-    let id_cliente = this.observerData.clienteSelected.id_cliente;
+    let id_cliente = this.observerData.registroSelected.id_cliente;
 
     const dataUpdate = this.observerData.getDataEdit();
 
@@ -60,7 +60,7 @@ class SeccionMain extends Component {
     }
 
     //crear nuevo modelo
-    let cliente = { ...this.observerData.clienteSelected };
+    let cliente = { ...this.observerData.registroSelected };
     Object.keys(dataUpdate).forEach(key => {
       this.updateMode(cliente, dataUpdate, key);
     });

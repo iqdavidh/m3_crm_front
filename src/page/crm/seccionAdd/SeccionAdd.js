@@ -28,7 +28,7 @@ class SeccionAdd extends Component {
       console.log(cliente.id_cliente);
     };
 
-    ObserverDataPersonal.registrarHandlerOnSetClienteSelected(
+    ObserverDataPersonal.registrarHandlerOnSetRegistroSelected(
       'SeccionAdd',
       fnSetCliente
     );

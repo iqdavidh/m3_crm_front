@@ -29,7 +29,7 @@ class TabListaCliente extends Component {
 
     this.isObserverRegistrado = false;
 
-    ObserverDataPersonal.registrarHandlerOnSetClienteSelected(
+    ObserverDataPersonal.registrarHandlerOnSetRegistroSelected(
       'TabListaCliente',
       this.onSelectCliente
     );
@@ -234,7 +234,7 @@ class TabListaCliente extends Component {
     });
 
     ObserverDataPersonal.onSetCancel();
-    ObserverDataPersonal.setClienteSelected('TabListaCliente', cliente);
+    ObserverDataPersonal.setRegistroSelected('TabListaCliente', cliente);
     ObserverDataPersonal.updateTituloCRM(cliente);
   };
 
