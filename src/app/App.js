@@ -8,7 +8,6 @@ import SideBar from '../components/sideBar/SideBar';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Supervisor from '../page/supervisor/Supervisor';
 import Admin from '../page/admin/Admin';
 import Cuenta from '../page/cuenta/Cuenta';
 import Login from '../page/login/Login';
@@ -46,7 +45,6 @@ class App extends React.Component {
 
           <div>
             <Route path="/" exact component={Crm} />
-            <Route path="/sup" component={Supervisor} />
             <Route path="/admin" component={Admin} />
             <Route path="/cuenta" component={Cuenta} />
             <Route path="/login" component={Login} />

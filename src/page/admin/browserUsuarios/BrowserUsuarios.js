@@ -128,13 +128,7 @@ class BrowserUsuarios extends Component {
         dataFiltro.texto = dataFiltro.texto.toString().toLowerCase();
 
         listaFiltros.push(cliente => {
-          const texto = (
-            cliente.nombre +
-            ' ' +
-            cliente.email +
-            ' ' +
-            cliente.nick
-          ).toLowerCase();
+          const texto = `${cliente.nombre} ${cliente.email} ${cliente.nick}`.toLowerCase();
 
           return texto.includes(dataFiltro.texto);
         });
@@ -212,7 +206,7 @@ class BrowserUsuarios extends Component {
           <td>{iconIsAdmin}</td>
           <td>{iconIsActivo}</td>
 
-          <td>{cmdDelete}</td>
+          <td></td>
         </tr>
       );
     });
