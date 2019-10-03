@@ -23,8 +23,7 @@ class App extends React.Component {
     const isAutenticado = AuthService.getIsAuthenticated();
 
     this.state = {
-      isAutenticado /* indica si esta autenticado el usuario*/,
-      isCRMRequireReloadData: true /*indica si debemos volver a solocitar los datos del crm - caso de asignar clientes a susuarios  */
+      isAutenticado /* indica si esta autenticado el usuario*/
     };
   }
 
@@ -34,6 +33,12 @@ class App extends React.Component {
       ObserverWindowH.onChangeHeight(h);
     });
   }
+
+  onChangeLogin = b => {
+    this.setState({
+      isAutenticado: b
+    });
+  };
 
   render() {
     let appRouter = null;

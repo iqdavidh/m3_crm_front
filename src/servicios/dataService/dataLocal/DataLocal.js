@@ -182,6 +182,29 @@ const DataLocal = {
       msg: '',
       data: {}
     };
+  },
+
+  login: async (email, password) => {
+    if (password === 'x') {
+      return {
+        success: true,
+        msg: '',
+        data: {
+          token: '***',
+          public_data: {
+            email: 'david@productividadti.com.mx',
+            nombre: 'david huerta',
+            nick: 'davidh',
+            es_admin: true
+          }
+        }
+      };
+    } else {
+      return {
+        success: false,
+        msg: 'Datos incorrectos'
+      };
+    }
   }
 };
 
