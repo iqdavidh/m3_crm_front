@@ -8,7 +8,7 @@ class TopBarAdm extends Component {
     this.observerTopBar = props.observerTopBar;
   }
 
-  onShowformAddCliente() {
+  onShowformAddUsuario() {
     //alert(0);
     this.observerTopBar.fnShowFormAddUsuario();
   }
@@ -18,7 +18,7 @@ class TopBarAdm extends Component {
       <Form inline className="ML20">
         <Button
           variant="outline-warning"
-          onClick={event => this.fnShowFormAddUsuario()}
+          onClick={event => this.onShowformAddUsuario()}
         >
           <i className="fa fa-plus"></i> Agregar Usuario
         </Button>

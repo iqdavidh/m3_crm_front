@@ -27,6 +27,14 @@ class BrowserUsuarios extends Component {
       this.onEditUsuario
     );
 
+    ObserverUpdateUsuario.onAddUsuario = () => {
+      this.setState({
+        idUsuarioSelected: null,
+        usuarioSelected: {},
+        isShowFormUsuario: true
+      });
+    };
+
     ObserverUpdateUsuario.registraCbUpdateModel(this.onUpdateUsuario);
 
     //no importa el async
@@ -47,7 +55,6 @@ class BrowserUsuarios extends Component {
 
     this.setState({
       idUsuarioSelected: usuarioUpdated.id,
-      usuarioSelected: true,
       isShowFormUsuario: false
     });
   };
