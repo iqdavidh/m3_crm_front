@@ -1,10 +1,38 @@
-class Authenticacion {
-  public_data = null;
-  token = null;
+class singletonAuthentication {
+  KEY_LOCALSTORAGE_TOKEN = 'crm_token';
+  KEY_LOCALSTORAGE_PUBLICDATA = 'crm_public_data';
 
-  registrarLogin(public_data, token) {
+  constructor() {
+    this.public_data = null;
+    this.token = null;
+
+    //verificar si tneemos localsotara
+
+    if (
+      window.localStorage.getItem(this.KEY_LOCALSTORAGE_TOKEN) &&
+      window.localStorage.getItem(this.KEY_LOCALSTORAGE_PUBLICDATA)
+    ) {
+      this.token = window.localStorage.getItem(this.KEY_LOCALSTORAGE_TOKEN);
+
+      let texto = window.localStorage.getItem(this.KEY_LOCALSTORAGE_PUBLICDATA);
+      this.public_data = JSON.parse(texto);
+    }
+  }
+
+  registrarLogin(public_data, token, isSaveLocalStorage = false) {
+    if (!token || !public_data) {
+      throw new Error('No se puede hacer session sin datos correctos');
+    }
+
     this.token = token;
     this.public_data = public_data;
+
+    if (isSaveLocalStorage && token && public_data) {
+      window.localStorage.setItem(this.KEY_LOCALSTORAGE_TOKEN, token);
+
+      const json = JSON.stringify(public_data);
+      window.localStorage.setItem(this.KEY_LOCALSTORAGE_PUBLICDATA, json);
+    }
   }
 
   getIsAuthenticated() {
@@ -22,6 +50,9 @@ class Authenticacion {
   setLogOut() {
     this.token = null;
     this.public_data = null;
+
+    window.localStorage.removeItem(this.KEY_LOCALSTORAGE_TOKEN);
+    window.localStorage.removeItem(this.KEY_LOCALSTORAGE_PUBLICDATA);
   }
 
   updateData(dataUpdate) {
@@ -36,17 +67,20 @@ class Authenticacion {
   }
 }
 
-const AuthService = new Authenticacion();
+const AuthService = new singletonAuthentication();
 
-const tokenForTest = '';
-AuthService.registrarLogin(
-  {
-    email: 'david@productividadti.com.mx',
-    nombre: 'david huerta',
-    nick: 'davidh',
-    es_admin: true
-  },
-  tokenForTest
-);
+const isDummyAuth = false;
+
+if (isDummyAuth) {
+  AuthService.registrarLogin(
+    {
+      email: 'david@productividadti.com.mx',
+      nombre: 'david huerta',
+      nick: 'davidh',
+      es_admin: true
+    },
+    '******'
+  );
+}
 
 export default AuthService;

@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Admin from '../page/admin/Admin';
 import Cuenta from '../page/cuenta/Cuenta';
 import Login from '../page/login/Login';
-import Logout from '../page/logout/Logout';
+
 import Crm from '../page/crm/Crm';
 import { ToastContainer } from 'react-toastify';
 import ObserverWindowH from '../lib/ObserverWindowH';
@@ -36,19 +36,28 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div id="App">
+    let appRouter = null;
+    let login = null;
+
+    if (this.state.isAutenticado) {
+      appRouter = (
         <Router>
           <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
-
           <div>
             <Route path="/" exact component={Crm} />
             <Route path="/admin" component={Admin} />
             <Route path="/cuenta" component={Cuenta} />
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
           </div>
         </Router>
+      );
+    } else {
+      login = <Login />;
+    }
+
+    return (
+      <div id="App">
+        {appRouter}
+        {login}
         <ToastContainer />
       </div>
     );
