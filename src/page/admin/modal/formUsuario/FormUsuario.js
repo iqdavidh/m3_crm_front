@@ -72,30 +72,37 @@ class FormUsuario extends Component {
       });
     });
 
-    this.observerData.registrarCbSaveData(this.cbSaveNewUsuario);
+    this.observerData.registrarCbSaveData(this.cbSaveUsuario);
   }
 
-  cbSaveNewUsuario = async () => {
-    const dataInsert = this.observerData.getDataEdit();
-    const respuestaSave = await DataService.insertUsuario(dataInsert);
-    this.observerData.onMostrarWait(false);
+  cbSaveUsuario = async () => {
+    const dataUsuario = this.observerData.getAllDataEdit();
+    dataUsuario.id = ObserverUpdateUsuario.id_usuario;
+
+    const isNewUsuario = !dataUsuario.id;
+
+    const respuestaSave = await DataService.insertUsuario(dataUsuario);
+    this.observerData.onMostrarWait(true);
 
     if (!respuestaSave.success) {
       LibToast.alert(respuestaSave.msg);
       return;
     }
 
-    const idUsuario = respuestaSave.data.id;
-
     //crear nuevo modelo
-    const usuario = { ...dataInsert };
-
-    usuario.id = idUsuario;
+    const usuario = { ...dataUsuario };
     usuario.updated_at = new Date();
 
-    LibToast.success('Usuario Registrado');
+    if (isNewUsuario) {
+      usuario.id = respuestaSave.data.id;
+      LibToast.success('Usuario agregado');
+      this.observerData.onInsertModel(usuario.id, usuario);
+    } else {
+      LibToast.success('Usuario actualizado');
+      this.observerData.onUpdateModel(usuario);
+    }
 
-    this.observerData.onInsertModel(idUsuario, usuario);
+    this.observerData.onMostrarWait(false);
   };
 
   onClickSave() {

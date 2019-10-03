@@ -248,6 +248,16 @@ class ObserverDataEdit {
     this.getDataEdit = () => {
       return this.dataEdit;
     };
+
+    this.getAllDataEdit = () => {
+      let data = {};
+
+      this.subscriptores.forEach(suscriptor => {
+        data[suscriptor.nombre] = suscriptor.IControlDataEdit.getValueEdit();
+      });
+
+      return data;
+    };
   }
 }
 

@@ -26,6 +26,10 @@ class ATrDataEdit extends Component {
     this.fnCustomLabel = fn;
   }
 
+  getValueEdit() {
+    return this.state.valorEdit;
+  }
+
   getIsValidCurrentValue() {
     if (this.isValid === null) {
       this.isValid = this.getIsValidCurrentValorEdit();

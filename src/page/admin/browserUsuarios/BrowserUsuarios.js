@@ -4,6 +4,7 @@ import DataService from '../../../servicios/dataService/dataLocal/DataLocal';
 import LibToast from '../../../lib/LibToast';
 import BoxFiltroListaUsuario from './BoxFiltroListaUsuario';
 import FormUsuario from '../modal/formUsuario/FormUsuario';
+import ObserverUpdateUsuario from '../modal/formUsuario/ObserverUpdateUsuario';
 
 class BrowserUsuarios extends Component {
   constructor(props, context) {
@@ -26,12 +27,36 @@ class BrowserUsuarios extends Component {
       this.onEditUsuario
     );
 
+    ObserverUpdateUsuario.registraCbUpdateModel(this.onUpdateUsuario);
+
     //no importa el async
     this.loadAllUsuarios();
   }
 
+  onUpdateUsuario = usuarioUpdated => {
+    //actualizar el usaurio
+    let lista = [...this.state.listaUsuarios];
+
+    let usuarioOld = lista.find(item => {
+      return item.id === usuarioUpdated.id;
+    });
+
+    Object.keys(usuarioUpdated).forEach(key => {
+      usuarioOld[key] = usuarioUpdated[key];
+    });
+
+    this.setState({
+      idUsuarioSelected: usuarioUpdated.id,
+      usuarioSelected: true,
+      isShowFormUsuario: false
+    });
+  };
+
   onEditUsuario = usuario => {
     //al seleccionar mostar el form
+
+    ObserverUpdateUsuario.id_usuario = usuario.id;
+
     this.setState({
       idUsuarioSelected: usuario.id,
       usuarioSelected: usuario,
