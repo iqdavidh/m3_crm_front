@@ -6,11 +6,11 @@ import { assert } from 'chai';
 
 import Adapter from 'enzyme-adapter-react-16';
 import { configure } from 'enzyme';
-import AutService from '../../servicios/autService/AutService';
+import AuthService from '../../servicios/authService/AuthService';
 
 configure({ adapter: new Adapter() });
 
-const session = AutService.getCurrentSession();
+const session = AuthService.getUser();
 
 describe('TopBar', function() {
   const valorTexto = 'dumy body';

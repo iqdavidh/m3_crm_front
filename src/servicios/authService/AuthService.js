@@ -11,7 +11,7 @@ class Authenticacion {
     return this.token !== null;
   }
 
-  getCurrentSession() {
+  getUser() {
     return this.public_data;
   }
 
@@ -23,18 +23,30 @@ class Authenticacion {
     this.token = null;
     this.public_data = null;
   }
+
+  updateData(dataUpdate) {
+    //lista campos permitidos
+    const listaCamposAllow = ['email', 'nombre', 'nick'];
+
+    listaCamposAllow.forEach(c => {
+      if (dataUpdate[c] !== undefined) {
+        this.public_data[c] = dataUpdate[c];
+      }
+    });
+  }
 }
 
-const AutService = new Authenticacion();
+const AuthService = new Authenticacion();
 
 const tokenForTest = '';
-AutService.registrarLogin(
+AuthService.registrarLogin(
   {
     email: 'david@productividadti.com.mx',
+    nombre: 'david huerta',
     nick: 'davidh',
     es_admin: true
   },
   tokenForTest
 );
 
-export default AutService;
+export default AuthService;

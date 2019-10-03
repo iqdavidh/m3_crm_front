@@ -1,12 +1,12 @@
 import clientes_dataLocal from './clientes_datalocal';
-import AutService from '../../autService/AutService';
+import AuthService from '../../authService/AuthService';
 import listaUsuarios from './usuarios_index';
 
 const paginacion = 100;
 
 const DataLocal = {
   indexCliente: async pagina => {
-    const session = AutService.getCurrentSession();
+    const session = AuthService.getUser();
 
     const idUsuario = 1;
 

@@ -3,7 +3,7 @@ import TipoSeguimiento from '../../../servicios/dataService/TipoSeguimiento';
 import LibToast from '../../../lib/LibToast';
 import ObserverDataPersonal from '../seccionMain/panmainPersonal/ObserverDataPersonal';
 import DataService from '../../../servicios/dataService/DataService';
-import AutService from '../../../servicios/autService/AutService';
+import AuthService from '../../../servicios/authService/AuthService';
 import LibFecha from '../../../lib/LibFecha';
 
 class SeccionAdd extends Component {
@@ -76,7 +76,7 @@ class SeccionAdd extends Component {
     }
 
     model.id = respuesta.data.id;
-    model.usuario = AutService.getCurrentSession().usuario.nombre;
+    model.usuario = AuthService.getUser().usuario.nombre;
     model.fecha = this.fechaNow;
 
     ObserverDataPersonal.addSeguimiento(model);

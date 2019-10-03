@@ -66,7 +66,7 @@ class SeccionMain extends Component {
     });
 
     cliente.updated_at = new Date();
-    console.log(cliente);
+
     this.observerData.onUpdateModel(cliente);
 
     LibToast.success('Cliente Actualizado');

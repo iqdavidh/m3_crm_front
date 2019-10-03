@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import AutService from '../servicios/autService/AutService';
+import AuthService from '../servicios/authService/AuthService';
 import SideBar from '../components/sideBar/SideBar';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -20,7 +20,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    const isAutenticado = AutService.getIsAuthenticated();
+    const isAutenticado = AuthService.getIsAuthenticated();
 
     this.state = {
       isAutenticado /* indica si esta autenticado el usuario*/,
