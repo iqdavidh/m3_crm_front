@@ -79,10 +79,16 @@ class FormUsuario extends Component {
     const dataUsuario = this.observerData.getAllDataEdit();
     dataUsuario.id = ObserverUpdateUsuario.id_usuario;
 
-    const isNewUsuario = !dataUsuario.id;
-
-    const respuestaSave = await DataService.insertUsuario(dataUsuario);
     this.observerData.onMostrarWait(true);
+
+    const isNewUsuario = !dataUsuario.id;
+    let respuestaSave;
+
+    if (isNewUsuario) {
+      respuestaSave = await DataService.insertUsuario(dataUsuario);
+    } else {
+      respuestaSave = await DataService.updateUsuario(dataUsuario);
+    }
 
     if (!respuestaSave.success) {
       LibToast.alert(respuestaSave.msg);
@@ -151,7 +157,8 @@ class FormUsuario extends Component {
       </Button>
     );
 
-    const operacion = 'Crear';
+    const operacion =
+      ObserverUpdateUsuario.id_usuario === null ? 'Crear' : 'Editar';
 
     return (
       <Modal show={this.props.isShow} onHide={event => this.props.onClose()}>

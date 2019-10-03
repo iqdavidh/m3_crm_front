@@ -30,16 +30,36 @@ class BrowserUsuarios extends Component {
     ObserverUpdateUsuario.onAddUsuario = () => {
       this.setState({
         idUsuarioSelected: null,
-        usuarioSelected: {},
+        usuarioSelected: {
+          id: null,
+          nombre: '',
+          nick: '',
+          email: '',
+          is_admin: false,
+          is_activo: true
+        },
         isShowFormUsuario: true
       });
     };
 
+    ObserverUpdateUsuario.registraCbInsertModel(this.onInsertUsuario);
     ObserverUpdateUsuario.registraCbUpdateModel(this.onUpdateUsuario);
 
     //no importa el async
     this.loadAllUsuarios();
   }
+
+  onInsertUsuario = (idUsuario, usuarioInsert) => {
+    let listaUsuarios = [...this.state.listaUsuarios, usuarioInsert];
+    let listaFiltrada = [...this.state.listaFiltrada, usuarioInsert];
+
+    this.setState({
+      listaUsuarios,
+      listaFiltrada,
+      idUsuarioSelected: usuarioInsert.id,
+      isShowFormUsuario: false
+    });
+  };
 
   onUpdateUsuario = usuarioUpdated => {
     //actualizar el usaurio
