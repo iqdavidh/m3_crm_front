@@ -4,7 +4,7 @@ import AutService from '../../servicios/autService/AutService';
 
 class TopBar extends Component {
   render() {
-    const nombreUsuario = AutService.getCurrentSession().usuario.nombre;
+    const nombreUsuario = AutService.getCurrentSession().nick;
 
     return (
       <Navbar className="cell cell-topbar flexDiv" bg="dark" variant="dark">

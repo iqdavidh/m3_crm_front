@@ -8,7 +8,7 @@ const DataLocal = {
   indexCliente: async pagina => {
     const session = AutService.getCurrentSession();
 
-    const idUsuario = session.usuario.id_usuario;
+    const idUsuario = 1;
 
     let listaClientesDelUsuario = clientes_dataLocal.filter(c => {
       return (c.id_usuario = idUsuario);

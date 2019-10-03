@@ -7,7 +7,12 @@ class Cuenta extends Component {
     return (
       <div className="container-main-cuenta">
         <TopBar />
-        <PanCuenta />
+
+        <div className="row justify-content-center">
+          <div className="col-6 p-2">
+            <PanCuenta />
+          </div>
+        </div>
       </div>
     );
   }
