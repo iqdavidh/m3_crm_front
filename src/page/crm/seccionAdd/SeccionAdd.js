@@ -76,7 +76,7 @@ class SeccionAdd extends Component {
     }
 
     model.id = respuesta.data.id;
-    model.usuario = AuthService.getUser().usuario.nombre;
+    model.usuario = AuthService.getUser().nombre;
     model.fecha = this.fechaNow;
 
     ObserverDataPersonal.addSeguimiento(model);

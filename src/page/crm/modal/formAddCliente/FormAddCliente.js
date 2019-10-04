@@ -93,6 +93,14 @@ class FormAddCliente extends Component {
     const cliente = { ...dataInsert };
 
     cliente.id_cliente = idCliente;
+
+    //inicializzaar el seguiimiento
+    cliente.gestion = {
+      listaSeguimiento: [],
+      listaTarea: [],
+      listaMsg: []
+    };
+
     cliente.indicadores = {
       funelIndex: 1
     };
