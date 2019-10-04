@@ -12,6 +12,7 @@ class Registrarse extends Component {
       nick: '',
       email: '',
       password: '',
+      passwordconfirm: '',
       isEnProceso: false
     };
   }
@@ -23,10 +24,23 @@ class Registrarse extends Component {
   }
 
   onClickRegistrarse = async () => {
+    const nombre = this.state.nombre.trim();
+    const nick = this.state.nick.trim();
     const email = this.state.email.trim();
     const pass = this.state.password.trim();
+    const passwordconfirm = this.state.passwordconfirm.trim();
 
     let isValid = true;
+
+    if (nombre === '') {
+      LibToast.alert('Falta el Nombre');
+      isValid = false;
+    }
+
+    if (nick === '') {
+      LibToast.alert('Falta el Nick (nombre corto)');
+      isValid = false;
+    }
 
     if (email === '') {
       LibToast.alert('Falta el Email');
@@ -34,7 +48,12 @@ class Registrarse extends Component {
     }
 
     if (pass === '') {
-      LibToast.alert('Falta el Password');
+      LibToast.alert('Falta el pass');
+      isValid = false;
+    }
+
+    if (passwordconfirm === '') {
+      LibToast.alert('Falta la confirmación del password');
       isValid = false;
     }
 
@@ -42,13 +61,18 @@ class Registrarse extends Component {
       return;
     }
 
+    if (pass !== passwordconfirm) {
+      LibToast.alert('La confirmación del password no coincide');
+      return;
+    }
+
     this.setState({
       isEnProceso: true
     });
 
-    /*Hacer el proceso de login*/
+    /*Hacer el proceso de registro*/
 
-    let respuesta = await DataService.login(email, pass);
+    let respuesta = await DataService.registrarse(nombre, nick, email, pass);
 
     if (!respuesta.success) {
       LibToast.alert(respuesta.msg);
@@ -103,6 +127,30 @@ class Registrarse extends Component {
 
             <h5 className="card-title text-center">Registrarse</h5>
 
+            <div className="form-group mt-4">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nombre"
+                value={this.state.nombre}
+                onChange={event =>
+                  this.onTxtChange('nombre', event.target.value)
+                }
+                required
+              />
+            </div>
+
+            <div className="form-group mt-4">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nick"
+                value={this.state.nick}
+                onChange={event => this.onTxtChange('nick', event.target.value)}
+                required
+              />
+            </div>
+
             <div className="form-signin">
               <div className="form-group">
                 <input
@@ -121,7 +169,6 @@ class Registrarse extends Component {
               <div className="form-group mt-4">
                 <input
                   type="password"
-                  id="inputPassword"
                   className="form-control"
                   placeholder="Password"
                   value={this.state.password}
@@ -135,12 +182,11 @@ class Registrarse extends Component {
               <div className="form-group mt-4">
                 <input
                   type="password"
-                  id="inputPassword"
                   className="form-control"
-                  placeholder="Password"
-                  value={this.state.password}
+                  placeholder="Confirmación de Password"
+                  value={this.state.passwordconfirm}
                   onChange={event =>
-                    this.onTxtChange('password', event.target.value)
+                    this.onTxtChange('passwordconfirm', event.target.value)
                   }
                   required
                 />
@@ -149,6 +195,13 @@ class Registrarse extends Component {
               {btnRegistrarse}
               <div className="espaciocenter">{iconLoading}</div>
             </div>
+
+            <p className="mt-5">
+              <a className="linkRojo " href="/">
+                <i className="fa fa-arrow-left" /> Ingresar con Email &amp;
+                Password
+              </a>
+            </p>
           </div>
         </div>
       </div>

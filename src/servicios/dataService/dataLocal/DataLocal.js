@@ -203,6 +203,22 @@ const DataLocal = {
         msg: 'Datos incorrectos'
       };
     }
+  },
+
+  registrarse: async (nombre, nick, email, password) => {
+    return {
+      success: true,
+      msg: '',
+      data: {
+        token: '***',
+        public_data: {
+          email: 'david@productividadti.com.mx',
+          nombre: 'david huerta',
+          nick: 'davidh',
+          es_admin: false
+        }
+      }
+    };
   }
 };
 
