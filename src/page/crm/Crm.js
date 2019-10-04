@@ -9,6 +9,7 @@ import FormAddCliente from './modal/formAddCliente/FormAddCliente';
 import ObserverTopBarCrm from './topBarCrm/ObserverTopBarCrm';
 import ObserverNewCliente from './modal/formAddCliente/ObserverNewCliente';
 import ObserverDataPersonal from './seccionMain/panmainPersonal/ObserverDataPersonal';
+import AuthService from '../../servicios/authService/AuthService';
 
 class Crm extends Component {
   constructor(props, context) {
@@ -53,6 +54,12 @@ class Crm extends Component {
   }
 
   render() {
+    //verificar la authenticacion
+    if (!AuthService.getIsAuthenticated()) {
+      this.props.history.push('/');
+      return null;
+    }
+
     let cssTituloCliente = 'cell-data-titulo ' + this.state.estatusCliente;
 
     return (

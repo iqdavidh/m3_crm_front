@@ -34,10 +34,12 @@ class App extends React.Component {
     });
   }
 
-  onSetAuthenticacion = b => {
+  onLogIn = () => {
     this.setState({
-      isAutenticado: b
+      isAutenticado: false
     });
+
+    window.location = '/crm';
   };
 
   onLogOut = () => {
@@ -66,9 +68,7 @@ class App extends React.Component {
             <Route
               path="/"
               exact
-              component={() => (
-                <Login onSetAuthenticacion={() => this.onSetAuthenticacion()} />
-              )}
+              component={() => <Login onLogIn={() => this.onLogIn()} />}
             />
             <Route path="/crm" exact component={Crm} />
             <Route path="/admin" component={Admin} />

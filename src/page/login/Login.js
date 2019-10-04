@@ -66,7 +66,7 @@ class Login extends Component {
     );
 
     //Actualizar la authenticacion en el estado de la aplicación
-    this.props.onSetAuthenticacion(true);
+    this.props.onLogIn();
   };
 
   render() {
