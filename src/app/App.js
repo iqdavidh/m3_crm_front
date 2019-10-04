@@ -15,6 +15,7 @@ import Login from '../page/login/Login';
 import Crm from '../page/crm/Crm';
 import { ToastContainer } from 'react-toastify';
 import ObserverWindowH from '../lib/ObserverWindowH';
+import Registrarse from '../page/registrarse/Registrarse';
 
 class App extends React.Component {
   constructor(props) {
@@ -70,6 +71,12 @@ class App extends React.Component {
               exact
               component={() => <Login onLogIn={() => this.onLogIn()} />}
             />
+            <Route
+              path="/registrarse"
+              exact
+              component={() => <Registrarse onLogIn={() => this.onLogIn()} />}
+            />
+
             <Route path="/crm" exact component={Crm} />
             <Route path="/admin" component={Admin} />
             <Route path="/cuenta" component={Cuenta} />

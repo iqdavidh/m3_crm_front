@@ -181,3 +181,6 @@ a:-webkit-any-link {
 }
 
 .tituloAPP{text-align: center; font-size: 30px; margin: 20px 0 40px }
+
+.linkRojo {color:red; text-align: right}
+

@@ -3,14 +3,15 @@ import LibToast from '../../lib/LibToast';
 import DataService from '../../servicios/dataService/DataService';
 import AuthService from '../../servicios/authService/AuthService';
 
-class Login extends Component {
+class Registrarse extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
+      nombre: '',
+      nick: '',
       email: '',
       password: '',
-
       isEnProceso: false
     };
   }
@@ -21,7 +22,7 @@ class Login extends Component {
     this.setState(dic);
   }
 
-  onClickLogin = async () => {
+  onClickRegistrarse = async () => {
     const email = this.state.email.trim();
     const pass = this.state.password.trim();
 
@@ -83,13 +84,13 @@ class Login extends Component {
       </div>
     );
 
-    const btnLogin = !this.state.isEnProceso && (
+    const btnRegistrarse = !this.state.isEnProceso && (
       <button
         className="btn btn-lg btn-primary btn-block text-uppercase mt-5"
-        onClick={event => this.onClickLogin()}
+        onClick={event => this.onClickRegistrarse()}
         type="submit"
       >
-        Login
+        Registrarse
       </button>
     );
 
@@ -100,7 +101,7 @@ class Login extends Component {
           <div className="col-sm-10 col-md-6 col-lg-4">
             <h2 className="tituloAPP">CRM Ironhack</h2>
 
-            <h5 className="card-title text-center">Ingresar</h5>
+            <h5 className="card-title text-center">Registrarse</h5>
 
             <div className="form-signin">
               <div className="form-group">
@@ -130,31 +131,29 @@ class Login extends Component {
                   required
                 />
               </div>
-              {btnLogin}
+
+              <div className="form-group mt-4">
+                <input
+                  type="password"
+                  id="inputPassword"
+                  className="form-control"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={event =>
+                    this.onTxtChange('password', event.target.value)
+                  }
+                  required
+                />
+              </div>
+
+              {btnRegistrarse}
               <div className="espaciocenter">{iconLoading}</div>
             </div>
-
-            <div className="mt-5 text-center">
-              Cuenta admin demo:
-              <br />
-              david@productividadti.com.mx
-              <br />
-              password:
-              <br />
-              iron
-            </div>
-            <p className="mt-5">
-              <a className="linkRojo " href="/registrarse">
-                Registrarse <i className="fa fa-arrow-right" />
-              </a>
-            </p>
           </div>
         </div>
-
-        <div className="row"></div>
       </div>
     );
   }
 }
 
-export default Login;
+export default Registrarse;
