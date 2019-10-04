@@ -5,7 +5,7 @@ import ObserverWindowH from '../../../../lib/ObserverWindowH';
 import ItemClienteLista from './ItemClienteLista';
 import BoxFiltroListaCliente from './BoxFiltroListaCliente';
 import LibToast from '../../../../lib/LibToast';
-import DataService from '../../../../servicios/dataService/dataLocal/DataLocal';
+import DataService from '../../../../servicios/dataService/DataService';
 import BoxOrderListaCliente from './BoxOrderListaCliente';
 
 import ObserverDataPersonal from '../../seccionMain/panmainPersonal/ObserverDataPersonal';

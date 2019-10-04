@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ObserverUsuarios from '../ObserverUsuarios';
-import DataService from '../../../servicios/dataService/dataLocal/DataLocal';
+import DataService from '../../../servicios/dataService/DataService';
 import LibToast from '../../../lib/LibToast';
 import BoxFiltroListaUsuario from './BoxFiltroListaUsuario';
 import FormUsuario from '../modal/formUsuario/FormUsuario';
