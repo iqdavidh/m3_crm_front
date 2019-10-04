@@ -171,3 +171,11 @@ table.teditdata tr td {
 
 .colorNoResalta{color:#b3b3b3}
 .colorAlert{color:red}
+
+.cursorPointer{
+   cursor: pointer;
+}
+
+a:-webkit-any-link {
+   text-decoration: none;
+}

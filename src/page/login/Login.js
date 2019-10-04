@@ -10,6 +10,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+
       isEnProceso: false
     };
   }
@@ -63,6 +64,9 @@ class Login extends Component {
       respuesta.data.token,
       true
     );
+
+    //Actualizar la authenticacion en el estado de la aplicación
+    this.props.onSetAuthenticacion(true);
   };
 
   render() {

@@ -34,7 +34,7 @@ class App extends React.Component {
     });
   }
 
-  onChangeLogin = b => {
+  onSetAuthenticacion = b => {
     this.setState({
       isAutenticado: b
     });
@@ -56,7 +56,7 @@ class App extends React.Component {
         </Router>
       );
     } else {
-      login = <Login />;
+      login = <Login onSetAuthenticacion={() => this.onSetAuthenticacion()} />;
     }
 
     return (

@@ -18,9 +18,7 @@ export default props => {
         Administración
       </a>
 
-      <a className="menu-item" href="/logout">
-        Salir
-      </a>
+      <span className="menu-item cursorPointer">Salir</span>
     </Menu>
   );
 };
