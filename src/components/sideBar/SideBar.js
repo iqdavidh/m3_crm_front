@@ -18,7 +18,10 @@ export default props => {
         Administración
       </a>
 
-      <span onClick={props.onLogOut()} className="menu-item cursorPointer">
+      <span
+        onClick={event => props.onLogOut()}
+        className="menu-item cursorPointer"
+      >
         Salir
       </span>
     </Menu>

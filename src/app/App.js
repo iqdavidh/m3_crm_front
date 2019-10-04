@@ -40,6 +40,10 @@ class App extends React.Component {
     });
   };
 
+  onLogOut = () => {
+    console.log('onLogOut');
+  };
+
   render() {
     let appRouter = null;
     let login = null;
@@ -47,7 +51,11 @@ class App extends React.Component {
     if (this.state.isAutenticado) {
       appRouter = (
         <Router>
-          <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
+          <SideBar
+            pageWrapId={'page-wrap'}
+            outerContainerId={'App'}
+            onLogOut={() => this.onLogOut()}
+          />
           <div>
             <Route path="/crm" exact component={Crm} />
             <Route path="/admin" component={Admin} />
