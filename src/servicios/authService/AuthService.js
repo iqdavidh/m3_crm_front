@@ -77,7 +77,7 @@ if (isDummyAuth) {
       email: 'david@productividadti.com.mx',
       nombre: 'david huerta',
       nick: 'davidh',
-      es_admin: true
+      is_admin: true
     },
     '******'
   );

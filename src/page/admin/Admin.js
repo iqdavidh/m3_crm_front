@@ -28,7 +28,7 @@ class Admin extends Component {
     }
 
     //verificar la authenticacion
-    if (!AuthService.getUser().es_admin) {
+    if (!AuthService.getUser().is_admin) {
       this.props.history.push('/crm');
       return null;
     }

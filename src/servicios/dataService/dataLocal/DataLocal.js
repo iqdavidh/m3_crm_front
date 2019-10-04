@@ -193,7 +193,7 @@ const DataLocal = {
             email: 'david@productividadti.com.mx',
             nombre: 'david huerta',
             nick: 'davidh',
-            es_admin: true
+            is_admin: true
           }
         }
       };
@@ -215,7 +215,7 @@ const DataLocal = {
           email: 'david@productividadti.com.mx',
           nombre: 'david huerta',
           nick: 'davidh',
-          es_admin: false
+          is_admin: false
         }
       }
     };
