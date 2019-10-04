@@ -41,7 +41,7 @@ class PanHistCom extends Component {
 
     let listaTR = this.state.listaSeg.map((item, index) => {
       return (
-        <tr key={item.id}>
+        <tr key={item._id}>
           <td>{index + 1}</td>
           <td>{item.fecha}</td>
           <td>{item.tipo}</td>
