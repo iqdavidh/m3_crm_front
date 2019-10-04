@@ -7,7 +7,7 @@ class Cuenta extends Component {
   render() {
     //verificar la authenticacion
     if (!AuthService.getIsAuthenticated()) {
-      this.props.history.push('/');
+      window.location.href = '/';
       return null;
     }
 

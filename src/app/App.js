@@ -69,7 +69,9 @@ class App extends React.Component {
             <Route
               path="/"
               exact
-              component={() => <Login onLogIn={() => this.onLogIn()} />}
+              component={() => (
+                <Login {...this.props} onLogIn={() => this.onLogIn()} />
+              )}
             />
             <Route
               path="/registrarse"

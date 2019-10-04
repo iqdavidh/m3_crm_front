@@ -72,7 +72,7 @@ class Login extends Component {
   render() {
     //verificar la authenticacion
     if (AuthService.getIsAuthenticated()) {
-      this.props.history.push('/crm');
+      window.location.href = '/crm';
       return null;
     }
 
@@ -150,8 +150,6 @@ class Login extends Component {
             </p>
           </div>
         </div>
-
-        <div className="row"></div>
       </div>
     );
   }

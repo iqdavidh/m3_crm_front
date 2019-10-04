@@ -97,7 +97,7 @@ class Registrarse extends Component {
   render() {
     //verificar la authenticacion
     if (AuthService.getIsAuthenticated()) {
-      this.props.history.push('/crm');
+      window.location.href = '/crm';
       return null;
     }
 
