@@ -6,8 +6,6 @@ const paginacion = 100;
 
 const DataLocal = {
   indexCliente: async pagina => {
-    const session = AuthService.getUser();
-
     const idUsuario = 1;
 
     let listaClientesDelUsuario = clientes_dataLocal.filter(c => {

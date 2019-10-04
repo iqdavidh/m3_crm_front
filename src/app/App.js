@@ -49,7 +49,7 @@ class App extends React.Component {
         <Router>
           <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
           <div>
-            <Route path="/" exact component={Crm} />
+            <Route path="/crm" exact component={Crm} />
             <Route path="/admin" component={Admin} />
             <Route path="/cuenta" component={Cuenta} />
           </div>

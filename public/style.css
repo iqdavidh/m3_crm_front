@@ -179,3 +179,5 @@ table.teditdata tr td {
 a:-webkit-any-link {
    text-decoration: none;
 }
+
+.tituloAPP{text-align: center; font-size: 30px; margin: 20px 0 40px }

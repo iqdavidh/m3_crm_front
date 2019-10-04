@@ -10,7 +10,7 @@ export default props => {
         @iqdavidh
       </p>
 
-      <a className="menu-item" href="/">
+      <a className="menu-item" href="/crm">
         Clientes
       </a>
 
@@ -18,7 +18,9 @@ export default props => {
         Administración
       </a>
 
-      <span className="menu-item cursorPointer">Salir</span>
+      <span onClick={props.onLogOut()} className="menu-item cursorPointer">
+        Salir
+      </span>
     </Menu>
   );
 };

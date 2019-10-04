@@ -7,7 +7,11 @@ class TopBar extends Component {
   constructor(props, context) {
     super(props, context);
 
-    let nick = AuthService.getUser().nick;
+    let nick = '';
+
+    if (AuthService.getIsAuthenticated()) {
+      nick = AuthService.getUser().nick;
+    }
 
     this.state = {
       nick

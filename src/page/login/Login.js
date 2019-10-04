@@ -88,45 +88,44 @@ class Login extends Component {
     );
 
     return (
-      <div>
-        <div className="row pt-4">
-          <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div className="card card-signin my-5">
-              <div className="card-body">
-                <h5 className="card-title text-center">Ingresar</h5>
+      <div className="container">
+        <div className="row mt-5">
+          <div className="col-sm-2 col-md-3 col-lg-4" />
+          <div className="col-sm-10 col-md-6 col-lg-4">
+            <h2 className="tituloAPP">CRM Ironhack</h2>
 
-                <div className="form-signin">
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="Email"
-                      value={this.state.email}
-                      onChange={event =>
-                        this.onTxtChange('email', event.target.value)
-                      }
-                      required
-                      autoFocus
-                    />
-                  </div>
+            <h5 className="card-title text-center">Ingresar</h5>
 
-                  <div className="form-group mt-4">
-                    <input
-                      type="password"
-                      id="inputPassword"
-                      className="form-control"
-                      placeholder="Password"
-                      value={this.state.password}
-                      onChange={event =>
-                        this.onTxtChange('password', event.target.value)
-                      }
-                      required
-                    />
-                  </div>
-                  {btnLogin}
-                  <div className="espaciocenter">{iconLoading}</div>
-                </div>
+            <div className="form-signin">
+              <div className="form-group">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChange={event =>
+                    this.onTxtChange('email', event.target.value)
+                  }
+                  required
+                  autoFocus
+                />
               </div>
+
+              <div className="form-group mt-4">
+                <input
+                  type="password"
+                  id="inputPassword"
+                  className="form-control"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={event =>
+                    this.onTxtChange('password', event.target.value)
+                  }
+                  required
+                />
+              </div>
+              {btnLogin}
+              <div className="espaciocenter">{iconLoading}</div>
             </div>
           </div>
         </div>
