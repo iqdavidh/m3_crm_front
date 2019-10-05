@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import LibAsyncReqJson from './LibAsyncReqJson';
+import libAsyncReqJson from './LibAsyncReqJson';
 
 /*
  * La libreria para hacer todas las lalmdas http REST , usamos await async
@@ -16,7 +16,7 @@ describe('LibAsyncReqJson  ', function() {
   it('requestGET', async () => {
     let url = 'https://jsonplaceholder.typicode.com/todos/1';
 
-    let respuesta = await LibAsyncReqJson.requestGET(url);
+    let respuesta = await libAsyncReqJson.requestGET(url);
 
     assert(
       typeof respuesta === 'object',
@@ -33,7 +33,7 @@ describe('LibAsyncReqJson  ', function() {
       userId: 1
     };
 
-    let respuestaPost = await LibAsyncReqJson.requestPOST(url, dataPost);
+    let respuestaPost = await libAsyncReqJson.requestPOST(url, dataPost);
 
     assert(
       typeof respuestaPost === 'object',
@@ -45,7 +45,7 @@ describe('LibAsyncReqJson  ', function() {
   it('requestDELETE', async () => {
     let url = 'https://jsonplaceholder.typicode.com/todos/1';
 
-    let respuesta = await LibAsyncReqJson.requestDELETE(url);
+    let respuesta = await libAsyncReqJson.requestDELETE(url);
 
     assert(
       typeof respuesta === 'object',

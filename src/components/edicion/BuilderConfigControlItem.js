@@ -21,6 +21,15 @@ class BuilderConfigControlItem {
     return this;
   }
 
+  setTipoCHK(listaOptions) {
+    this.configControlItem.tipo = 'CHK';
+    return this;
+  }
+
+  setIsCampoEmail() {
+    this.configControlItem.subtipo = 'email';
+  }
+
   getConfigControlItem() {
     return this.configControlItem;
   }

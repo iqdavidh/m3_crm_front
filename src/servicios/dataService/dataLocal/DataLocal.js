@@ -1,13 +1,12 @@
 import clientes_dataLocal from './clientes_datalocal';
-import AutService from '../../autService/AutService';
+import AuthService from '../../authService/AuthService';
+import listaUsuarios from './usuarios_index';
 
 const paginacion = 100;
 
 const DataLocal = {
   indexCliente: async pagina => {
-    const session = AutService.getCurrentSession();
-
-    const idUsuario = session.usuario.id_usuario;
+    const idUsuario = 1;
 
     let listaClientesDelUsuario = clientes_dataLocal.filter(c => {
       return (c.id_usuario = idUsuario);
@@ -122,6 +121,104 @@ const DataLocal = {
     };
 
     return Promise.resolve(d);
+  },
+
+  insertSeguimiento: async model => {
+    const id_cliente = model.id_cliente;
+
+    //agregar el regsitros
+    const cliente = clientes_dataLocal.find(c => {
+      return c.id_cliente.toString() === id_cliente.toString();
+    });
+
+    const idSeguimiento = Math.random() * 100000;
+
+    const data = {
+      id: idSeguimiento
+    };
+
+    model.id = idSeguimiento;
+
+    //evitar el dobre insert porque es el mismo array que el front
+    // cliente.gestion.listaSeguimiento.unshift(model);
+
+    return {
+      success: true,
+      msg: '',
+      data
+    };
+  },
+
+  indexUsuario: async () => {
+    let lista = listaUsuarios;
+
+    return {
+      success: true,
+      msg: '',
+      data: {
+        lista
+      }
+    };
+  },
+
+  insertUsuario: async dataInsert => {
+    const id = Math.random() * 100000;
+    //listaUsuarios.unshift(dataInsert);
+
+    return {
+      success: true,
+      msg: '',
+      data: {
+        id
+      }
+    };
+  },
+
+  updateUsuario: async dataUpate => {
+    return {
+      success: true,
+      msg: '',
+      data: {}
+    };
+  },
+
+  login: async (email, password) => {
+    if (password === 'x') {
+      return {
+        success: true,
+        msg: '',
+        data: {
+          token: '***',
+          public_data: {
+            email: 'david@productividadti.com.mx',
+            nombre: 'david huerta',
+            nick: 'davidh',
+            is_admin: true
+          }
+        }
+      };
+    } else {
+      return {
+        success: false,
+        msg: 'Datos incorrectos'
+      };
+    }
+  },
+
+  registrarse: async (nombre, nick, email, password) => {
+    return {
+      success: true,
+      msg: '',
+      data: {
+        token: '***',
+        public_data: {
+          email: 'david@productividadti.com.mx',
+          nombre: 'david huerta',
+          nick: 'davidh',
+          is_admin: false
+        }
+      }
+    };
   }
 };
 

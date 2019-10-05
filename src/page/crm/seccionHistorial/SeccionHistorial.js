@@ -23,7 +23,7 @@ class SeccionHistorial extends Component {
       <PestanaTab
         icon="fa fa-comment"
         title="Comentarios de Seguimiento"
-        label="Comentarios"
+        label="Seguimiento"
         numCom={this.state.numCom}
       />
     );

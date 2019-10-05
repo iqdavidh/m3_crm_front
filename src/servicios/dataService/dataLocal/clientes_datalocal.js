@@ -7,6 +7,9 @@ import LibFecha from '../../../lib/LibFecha';
 const fNow = new Date();
 
 /* incializar la lista de clientes para tener un data local*/
+
+let indexGestion = 1;
+
 let lista = clientes_base.map(c => {
   c.id_usuario = c.id_usuario.toString();
 
@@ -17,8 +20,12 @@ let lista = clientes_base.map(c => {
 
   numGestion = numGestion > 2 ? numGestion : 0;
 
+  indexGestion++;
+
   if (numGestion > 0) {
     for (let i = 0; i < numGestion; i++) {
+      indexGestion++;
+
       let idTipo = LibNum.getRandom(4);
       let indexComRandom = LibNum.getRandom(15);
       let texto = gestion_base.listaTextoRandom[indexComRandom - 1];
@@ -26,9 +33,10 @@ let lista = clientes_base.map(c => {
       let gestion = gestion_base.listaTipoGestion[idTipo - 1];
       gestion.id_cliente = c.id_cliente;
       gestion.comentario = texto;
+      gestion.id = indexGestion;
 
       let numDiasRandom = LibNum.getRandom(300);
-      gestion.fecha = LibFecha.getDateFromAddDays(fNow, -numDiasRandom);
+      gestion.fecha = '30/09/2019';
       gestion.id_usuario = c.id_usuario;
 
       listaSeguimiento.push(gestion);

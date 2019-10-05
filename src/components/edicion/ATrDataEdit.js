@@ -12,6 +12,22 @@ class ATrDataEdit extends Component {
     };
 
     this.isValid = null;
+
+    this.fnCustomLabel = valor => {
+      return valor.toString();
+    };
+  }
+
+  /***
+   * A partir de un valor bool regresa el control para modo rea
+   * @param fn
+   */
+  setFnCustomLabel(fn) {
+    this.fnCustomLabel = fn;
+  }
+
+  getValueEdit() {
+    return this.state.valorEdit;
   }
 
   getIsValidCurrentValue() {

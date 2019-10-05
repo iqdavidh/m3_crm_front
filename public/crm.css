@@ -1,10 +1,15 @@
 
-.container-main {
+.container-main-crm {
    display: grid;
    min-height: 100vh;
-   grid-template-areas: 'topbar topbar topbar' 'browser add main' 'browser historial historial ';
-   grid-template-columns: 300px auto 600px ;
-   grid-template-rows: 56px 400px auto;
+   grid-template-areas:
+           'topbar topbar topbar'
+           'browser titulo titulo'
+           'browser add main'
+           'browser  historial historial '
+;
+   grid-template-columns: 300px auto 600px;
+   grid-template-rows: 56px 33px 400px auto;
    background-color: #F1F1F1;
 
 }
@@ -42,10 +47,24 @@
    grid-area: historial
 }
 
+.cell-data-titulo{
+   grid-area:titulo;
+   background-color: #000;
+   color:#fff;
+   font-size: 20px; font-weight: bold;
+   padding-left: 5px;
+}
+
+.cell-data-titulo i{margin-right: 5px}
+
+
 /* ****************************************** */
 /* ****************************************** */
 /* ****************************************** */
-:root { --toopBarH: 55px; }
+:root {
+   --toopBarH: 55px;
+}
+
 #wrapperListaCliente {
    padding-top: 5px;
    max-height: 98vh;
@@ -62,7 +81,6 @@
 }
 
 
-
 .labNombreCompleto {
    padding-left: 4px;
    padding-right: 4px;
@@ -73,10 +91,40 @@
    margin-left: 5px;
    display: inline-block
 }
-.labIndex{ width: 40px; text-align: center; font-size: 11px}
+
+.labIndex {
+   width: 40px;
+   text-align: center;
+   font-size: 11px
+}
+
 .labPrioridad {
    width: 50px
 }
+
+/* ***************************************************************************** */
+
+.titulo_p1 {
+   background-color: #fff;
+   color: #000
+}
+
+.titulo_p2 {
+   background-color: #CACED9;
+   color: #000
+}
+
+.titulo_p3 {
+   background-color: #4D94EA;
+   color: #fff
+}
+
+.titulo_p4 {
+   background-color: #006600;
+   color: #fff
+}
+
+/* ***************************************************************************** */
 
 .prioridad1 {
    background-color: #fff;
@@ -98,7 +146,7 @@
    color: #fff
 }
 
-.badgeEstatus{
+.badgeEstatus {
    width: 40px;
 }
 
@@ -109,9 +157,9 @@
 }
 
 
-.tab-pane{ background-color: #fff}
-
-
+.tab-pane {
+   background-color: #fff
+}
 
 
 .panfull {
@@ -123,7 +171,9 @@
    background-color: #fff;
 }
 
-.nav.nav-tabs{background-color: #F1F1F1}
+.nav.nav-tabs {
+   background-color: #F1F1F1
+}
 
 
 /*SEcion Panel edit*/
@@ -132,17 +182,74 @@ tr.trDataEdit td,
 tr.trDataEdit th {
    height: 40px;
 }
-tr.trDataEdit td input.form-control-sm {font-size: 14px}
 
-.labp{padding: 3px 6px; border-radius: 10px}
+tr.trDataEdit td input.form-control-sm {
+   font-size: 14px
+}
+
+.labp {
+   padding: 3px 6px;
+   border-radius: 10px
+}
 
 
 /* ********************************************************** */
 /* ********************************************************** */
+/* seguimiento */
 
-
-.cell-data-add{
+.cell-data-add {
    padding: 5px;
    background-color: #6C757D;
-   color:#fff
+   color: #fff
+}
+
+.btn.btn-black {
+   background-color: #000;
+   color: #fff
+}
+
+.barBtnSeg {
+   display: flex;
+}
+
+.barBtnSeg .btn {
+   flex-grow: 1;
+}
+
+.itemOpcionSelTipo {
+   cursor: pointer;
+   padding: 8px 5px;
+   border-bottom:1px solid #fff;
+   border-collapse: collapse;
+   display: flex;
+}
+
+.itemOpcionSelTipo.contactado {
+   background-color: #28A745;
+}
+
+.itemOpcionSelTipo.contactado.opselected {
+   background-color: #34ce57;
+}
+
+
+.itemOpcionSelTipo.nocontactado {
+   background-color: #000;
+}
+
+.itemOpcionSelTipo.nocontactado.opselected {
+   background-color: #444;
+}
+
+.itemOpcionSelTipo span{
+   flex-grow: 1;
+}
+
+
+textarea.form-control.txtSeguimeinto{
+height: 80px;
+}
+
+.wrapperComSeg{
+   margin-top: 3px; margin-bottom: 5px;
 }

@@ -1,47 +1,58 @@
 import React, { Component } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import ObserverNewCliente from './ObserverNewCliente';
 import BuilderConfigControlItem from '../../../../components/edicion/BuilderConfigControlItem';
-import FactoryListaDataEdit from '../../../../components/edicion/FactoryListaDataEdit';
 import DataService from '../../../../servicios/dataService/DataService';
 import LibToast from '../../../../lib/LibToast';
+import ObserverUpdateUsuario from './ObserverUpdateUsuario';
+import { Button, Modal } from 'react-bootstrap';
+import FactoryListaDataEdit from '../../../../components/edicion/FactoryListaDataEdit';
 
-class FormAddCliente extends Component {
+class FormUsuario extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.observerData = ObserverNewCliente;
+    this.observerData = ObserverUpdateUsuario;
 
     let lista = [];
 
-    const builderNombre = new BuilderConfigControlItem('nombre', 'Nombre');
-    builderNombre.setIsRequired();
-    lista.push(builderNombre.getConfigControlItem());
-
-    /*------------------------------------------------------------*/
-    const builderAPaterno = new BuilderConfigControlItem(
-      'apaterno',
-      'A. Paterno'
-    );
-    builderAPaterno.setIsRequired();
-    lista.push(builderAPaterno.getConfigControlItem());
-
-    /*------------------------------------------------------------*/
-    const builderAMaterno = new BuilderConfigControlItem(
-      'amaterno',
-      'A. Materno'
-    );
-    builderAMaterno.setIsRequired();
-    lista.push(builderAMaterno.getConfigControlItem());
+    {
+      const b = new BuilderConfigControlItem('nombre', 'Nombre');
+      b.setIsRequired();
+      lista.push(b.getConfigControlItem());
+    }
 
     /*------------------------------------------------------------*/
     {
-      const b = new BuilderConfigControlItem('email1', 'Email');
+      const b = new BuilderConfigControlItem('nick', 'Nick (Nombre Corto)');
+      b.setIsRequired();
+      lista.push(b.getConfigControlItem());
+    }
+
+    /*------------------------------------------------------------*/
+    {
+      const b = new BuilderConfigControlItem('email', 'Email');
+      b.setIsCampoEmail();
       lista.push(b.getConfigControlItem());
     }
     /*------------------------------------------------------------*/
     {
-      const b = new BuilderConfigControlItem('tel', 'Teléfono');
+      const b = new BuilderConfigControlItem('is_admin', 'Es Administrador');
+      b.setTipoCHK();
+      lista.push(b.getConfigControlItem());
+    }
+    /*------------------------------------------------------------*/
+    {
+      const b = new BuilderConfigControlItem('password', 'Password');
+      b.setIsRequired();
+      lista.push(b.getConfigControlItem());
+    }
+
+    /*------------------------------------------------------------*/
+    {
+      const b = new BuilderConfigControlItem(
+        'is_activo',
+        'Esta activo el usuario'
+      );
+      b.setTipoCHK();
       lista.push(b.getConfigControlItem());
     }
 
@@ -53,13 +64,6 @@ class FormAddCliente extends Component {
     this.listaConfigControl = lista;
 
     this.state = {
-      clienteNew: {
-        nombre: '',
-        apaterno: '',
-        amaterno: '',
-        email1: '',
-        tel: ''
-      },
       isEnProceso: false,
       isValidData: false
     };
@@ -74,41 +78,43 @@ class FormAddCliente extends Component {
       });
     });
 
-    this.observerData.registrarCbSaveData(this.cbSaveNewCliente);
+    this.observerData.registrarCbSaveData(this.cbSaveUsuario);
   }
 
-  cbSaveNewCliente = async () => {
-    const dataInsert = this.observerData.getDataEdit();
-    const respuestaSave = await DataService.insertCliente(dataInsert);
-    this.observerData.onMostrarWait(false);
+  cbSaveUsuario = async () => {
+    const dataUsuario = this.observerData.getAllDataEdit();
+    dataUsuario.id = ObserverUpdateUsuario.id_usuario;
+
+    this.observerData.onMostrarWait(true);
+
+    const isNewUsuario = !dataUsuario.id;
+    let respuestaSave;
+
+    if (isNewUsuario) {
+      respuestaSave = await DataService.insertUsuario(dataUsuario);
+    } else {
+      respuestaSave = await DataService.updateUsuario(dataUsuario);
+    }
 
     if (!respuestaSave.success) {
       LibToast.alert(respuestaSave.msg);
       return;
     }
 
-    const idCliente = respuestaSave.data.id_cliente;
-
     //crear nuevo modelo
-    const cliente = { ...dataInsert };
+    const usuario = { ...dataUsuario };
+    usuario.updated_at = new Date();
 
-    cliente.id_cliente = idCliente;
+    if (isNewUsuario) {
+      usuario.id = respuestaSave.data.id;
+      LibToast.success('Usuario agregado');
+      this.observerData.onInsertModel(usuario.id, usuario);
+    } else {
+      LibToast.success('Usuario actualizado');
+      this.observerData.onUpdateModel(usuario);
+    }
 
-    //inicializzaar el seguiimiento
-    cliente.gestion = {
-      listaSeguimiento: [],
-      listaTarea: [],
-      listaMsg: []
-    };
-
-    cliente.indicadores = {
-      funelIndex: 1
-    };
-    cliente.updated_at = new Date();
-
-    LibToast.success('Cliente Actualizado');
-
-    this.observerData.onInsertModel(idCliente, cliente);
+    this.observerData.onMostrarWait(false);
   };
 
   onClickSave() {
@@ -127,7 +133,7 @@ class FormAddCliente extends Component {
 
   render() {
     let lista = FactoryListaDataEdit(
-      this.state.clienteNew,
+      this.props.usuario,
       this.listaConfigControl,
       this.observerData
     );
@@ -157,11 +163,14 @@ class FormAddCliente extends Component {
       </Button>
     );
 
+    const operacion =
+      ObserverUpdateUsuario.id_usuario === null ? 'Crear' : 'Editar';
+
     return (
       <Modal show={this.props.isShow} onHide={event => this.props.onClose()}>
         <Modal.Header closeButton>
           <Modal.Title>
-            <i className="fa fa-user"></i> Crear Cliente
+            <i className="fa fa-user" /> {operacion} Usuario
           </Modal.Title>
         </Modal.Header>
 
@@ -181,4 +190,4 @@ class FormAddCliente extends Component {
   }
 }
 
-export default FormAddCliente;
+export default FormUsuario;

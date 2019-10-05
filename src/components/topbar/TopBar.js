@@ -1,10 +1,33 @@
 import React, { Component } from 'react';
 import { Navbar, NavDropdown } from 'react-bootstrap';
-import AutService from '../../servicios/autService/AutService';
+import AuthService from '../../servicios/authService/AuthService';
+import ObserverTopBarEvent from './ObserverTopBarEvent';
 
 class TopBar extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    let nick = '';
+
+    if (AuthService.getIsAuthenticated()) {
+      nick = AuthService.getUser().nick;
+    }
+
+    this.state = {
+      nick
+    };
+
+    ObserverTopBarEvent.registrarFnOnNickchange(this.onChangeNick);
+  }
+
+  onChangeNick = nick => {
+    this.setState({
+      nick
+    });
+  };
+
   render() {
-    const nombreUsuario = AutService.getCurrentSession().usuario.nombre;
+    const nombreUsuario = this.state.nick;
 
     return (
       <Navbar className="cell cell-topbar flexDiv" bg="dark" variant="dark">

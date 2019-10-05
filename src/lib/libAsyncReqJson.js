@@ -1,4 +1,4 @@
-const isDebug = parseInt(process.env.REACT_APP_ISDEBUG) === 1;
+const isDebug = true;
 
 const consoleIfDebug = data => {
   if (isDebug) {
@@ -6,17 +6,25 @@ const consoleIfDebug = data => {
   }
 };
 
-const LibAsyncReqJson = {
-  requestGET: async url => {
+const libAsyncReqJson = {
+  requestGET: async (url, paramHeader) => {
     consoleIfDebug(url);
+
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    if (typeof paramHeader === 'object') {
+      Object.keys(paramHeader).forEach(key => {
+        headers[key] = paramHeader[key];
+      });
+    }
 
     return await fetch(url, {
       mode: 'cors',
       method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
+      headers
     })
       .then(response => {
         return response.json();
@@ -36,16 +44,24 @@ const LibAsyncReqJson = {
       });
   },
 
-  requestPOST: async (url, dataObject) => {
+  requestPOST: async (url, dataObject, paramHeader) => {
     consoleIfDebug(url);
 
-    return await fetch(url, {
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    if (typeof paramHeader === 'object') {
+      Object.keys(paramHeader).forEach(key => {
+        headers[key] = paramHeader[key];
+      });
+    }
+
+    return fetch(url, {
       mode: 'cors',
       method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers,
       body: JSON.stringify(dataObject)
     })
       .then(response => {
@@ -124,4 +140,4 @@ const LibAsyncReqJson = {
   }
 };
 
-export default LibAsyncReqJson;
+export default libAsyncReqJson;

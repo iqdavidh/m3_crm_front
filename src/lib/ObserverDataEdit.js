@@ -16,6 +16,7 @@ class ObserverDataEdit {
       console.log('no implemenado fnSaveData');
       return false;
     };
+
     this.registrarCbSaveData = cb => {
       this.cbSaveData = cb;
     };
@@ -125,15 +126,15 @@ class ObserverDataEdit {
       this.fnInserModelEnd();
     };
 
-    /* cliente selected --------------------------------- */
+    /* registro selected --------------------------------- */
 
-    let listaHandlerOnSetClienteSelected = [];
+    let listaHandlerOnSetRegistroSelected = [];
 
-    this.clienteSelected = null;
-    this.setClienteSelected = (nombreInvocador, clienteSelected) => {
-      this.clienteSelected = clienteSelected;
+    this.registroSelected = null;
+    this.setRegistroSelected = (nombreInvocador, clienteSelected) => {
+      this.registroSelected = clienteSelected;
 
-      listaHandlerOnSetClienteSelected
+      listaHandlerOnSetRegistroSelected
         .filter(suscriptor => {
           return nombreInvocador !== suscriptor.nombre;
         })
@@ -142,8 +143,8 @@ class ObserverDataEdit {
         });
     };
 
-    this.registrarHandlerOnSetClienteSelected = (nombreHandler, h) => {
-      listaHandlerOnSetClienteSelected.push({ nombre: nombreHandler, h });
+    this.registrarHandlerOnSetRegistroSelected = (nombreHandler, h) => {
+      listaHandlerOnSetRegistroSelected.push({ nombre: nombreHandler, h });
     };
 
     /* ------------------------------------------------- */
@@ -246,6 +247,16 @@ class ObserverDataEdit {
 
     this.getDataEdit = () => {
       return this.dataEdit;
+    };
+
+    this.getAllDataEdit = () => {
+      let data = {};
+
+      this.subscriptores.forEach(suscriptor => {
+        data[suscriptor.nombre] = suscriptor.IControlDataEdit.getValueEdit();
+      });
+
+      return data;
     };
   }
 }

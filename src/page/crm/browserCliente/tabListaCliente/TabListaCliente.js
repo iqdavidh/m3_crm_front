@@ -5,7 +5,7 @@ import ObserverWindowH from '../../../../lib/ObserverWindowH';
 import ItemClienteLista from './ItemClienteLista';
 import BoxFiltroListaCliente from './BoxFiltroListaCliente';
 import LibToast from '../../../../lib/LibToast';
-import DataService from '../../../../servicios/dataService/dataLocal/DataLocal';
+import DataService from '../../../../servicios/dataService/DataService';
 import BoxOrderListaCliente from './BoxOrderListaCliente';
 
 import ObserverDataPersonal from '../../seccionMain/panmainPersonal/ObserverDataPersonal';
@@ -29,7 +29,7 @@ class TabListaCliente extends Component {
 
     this.isObserverRegistrado = false;
 
-    ObserverDataPersonal.registrarHandlerOnSetClienteSelected(
+    ObserverDataPersonal.registrarHandlerOnSetRegistroSelected(
       'TabListaCliente',
       this.onSelectCliente
     );
@@ -234,7 +234,8 @@ class TabListaCliente extends Component {
     });
 
     ObserverDataPersonal.onSetCancel();
-    ObserverDataPersonal.setClienteSelected('TabListaCliente', cliente);
+    ObserverDataPersonal.setRegistroSelected('TabListaCliente', cliente);
+    ObserverDataPersonal.updateTituloCRM(cliente);
   };
 
   render() {
@@ -294,7 +295,8 @@ class TabListaCliente extends Component {
       const data = respuesta.data;
 
       const lista = [...this.state.listaClientes, ...data.clientes];
-      const isCompletado = data.numTotalPaginas === pagina;
+      const isCompletado =
+        data.numTotalPaginas === 0 || data.numTotalPaginas === pagina;
 
       this.props.onUpdateNumContactos(lista.length);
 

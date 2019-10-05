@@ -3,31 +3,28 @@ import React from 'react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import AutService from '../servicios/autService/AutService';
+import AuthService from '../servicios/authService/AuthService';
 import SideBar from '../components/sideBar/SideBar';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Supervisor from '../page/supervisor/Supervisor';
 import Admin from '../page/admin/Admin';
 import Cuenta from '../page/cuenta/Cuenta';
 import Login from '../page/login/Login';
-import Logout from '../page/logout/Logout';
+
 import Crm from '../page/crm/Crm';
 import { ToastContainer } from 'react-toastify';
 import ObserverWindowH from '../lib/ObserverWindowH';
+import Registrarse from '../page/registrarse/Registrarse';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    const session = AutService.getCurrentSession();
-    const isAutenticado = session !== null;
+    const isAutenticado = AuthService.getIsAuthenticated();
 
     this.state = {
-      isAutenticado /* indica si esta autenticado el usuario*/,
-      session /*propiamente los datos de la seession*/,
-      isCRMRequireReloadData: true /*indica si debemos volver a solocitar los datos del crm - caso de asignar clientes a susuarios  */
+      isAutenticado /* indica si esta autenticado el usuario*/
     };
   }
 
@@ -38,21 +35,56 @@ class App extends React.Component {
     });
   }
 
+  onLogIn = () => {
+    this.setState({
+      isAutenticado: false
+    });
+
+    window.location = '/crm';
+  };
+
+  onLogOut = () => {
+    this.setState({
+      isAutenticado: false
+    });
+
+    AuthService.setLogOut();
+
+    window.location = '/';
+  };
+
   render() {
+    let appRouter = null;
+    let login = null;
+
     return (
       <div id="App">
         <Router>
-          <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
-
+          <SideBar
+            pageWrapId={'page-wrap'}
+            outerContainerId={'App'}
+            onLogOut={() => this.onLogOut()}
+          />
           <div>
-            <Route path="/" exact component={Crm} />
-            <Route path="/sup" component={Supervisor} />
+            <Route
+              path="/"
+              exact
+              component={() => (
+                <Login {...this.props} onLogIn={() => this.onLogIn()} />
+              )}
+            />
+            <Route
+              path="/registrarse"
+              exact
+              component={() => <Registrarse onLogIn={() => this.onLogIn()} />}
+            />
+
+            <Route path="/crm" exact component={Crm} />
             <Route path="/admin" component={Admin} />
             <Route path="/cuenta" component={Cuenta} />
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
           </div>
         </Router>
+
         <ToastContainer />
       </div>
     );

@@ -3,14 +3,16 @@ import LibToast from '../../lib/LibToast';
 import DataService from '../../servicios/dataService/DataService';
 import AuthService from '../../servicios/authService/AuthService';
 
-class Login extends Component {
+class Registrarse extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
+      nombre: '',
+      nick: '',
       email: '',
       password: '',
-
+      passwordconfirm: '',
       isEnProceso: false
     };
   }
@@ -21,11 +23,24 @@ class Login extends Component {
     this.setState(dic);
   }
 
-  onClickLogin = async () => {
+  onClickRegistrarse = async () => {
+    const nombre = this.state.nombre.trim();
+    const nick = this.state.nick.trim();
     const email = this.state.email.trim();
     const pass = this.state.password.trim();
+    const passwordconfirm = this.state.passwordconfirm.trim();
 
     let isValid = true;
+
+    if (nombre === '') {
+      LibToast.alert('Falta el Nombre');
+      isValid = false;
+    }
+
+    if (nick === '') {
+      LibToast.alert('Falta el Nick (nombre corto)');
+      isValid = false;
+    }
 
     if (email === '') {
       LibToast.alert('Falta el Email');
@@ -33,7 +48,12 @@ class Login extends Component {
     }
 
     if (pass === '') {
-      LibToast.alert('Falta el Password');
+      LibToast.alert('Falta el pass');
+      isValid = false;
+    }
+
+    if (passwordconfirm === '') {
+      LibToast.alert('Falta la confirmación del password');
       isValid = false;
     }
 
@@ -41,13 +61,18 @@ class Login extends Component {
       return;
     }
 
+    if (pass !== passwordconfirm) {
+      LibToast.alert('La confirmación del password no coincide');
+      return;
+    }
+
     this.setState({
       isEnProceso: true
     });
 
-    /*Hacer el proceso de login*/
+    /*Hacer el proceso de registro*/
 
-    let respuesta = await DataService.login(email, pass);
+    let respuesta = await DataService.registrarse(nombre, nick, email, pass);
 
     if (!respuesta.success) {
       LibToast.alert(respuesta.msg);
@@ -83,13 +108,13 @@ class Login extends Component {
       </div>
     );
 
-    const btnLogin = !this.state.isEnProceso && (
+    const btnRegistrarse = !this.state.isEnProceso && (
       <button
         className="btn btn-lg btn-primary btn-block text-uppercase mt-5"
-        onClick={event => this.onClickLogin()}
+        onClick={event => this.onClickRegistrarse()}
         type="submit"
       >
-        Login
+        Registrarse
       </button>
     );
 
@@ -100,7 +125,31 @@ class Login extends Component {
           <div className="col-sm-10 col-md-6 col-lg-4">
             <h2 className="tituloAPP">CRM Ironhack</h2>
 
-            <h5 className="card-title text-center">Ingresar</h5>
+            <h5 className="card-title text-center">Registrarse</h5>
+
+            <div className="form-group mt-4">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nombre"
+                value={this.state.nombre}
+                onChange={event =>
+                  this.onTxtChange('nombre', event.target.value)
+                }
+                required
+              />
+            </div>
+
+            <div className="form-group mt-4">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nick"
+                value={this.state.nick}
+                onChange={event => this.onTxtChange('nick', event.target.value)}
+                required
+              />
+            </div>
 
             <div className="form-signin">
               <div className="form-group">
@@ -120,7 +169,6 @@ class Login extends Component {
               <div className="form-group mt-4">
                 <input
                   type="password"
-                  id="inputPassword"
                   className="form-control"
                   placeholder="Password"
                   value={this.state.password}
@@ -130,22 +178,28 @@ class Login extends Component {
                   required
                 />
               </div>
-              {btnLogin}
+
+              <div className="form-group mt-4">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Confirmación de Password"
+                  value={this.state.passwordconfirm}
+                  onChange={event =>
+                    this.onTxtChange('passwordconfirm', event.target.value)
+                  }
+                  required
+                />
+              </div>
+
+              {btnRegistrarse}
               <div className="espaciocenter">{iconLoading}</div>
             </div>
 
-            <div className="mt-5 text-center">
-              Cuenta admin demo:
-              <br />
-              david@productividadti.com.mx
-              <br />
-              password:
-              <br />
-              lalocal
-            </div>
             <p className="mt-5">
-              <a className="linkRojo " href="/registrarse">
-                Registrarse <i className="fa fa-arrow-right" />
+              <a className="linkRojo " href="/">
+                <i className="fa fa-arrow-left" /> Ingresar con Email &amp;
+                Password
               </a>
             </p>
           </div>
@@ -155,4 +209,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Registrarse;

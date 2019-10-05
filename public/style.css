@@ -13,6 +13,10 @@ body {
    overflow: auto;
 }
 
+th.thCmd{
+   width: 50px;
+}
+
 /* Individual item */
 .bm-item {
    display: inline-block;
@@ -89,6 +93,13 @@ body {
 .flexG1{
    flex-grow: 1;
 }
+.div100PC{
+   width: 100%;
+}
+
+.overFlowDiv{
+   overflow-y: scroll;
+}
 
 .mL20{
 
@@ -152,3 +163,24 @@ table.teditdata tr td {
 .borderRed {
    border: 2px solid red; width: 100%;
 }
+
+.tituloSeccionAdd{
+   padding-bottom: 4px;
+}
+
+
+.colorNoResalta{color:#b3b3b3}
+.colorAlert{color:red}
+
+.cursorPointer{
+   cursor: pointer;
+}
+
+a:-webkit-any-link {
+   text-decoration: none;
+}
+
+.tituloAPP{text-align: center; font-size: 30px; margin: 20px 0 40px }
+
+.linkRojo {color:red; text-align: right}
+

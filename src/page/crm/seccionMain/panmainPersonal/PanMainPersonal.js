@@ -18,7 +18,7 @@ class PanMainPersonal extends Component {
       this.setState({ cliente });
     };
 
-    this.observerData.registrarHandlerOnSetClienteSelected(
+    this.observerData.registrarHandlerOnSetRegistroSelected(
       'PanMainPersonal',
       fnSetCliente
     );
