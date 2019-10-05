@@ -35,6 +35,7 @@ class BrowserUsuarios extends Component {
           nombre: '',
           nick: '',
           email: '',
+          password: '',
           is_admin: false,
           is_activo: true
         },
@@ -103,6 +104,9 @@ class BrowserUsuarios extends Component {
     if (respuesta.success) {
       const data = respuesta.data;
 
+      data.lista.forEach(u => {
+        u.password = '';
+      });
       const listaFiltrada = [...data.lista];
 
       this.setState({

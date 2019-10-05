@@ -39,6 +39,12 @@ class FormUsuario extends Component {
       b.setTipoCHK();
       lista.push(b.getConfigControlItem());
     }
+    /*------------------------------------------------------------*/
+    {
+      const b = new BuilderConfigControlItem('password', 'Password');
+      b.setIsRequired();
+      lista.push(b.getConfigControlItem());
+    }
 
     /*------------------------------------------------------------*/
     {
