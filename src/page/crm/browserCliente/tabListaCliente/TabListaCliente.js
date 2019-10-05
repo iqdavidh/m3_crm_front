@@ -295,7 +295,8 @@ class TabListaCliente extends Component {
       const data = respuesta.data;
 
       const lista = [...this.state.listaClientes, ...data.clientes];
-      const isCompletado = data.numTotalPaginas === pagina;
+      const isCompletado =
+        data.numTotalPaginas === 0 || data.numTotalPaginas === pagina;
 
       this.props.onUpdateNumContactos(lista.length);
 
