@@ -141,7 +141,7 @@ class Login extends Component {
               <br />
               password:
               <br />
-              iron
+              lalocal
             </div>
             <p className="mt-5">
               <a className="linkRojo " href="/registrarse">
